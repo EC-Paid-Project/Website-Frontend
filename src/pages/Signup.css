@@ -1,0 +1,28 @@
+.container {
+    /* min-height: 90%; */
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+  }
+  
+  .submit {
+    width: 100%;
+    background-color: #a69f9f;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .submit:hover {
+    background-color: #524e4e;
+  }
+  .App {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
