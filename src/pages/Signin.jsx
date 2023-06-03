@@ -6,6 +6,7 @@ import CustomInput from "../components/CustomInput";
 import GoogleAuth from "./GoogleAuth/GoogleOAuth.jsx";
 import "./Signin.css";
 import logo from "../assets/logo.png";
+import bg from "../assets/bg.jpg";
 
 function Signin() {
   const navigate = useNavigate();
@@ -60,20 +61,15 @@ function Signin() {
   };
 
   return (
-    <div className="container flex flex-col" onSubmit={onSubmitHandler}>
-      <img
-        src={logo}
-        className="w-40 h-auto mt-5 hover:cursor-pointer border-none"
-      />
-
-      {/* <image src={img} alt="background" /> */}
-      {/* <img
-                        className="h-10 w-10 rounded-full"
-                        src={img}
-                        alt="profile pic"
-                      /> */}
-      <div className="col-lg-4 col-md-6 col-sm-8 mx-auto">
-        <div className="p-6 shadow-lg mt-10 mb-4 rounded-xl border-2 bg-[#d0fef3] border-[#d0fef3]">
+    <div className="relative min-h-screen SigninBackground">
+      <div className="container flex flex-col z-10" onSubmit={onSubmitHandler}>
+        <a href="/">
+          <img
+            src={logo}
+            className="w-40 h-auto mt-5 hover:cursor-pointer border-none"
+          />
+        </a>
+        <div className="SignInForm shadow-lg col-lg-4 mt-5 col-md-6 col-sm-8 mx-auto rounded-xl p-6">
           <form className="form-group">
             <CustomInput
               label="Email"
@@ -107,13 +103,9 @@ function Signin() {
               <p>
                 <span className="or text-center text-lg">OR</span>
               </p>
-              {/* <div className="line"></div> */}
             </div>
-
             <div className="flex flex-col mb-3 gap-2 items-center text-sm social-media">
               <GoogleAuth informParent={informParent} />
-              {/* <GoogleOAuth/> */}
-              {/* <FacebookAuth informParent={informParent} /> */}
             </div>
             <div className="text-sm text-center">
               If you dont have an account yet,{" "}

@@ -42,3 +42,14 @@
   justify-content: center;
   align-items: center;
 }
+
+.SigninBackground{
+  background-image: url('../assets/bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.SignInForm{
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(4px);
+}
