@@ -4,11 +4,21 @@
     background-color: aquamarine;
 }
 
-.product-1-content{
+.product-1{
     width: 100%;
     height: 80vh;
     background-color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.product-title{
+    font-size: 3rem;
+    font-weight: 700;
+    color: #2c9fe6;
+    background-color: #ffffff;
+    /* margin-bottom: 2rem; */
+    text-align: center;
+    padding: 2rem 0 1rem 0;
 }
