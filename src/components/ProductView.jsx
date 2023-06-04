@@ -1,10 +1,10 @@
 import React from "react";
 import "./ProductView.css";
+import { Link } from "react-router-dom";
 
 const ProductView = (props) => {
   return (
     <div className="product-view-main">
-      {/* <div className="product-view-back-1 ${prop}"></div> */}
       <div className={`product-view-back-1 ${props.color1}`}></div>
       <div className={`product-view-back-2 ${props.color0}`}></div>
       <div className="product-view-card">
@@ -12,9 +12,18 @@ const ProductView = (props) => {
           <img src={props.image} alt="product-image" />
         </div>
         <div className="product-view-section">
-          <h3 className="product-view-title">{props.title}</h3>
+          <Link to={`/product/${props.id}`}>
+            <h3 className="product-view-title">{props.title}</h3>
+          </Link>
           <h4 className="product-view-price">PKR {props.price}</h4>
-          <p className="product-view-desc">{props.desc}</p>
+          <p className="product-view-desc">
+            {props.desc.length > 50
+              ? props.desc.slice(0, 250) + "..."
+              : props.desc}
+          </p>
+          <Link to={`product/${props.id}`}>
+            <div className="product-view-button">Shop Now</div>
+          </Link>
         </div>
       </div>
     </div>
