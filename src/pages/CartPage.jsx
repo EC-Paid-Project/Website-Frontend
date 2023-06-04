@@ -4,10 +4,13 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import CartItem from "../components/CartItem";
 import { useDispatch,useSelector } from "react-redux";
+import { addProductToCart, removeProductFromCart } from "../reduxStore/reducer";
+import { removeListener } from "@reduxjs/toolkit";
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
   const {cart}=useSelector(state=>state.centralStore)
+  const dispatch=useDispatch()
   useEffect(() => {
     // Retrieve cart from local storage
     if (cart && cart.length > 0) {
@@ -27,7 +30,8 @@ const CartPage = () => {
           </h2>
           {cartItems.map((item) => (
             <div key={item.id} className="cart-page-cart-item">
-              <CartItem item={item} />
+              <CartItem item={item} onIncrement={()=>dispatch(addProductToCart(item))}
+              onDecrement={()=>removeProductFromCart} />
             </div>
           ))}
         </div>
