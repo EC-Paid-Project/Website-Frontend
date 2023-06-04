@@ -5,14 +5,18 @@ import "./index.css";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import HomePage from "./pages/HomePage";
-// import Profile from "./pages/Profile/Profile";
+import ProductPage from "./pages/ProductPage";
 import { Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
-// import NotFound from "./pages/NotFound/NotFound";
+import CartPage from "./pages/CartPage";
 import { useEffect, useState } from "react";
+import UserProfile from "./pages/UserProfile";
+// import NotFound from "./pages/NotFound/NotFound";
+// import Profile from "./pages/Profile/Profile";
 // import ForceRedirect from "./components/ForceRedirect";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import { useLocation } from 'react-router-dom';
+
 function App() {
   const [isConnected, setIsconnected] = useState(false);
   // const user =  JSON.parse(localStorage.getItem('user'))._id
@@ -45,8 +49,11 @@ function App() {
       <div className="relative">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/signin" element={<Signin />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route exact path="/product/:id" element={<ProductPage />} />
+          <Route exact path="/cart" element={<CartPage />} />
+          <Route exact path="/profile" element={<UserProfile />} />
+          <Route exact path="/signin" element={<Signin />} />
+          <Route exact path="/signup" element={<Signup />} />
         </Routes>
       </div>
     </div>

@@ -23,8 +23,8 @@ const HomePage = () => {
             // image={bg}
             desc={productData[0].desc}
             price={productData[0].price}
-            color1={"product-view-color-white"}
-            color0={"product-view-color-blue"}
+            color1={"bg-color-white"}
+            color0={"bg-color-blue"}
           />
         </div>
         <div className="product-1">
@@ -34,8 +34,8 @@ const HomePage = () => {
             image={productData[1].image}
             desc={productData[1].desc}
             price={productData[1].price}
-            color1={"product-view-color-blue"}
-            color0={"product-view-color-white"}
+            color1={"bg-color-blue"}
+            color0={"bg-color-white"}
           />
         </div>
         <div className="product-1">
@@ -45,8 +45,8 @@ const HomePage = () => {
             image={productData[2].image}
             desc={productData[2].desc}
             price={productData[2].price}
-            color1={"product-view-color-white"}
-            color0={"product-view-color-blue"}
+            color1={"bg-color-white"}
+            color0={"bg-color-blue"}
           />
         </div>
       </div>

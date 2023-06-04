@@ -3,18 +3,22 @@ import "./Navbar.css";
 import logo from "../assets/logo.png";
 import cartIcon from "../assets/cart.png";
 import profileImage from "../assets/Cartoonify.png";
+import { Link } from "react-router-dom";
+import { HiShoppingCart } from "react-icons/hi";
 
 const Navbar = () => {
   return (
     <nav>
       <ul>
         <li>
-          <img src={logo} alt="Logo" className="logo" />
+          <Link to="/">
+            <img src={logo} alt="Logo" className="logo" />
+          </Link>
         </li>
         <li>
           <ul className="">
             <li>
-              <a href="#">Home</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
               <a href="#">About</a>
@@ -29,13 +33,21 @@ const Navbar = () => {
         </li>
         <li>
           <div className="navRight">
-            <button className="cart-button">
-              <img src={cartIcon} alt="Cart" />
-            </button>
-            <div className="user-profile">
-              <img src={profileImage} alt="Profile" className="profile-image" />
-              <span className="username">John Doe</span>
-            </div>
+            <Link to={"/cart"}>
+              <button className="cart-button">
+                <HiShoppingCart />
+              </button>
+            </Link>
+            <Link to={"/profile"}>
+              <div className="user-profile">
+                <img
+                  src={profileImage}
+                  alt="Profile"
+                  className="profile-image"
+                />
+                <span className="username">John Doe</span>
+              </div>
+            </Link>
           </div>
         </li>
       </ul>
