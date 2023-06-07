@@ -4,6 +4,7 @@ const initialState = {
   cart: JSON.parse(localStorage.getItem("cart")) || [],
   isLoading: false,
   userData: null,
+  product: [],
 };
 
 export const centralStore = createSlice({
@@ -24,24 +25,26 @@ export const centralStore = createSlice({
       if (existingProductIndex !== -1) {
         state.cart[existingProductIndex].quantity += 1;
       } else {
-        product.quantity++
+        product.quantity++;
         state.cart.push(product);
       }
       updateLocalStorage(state.cart); // Update local storage
     },
     removeProductFromCart: (state, action) => {
-    
-
       const product1 = action.payload;
-      console.log(product1.id)
+      console.log(product1.id);
       const existingProductIndex = state.cart.findIndex(
         (item) => item.id === product1.id
       );
       if (existingProductIndex !== -1) {
         state.cart[existingProductIndex].quantity -= 1;
-      } 
+      }
       updateLocalStorage(state.cart);
+    },
 
+    allProducts: (state, action) => {
+      const product = action.payload;
+      state.product = product;
     },
   },
 });
@@ -51,6 +54,7 @@ export const {
   endLoading,
   addProductToCart,
   removeProductFromCart,
+  allProducts,
 } = centralStore.actions;
 
 export default centralStore.reducer;
