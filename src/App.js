@@ -11,6 +11,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import CartPage from "./pages/CartPage";
 import { useEffect, useState } from "react";
 import UserProfile from "./pages/UserProfile";
+import AboutPage from "./pages/AboutPage";
 // import NotFound from "./pages/NotFound/NotFound";
 // import Profile from "./pages/Profile/Profile";
 // import ForceRedirect from "./components/ForceRedirect";
@@ -52,6 +53,7 @@ function App() {
           <Route exact path="/product/:id" element={<ProductPage />} />
           <Route exact path="/cart" element={<CartPage />} />
           <Route exact path="/profile" element={<UserProfile />} />
+          <Route exact path="/about" element={<AboutPage />} />
           <Route exact path="/signin" element={<Signin />} />
           <Route exact path="/signup" element={<Signup />} />
         </Routes>
