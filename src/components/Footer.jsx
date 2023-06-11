@@ -2,40 +2,35 @@ import React from "react";
 import "./Footer.css";
 import { FaFacebook, FaTwitter } from "react-icons/fa";
 import { AiFillInstagram } from "react-icons/ai";
+import playStore from "../assets/get-on-playStore.svg";
+import appStore from "../assets/get-on-appStore.svg";
 
 const Footer = () => {
   return (
-    // <footer>
-    //   <div className="footer-content">
-    //     <ul className="footer-links">
-    //       <li>
-    //         <a href="#">Company Info</a>
-    //       </li>
-    //       <li>
-    //         <a href="#">About</a>
-    //       </li>
-    //       <li>
-    //         <a href="#">Services</a>
-    //       </li>
-    //       <li>
-    //         <a href="#">Contact</a>
-    //       </li>
-    //     </ul>
-    //     <p>&copy; 2023 Your Company. All rights reserved.</p>
-    //   </div>
-    // </footer>
     <footer>
       <div className="footer-content">
         <div className="footer-column">
-          <h4>Company Info</h4>
-          <p>Address: Your Company Address</p>
-          <p>Phone: 123-456-7890</p>
-          <p>Email: info@yourcompany.com</p>
+          <h4 className="font-bold text-lg">Company Info</h4>
+          <p className="text-sm">
+            <span className="font-bold">Address:</span> A-23, St-12, Sector
+            14-B, New York, USA
+          </p>
+          <p className="text-sm">
+            <span className="font-bold">Phone:</span> 123-456-7890
+          </p>
+          <p className="text-sm">
+            <span className="font-bold">Email:</span> info@yourcompany.com
+          </p>
         </div>
         <div className="footer-column">
-          <h4>Working Hours</h4>
-          <p>Monday - Friday: 9am - 6pm</p>
-          <p>Saturday: 9am - 2pm</p>
+          <h4 className="font-bold text-lg">Working Hours</h4>
+          <p className="text-sm">
+            <span className="font-bold">Monday - Friday:</span> 9am - 6pm
+          </p>
+          <p className="text-sm">
+            <span className="font-bold">Saturday:</span> 9am - 2pm
+          </p>
+          <h4 className="font-bold text-lg mt-5">Our Socials</h4>
           <div className="social-icons">
             <a href="#">
               <FaFacebook />
@@ -49,23 +44,30 @@ const Footer = () => {
           </div>
         </div>
         <div className="footer-column">
-          <h4>Download Our App</h4>
+          <h4 className="font-bold text-lg">Download Our App</h4>
           <a href="#" className="app-link">
-            <img src="android-app-icon.png" alt="Android App" />
+            <img
+              src={playStore}
+              alt="Android App"
+              className="mb-2"
+              title="Download for Android"
+            />
           </a>
           <a href="#" className="app-link">
-            <img src="ios-app-icon.png" alt="iOS App" />
+            <img src={appStore} alt="iOS App" title="Download for IOS" />
           </a>
         </div>
         <div className="footer-column">
-          <h4>Our Vision</h4>
-          <p>
+          <h4 className="font-bold text-lg">Our Vision</h4>
+          <p className="text-sm">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
             tristique tellus ut libero vehicula, sed finibus metus mollis.
           </p>
         </div>
       </div>
-      <p>&copy; 2023 Your Company. All rights reserved.</p>
+      <p className="ml-[1rem]">
+        &copy; 2023 Your Company. All rights reserved.
+      </p>
     </footer>
   );
 };
