@@ -60,8 +60,10 @@ const Footer = () => {
         <div className="footer-column">
           <h4 className="font-bold text-lg">Our Vision</h4>
           <p className="text-sm">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-            tristique tellus ut libero vehicula, sed finibus metus mollis.
+            To provide a user-friendly and informative platform that serves as a
+            one-stop solution for all gas-related needs. We aim to provide a
+            seamless online experience where customers can easily browse and
+            purchase gas cylinders.
           </p>
         </div>
       </div>

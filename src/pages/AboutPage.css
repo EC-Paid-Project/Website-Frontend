@@ -1,20 +1,59 @@
-.about-page-main{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.about-page-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.cover-image{
-    width: 100%;
-    aspect-ratio: 5;
-    object-fit: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+.cover-image {
+  width: 100%;
+  aspect-ratio: 6;
+  object-fit: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
-.about-page-overlay{
-    width: 100%;
-    aspect-ratio: 5;
-    background-color: rgba(0,0,0,0.5);
+.about-page-overlay {
+  width: 100%;
+  aspect-ratio: 6;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+}
+.about-page-content {
+  width: 65%;
+  margin: 10rem auto;
+}
+.about-page-content p {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #4e4d4d;
+  /* color: #1c9fe6; */
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  line-height: 1.5;
+  font-family: "Poppins", sans-serif;
+
+  &:before {
+    content: open-quote;
+    top: -3rem;
+    left: -2rem;
+  }
+  &:after {
+    content: close-quote;
+    right: -2rem;
+    bottom: -6rem;
+  }
+  &:after,
+  &:before {
+    font-family: Georgia, "Times New Roman", serif;
+    color: #2c9fe6;
+    font-size: 5rem;
+    display: block;
+    width: max-content;
     position: absolute;
+  }
+}
+.company-name {
+  font-weight: 700;
+  color: #1c9fe6;
 }

@@ -9,8 +9,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { addProductToCart, removeProductFromCart } from "../reduxStore/reducer";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const ProductPage = () => {
+  useEffect(() => {
+    AOS.init();
+    window.scrollTo(0, 0);
+  }, []);
   const { cart } = useSelector((state) => state.centralStore);
   const dispatch = useDispatch();
 
@@ -55,7 +61,11 @@ const ProductPage = () => {
         <h2 className="product-page-title-main">{product.title}</h2>
         <div className={`product-page-back-1 bg-color-white`}></div>
         <div className={`product-page-back-2 bg-color-blue`}></div>
-        <div className="product-page-card">
+        <div
+          className="product-page-card"
+          data-aos="zoom-out"
+          data-aos-duration="2000"
+        >
           <div className="product-page-image">
             <img src={product.image} alt="product-image" />
           </div>
@@ -88,6 +98,9 @@ const ProductPage = () => {
               onClick={() => handleAddToCart(product)}
             >
               Add to Cart
+            </button>
+            <button className="add-to-cart" onClick={() => Navigate("/")}>
+              Back to Shop
             </button>
           </div>
         </div>
