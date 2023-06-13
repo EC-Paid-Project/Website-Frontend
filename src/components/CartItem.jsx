@@ -1,5 +1,6 @@
 import "./CartItem.css";
 import React, { useEffect, useState } from "react";
+import {RiDeleteBin6Fill} from "react-icons/ri";
 
 const CartItem = ({ item, onIncrement, onDecrement }) => {
   const { title, image, price } = item;
@@ -23,13 +24,15 @@ const CartItem = ({ item, onIncrement, onDecrement }) => {
 
   return (
     <div className="cart-item">
-      <div className="item-container">
         <div className="item-image-container">
           <img className="item-image" src={image} alt={title} />
         </div>
         <div className="item-details">
-          <h3 className="item-name">{title}</h3>
-          <span className="item-name">{price}</span>
+          <div class="details-left">
+            <h3 className="item-name">{title}</h3>
+            <button type="button" className="remove-item"> <RiDeleteBin6Fill className="mr-2" /> Remove Item</button>
+          </div>
+          <span className="item-price">PKR {price}</span>
           <div className="item-quantity">
             <button className="quantity-button" onClick={handleDecrement}>
               -
@@ -40,7 +43,6 @@ const CartItem = ({ item, onIncrement, onDecrement }) => {
             </button>
           </div>
         </div>
-      </div>
     </div>
   );
 };

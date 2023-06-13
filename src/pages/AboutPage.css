@@ -32,19 +32,19 @@
   z-index: 1;
   line-height: 1.5;
   font-family: "Poppins", sans-serif;
-
-  &:before {
+}
+.about-page-content p:before {
     content: open-quote;
-    top: -3rem;
-    left: -2rem;
+    top: -3.5rem;
+    left: -2.5rem;
   }
-  &:after {
+  .about-page-content p:after {
     content: close-quote;
     right: -2rem;
     bottom: -6rem;
   }
-  &:after,
-  &:before {
+  .about-page-content p:after,
+  .about-page-content p:before {
     font-family: Georgia, "Times New Roman", serif;
     color: #2c9fe6;
     font-size: 5rem;
@@ -52,7 +52,7 @@
     width: max-content;
     position: absolute;
   }
-}
+
 .company-name {
   font-weight: 700;
   color: #1c9fe6;

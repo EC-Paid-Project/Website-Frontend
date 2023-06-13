@@ -23,6 +23,9 @@ const CartPage = () => {
   return (
     <div>
       <Navbar />
+      <div className="cart-title">
+          <h2 className="underline">Cart</h2>
+        </div>
       <div className="cart-page-main min-h-screen">
         <div className="cart-page-section-left">
           <h2 className="cart-page-section-title">
