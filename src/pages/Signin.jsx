@@ -7,10 +7,13 @@ import GoogleAuth from "./GoogleAuth/GoogleOAuth.jsx";
 import "./Signin.css";
 import logo from "../assets/logo.png";
 import bg from "../assets/bg.jpg";
+import { login } from "../actions/action";
+import { useDispatch } from "react-redux";
 
 function Signin() {
+  const dispatch = useDispatch(); 
   const navigate = useNavigate();
-  const [form, setForm] = useState({ email: "", name: "", password: "" });
+  const [form, setForm] = useState({ email: "", password: "" });
   // eslint-disable-next-line no-unused-vars
   const [errors, setErrors] = useState({});
   // eslint-disable-next-line no-unused-vars
@@ -24,10 +27,11 @@ function Signin() {
   };
 
   const onSubmitHandler = (event) => {
-    setIsLoading(true);
     event.preventDefault();
     console.log("User sign in without google, form details are: ");
     console.log(form);
+
+    dispatch(login(form))
     // axios
     //   .post("/user/signin", form)
     //   .then((response) => {

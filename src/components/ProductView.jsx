@@ -21,7 +21,10 @@ const ProductView = (props) => {
               ? props.desc.slice(0, 250) + "..."
               : props.desc}
           </p>
-          <Link to={`product/${props.id}`}>
+              <h4 className="product-view-price"> {!props.availability? "Available":"Not available"}  </h4>
+              <h4 className="product-view-price">size {props.size}</h4>
+              <h4 className="product-view-price">weight {props.weight}</h4>
+          <Link to={`products/${props.id}`}>
             <div className="product-view-button">Shop Now</div>
           </Link>
         </div>

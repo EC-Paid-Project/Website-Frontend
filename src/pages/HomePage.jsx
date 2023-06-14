@@ -1,12 +1,40 @@
-import React from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import "./HomePage.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import CustomCarousel from "../components/Carousel";
-import ProductView from "../components/ProductView";
-import productData from "../data/productData";
+import { fetchAllProducts, fetchProductBySearch } from "../actions/action";
+import { useSelector,useDispatch } from "react-redux";
+const ProductView = lazy(() => import("../components/ProductView"));
 
 const HomePage = () => {
+const dispatch =useDispatch()
+  const [searchQuery, setSearchQuery] = useState("");
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+//get product from redux selector
+const productList = useSelector((state) => state.centralStore.productList);
+const isLoading = useSelector((state) => state.centralStore.isLoading);
+  useEffect(() => {
+    setLoading(true);
+    if (searchQuery) {
+      dispatch(fetchProductBySearch(searchQuery))
+        
+        .catch((error) => console.error(error));
+    } else {
+      dispatch(fetchAllProducts()).then((response) => {
+        console.log(productList);
+      }
+      );
+
+
+    }
+  }, [searchQuery]);
+
+  const handleSearch = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
   return (
     <div>
       <Navbar />
@@ -15,40 +43,36 @@ const HomePage = () => {
         <div className="product-title">
           <h2 className="underline">Our Products</h2>
         </div>
-        <div className="product-1">
-          <ProductView
-            title={productData[0].title}
-            id={productData[0].id}
-            image={productData[0].image}
-            // image={bg}
-            desc={productData[0].desc}
-            price={productData[0].price}
-            color1={"bg-color-white"}
-            color0={"bg-color-blue"}
+        <div className="search-bar">
+          <input
+            type="text"
+            placeholder="Search products..."
+            value={searchQuery}
+            onChange={handleSearch}
           />
         </div>
-        <div className="product-1">
-          <ProductView
-            title={productData[1].title}
-            id={productData[1].id}
-            image={productData[1].image}
-            desc={productData[1].desc}
-            price={productData[1].price}
-            color1={"bg-color-blue"}
-            color0={"bg-color-white"}
-          />
-        </div>
-        <div className="product-1">
-          <ProductView
-            title={productData[2].title}
-            id={productData[2].id}
-            image={productData[2].image}
-            desc={productData[2].desc}
-            price={productData[2].price}
-            color1={"bg-color-white"}
-            color0={"bg-color-blue"}
-          />
-        </div>
+        <Suspense fallback={<div>Loading...</div>}>
+          {isLoading ? (
+            <div>Loading...</div>
+          ) : (
+            productList.map((product) => (
+              <div className="product-1" key={product.id}>
+                <ProductView
+                  title={product.name}
+                  id={product.id}
+                  image={product.image}
+                  desc={product.description}
+                  price={product.price}
+                  available={product.availablility}
+                  size={product.size}
+                  weight={product.weight}
+                  color1={"bg-color-white"}
+                  color0={"bg-color-blue"}
+                />
+              </div>
+            ))
+          )}
+        </Suspense>
       </div>
       <Footer />
     </div>

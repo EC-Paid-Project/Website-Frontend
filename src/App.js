@@ -12,6 +12,7 @@ import CartPage from "./pages/CartPage";
 import { useEffect, useState } from "react";
 import UserProfile from "./pages/UserProfile";
 import AboutPage from "./pages/AboutPage";
+import MyAddressForm from "./pages/addressForm";
 // import NotFound from "./pages/NotFound/NotFound";
 // import Profile from "./pages/Profile/Profile";
 // import ForceRedirect from "./components/ForceRedirect";
@@ -56,6 +57,7 @@ function App() {
           <Route exact path="/about" element={<AboutPage />} />
           <Route exact path="/signin" element={<Signin />} />
           <Route exact path="/signup" element={<Signup />} />
+          <Route exact path="/addressForm" element={<MyAddressForm />} />
         </Routes>
       </div>
     </div>

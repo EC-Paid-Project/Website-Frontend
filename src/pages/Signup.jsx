@@ -5,10 +5,13 @@ import "./Signup.css";
 // import axios from "axios";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
-
-function Signup() {
+import { useDispatch } from "react-redux";
+import { signup } from "../actions/action";
+function 
+Signup() {
   // const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
   const [form, setForm] = useState({});
   // eslint-disable-next-line no-unused-vars
   const [errors, setErrors] = useState({});
@@ -22,7 +25,7 @@ function Signup() {
   };
 
   const onSubmitHandler = (event) => {
-    setIsLoading(true);
+    // setIsLoading(true);
     event.preventDefault();
     // axios
     //   .post("/user/signup", form)
@@ -36,7 +39,7 @@ function Signup() {
     //     setErrors(err.response.data);
     //     setIsLoading(false);
     //   });
-
+dispatch(signup(form) )
     console.log("User sign up form details are: ");
     console.log(form);
   };
@@ -74,10 +77,19 @@ function Signup() {
                 errors={errors.email}
               />
               <CustomInput
-                label="Password"
+                label="Password1"
                 placeholder="password"
                 type="password"
-                name="password"
+                name="password1"
+                icon={<FaLock />}
+                onChange={onChangeHandler}
+                errors={errors.password}
+              />
+              <CustomInput
+                label="Password"
+                placeholder="confirm password"
+                type="password"
+                name="password2"
                 icon={<FaLock />}
                 onChange={onChangeHandler}
                 errors={errors.password}

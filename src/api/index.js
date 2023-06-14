@@ -1,18 +1,51 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "https://dummyjson.com" });
+const API = axios.create({ baseURL: "https://owaisali246.pythonanywhere.com/" });
 
 API.interceptors.request.use((req) => {
-  if (localStorage.getItem("profile")) {
-    req.headers.Authorization = `Bearer ${
-      JSON.parse(localStorage.getItem("profile")).token
+  if (localStorage.getItem("authToken")) {
+    req.headers.Authorization = `Token ${
+      JSON.parse(localStorage.getItem("authToken"))
     }`;
   }
 
   return req;
 });
 
-export const fetchAllProducts = () => API.get(`/products`);
+export const fetchAllProducts = async () =>
+   await API.get(`/products`, );
+
+export const fetchProductBySearch = async (search) =>
+    await API.get(`/products?search=${search}`, );
+export const fetchOneProduct = async (id) =>
+    await API.get(`/products/${id}`, );
+
+export const sendCart = async (cart) => 
+  await API.post(`/send_cart/`, cart,);
+
+export const sendAddress = async (address) =>  await API.post(`/address/`, address);
+export const getOrderHistory = async () =>  await API.get(`/history`);
+
+
+export const login = async (body) => 
+   await API.post(`/dj-rest-auth/login/`, body);
+
+
+export const signup = async (body) =>  await API.post(`/dj-rest-auth/registration/`, body);
+  // Handle the response as needed
+
+// Add more authentication-related API calls as needed
+
+//...
+
+
+// Add more POST API calls as needed
+
+//...
+
+// Add more GET API calls as needed
+
+//...
 
 // export const getAllPost = (query) => API.get(`/jobPost/getPost/query?page=${query}`);
 
