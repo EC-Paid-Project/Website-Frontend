@@ -36,6 +36,7 @@ const CartItem = ({ product, onIncrement, onDecrement }) => {
   };
 
   return (
+
     <div className="cart-product">
       <div className="product-container">
         <div className="product-image-container">
@@ -54,6 +55,7 @@ const CartItem = ({ product, onIncrement, onDecrement }) => {
             </button>
           </div>
         </div>
+    </div>
     </div>
   );
 };
