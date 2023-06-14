@@ -67,6 +67,7 @@ export const {
   endLoading,
   addProductToCart,
   removeProductFromCart,
+  removeProductFromCartCompletely,
   allProducts,
 } = centralStore.actions;
 

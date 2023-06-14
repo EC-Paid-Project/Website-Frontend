@@ -39,16 +39,22 @@ const isLoading = useSelector((state) => state.centralStore.isLoading);
     <div>
       <Navbar />
       <div className="relative min-h-screen ">
-        <CustomCarousel />
+        <div data-aos="zoom-in" data-aos-duration="1000">
+          <CustomCarousel />
+        </div>
         <div className="product-title">
           <h2 className="underline">Our Products</h2>
         </div>
-        <div className="search-bar">
-          <input
-            type="text"
-            placeholder="Search products..."
-            value={searchQuery}
-            onChange={handleSearch}
+        <div className="product-1">
+          <ProductView
+            title={productData[0].title}
+            id={productData[0].id}
+            image={productData[0].image}
+            // image={bg}
+            desc={productData[0].desc}
+            price={productData[0].price}
+            color1={"bg-color-white"}
+            color0={"bg-color-blue"}
           />
         </div>
         <Suspense fallback={<div>Loading...</div>}>

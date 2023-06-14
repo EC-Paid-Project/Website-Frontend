@@ -41,7 +41,7 @@ const UserProfile = () => {
       <Navbar />
       <div className="user-page-main min-h-screen relative">
         <div className="cover-image">
-          <img src="https://picsum.photos/1920/400" alt="" />
+          <img src="https://picsum.photos/1920/320" alt="" />
           <div className="user-page-overlay"></div>
         </div>
         <button className="logout-btn" onClick={() => handleLogout()}>

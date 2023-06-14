@@ -9,6 +9,8 @@ import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { addProductToCart, removeProductFromCart } from "../reduxStore/reducer";
 import { fetchOneProduct } from "../actions/action";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const ProductPage = () => {
   const { cart, isLoading } = useSelector((state) => state.centralStore);
@@ -68,7 +70,11 @@ const ProductPage = () => {
         <h2 className="product-page-title-main">{product.title}</h2>
         <div className={`product-page-back-1 bg-color-white`}></div>
         <div className={`product-page-back-2 bg-color-blue`}></div>
-        <div className="product-page-card">
+        <div
+          className="product-page-card"
+          data-aos="zoom-out"
+          data-aos-duration="2000"
+        >
           <div className="product-page-image">
             <img src={product.image} alt="product-image" />
           </div>
@@ -93,6 +99,7 @@ const ProductPage = () => {
               </button>
             </div>
             <button className="add-to-cart" onClick={()=>{
+handleAddToCart(product)
 Navigate("/cart")
             } }>
               Add to Cart

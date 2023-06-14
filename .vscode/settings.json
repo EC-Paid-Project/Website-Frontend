@@ -1,5 +1,8 @@
 {
     "cSpell.words": [
         "Cartoonify"
+    ],
+    "githubPullRequests.ignoredPullRequestBranches": [
+        "main"
     ]
 }

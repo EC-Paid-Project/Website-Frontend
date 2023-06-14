@@ -2,6 +2,8 @@ import "./CartItem.css";
 import { useDispatch } from "react-redux";
 import {addProductToCart,removeProductFromCart} from "../reduxStore/reducer"
 import React, { useEffect, useState } from "react";
+import {RiDeleteBin6Fill} from "react-icons/ri";
+
 
 const CartItem = ({ product, onIncrement, onDecrement }) => {
   const { title, image, price } = product;
@@ -25,6 +27,14 @@ const CartItem = ({ product, onIncrement, onDecrement }) => {
     }
   };
 
+  const handleRemoveProduct = () => {
+    if (quantity > 0) {
+      onRemove();
+      console.log(item)
+      setQuantity(0);
+    }
+  };
+
   return (
     <div className="cart-product">
       <div className="product-container">
@@ -44,7 +54,6 @@ const CartItem = ({ product, onIncrement, onDecrement }) => {
             </button>
           </div>
         </div>
-      </div>
     </div>
   );
 };

@@ -1,7 +1,6 @@
 .cart-page-main{
     width: 90%;
     margin: 0 auto;
-    padding-top: 1rem;
     display: flex;
     justify-content: center;
     align-items: start;
@@ -40,7 +39,7 @@
     font-weight: 700;
     color: #2c9fe6;
     background-color: #ffffff;
-    margin: 1.5rem 0 1rem 2.5rem;
+    margin: 1rem auto 1rem auto;
     /* text-align: center; */
 }
 .cart-page-cart-item{
