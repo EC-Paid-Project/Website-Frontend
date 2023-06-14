@@ -7,7 +7,7 @@ import { useDispatch,useSelector } from "react-redux";
 import { addProductToCart, removeProductFromCart, removeProductFromCartCompletely } from "../reduxStore/reducer";
 import { removeListener } from "@reduxjs/toolkit";
 import { useNavigate } from "react-router-dom";
-import { getOrderHistory } from "../actions/action";
+import { getDistributors, getOrderHistory } from "../actions/action";
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -82,7 +82,7 @@ const CartPage = () => {
       <span className="cart-summary-value">PKR {calculateTotalPrice(cart)}</span>
     </div>
   </div>
-  <button className="btn-primary" onClick={()=>dispatch(getOrderHistory())
+  <button className="btn-primary" onClick={()=>dispatch(getDistributors())
   // navigate("/addressForm")
 }>Checkout</button>
 </div>

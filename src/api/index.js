@@ -14,6 +14,8 @@ API.interceptors.request.use((req) => {
 
 export const fetchAllProducts = async () =>
    await API.get(`/products`, );
+export const getDistributors = async () =>
+   await API.get(`/distributor`, );
 
 export const fetchProductBySearch = async (search) =>
     await API.get(`/products?search=${search}`, );

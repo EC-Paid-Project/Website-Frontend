@@ -54,7 +54,20 @@ export const getOrderHistory = () => async (dispatch) => {
 
   }
 }
+// get distributors
+export const getDistributors = () => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const { data } = await api.getDistributors();
+    console.log(data);
+    dispatch(endLoading());
+    return data;
+  } catch (error) {
+    console.log(error.message);
 
+  }
+}
+// add to 
 
 export const addToCart = (cart) => async (dispatch) =>{
   try {
