@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import CartItem from "../components/CartItem";
 import { useDispatch,useSelector } from "react-redux";
-import { addProductToCart, removeProductFromCart } from "../reduxStore/reducer";
+import { addProductToCart, removeProductFromCart, removeProductFromCartCompletely } from "../reduxStore/reducer";
 import { removeListener } from "@reduxjs/toolkit";
 
 const CartPage = () => {
@@ -12,13 +12,14 @@ const CartPage = () => {
   const {cart}=useSelector(state=>state.centralStore)
   const dispatch=useDispatch()
   useEffect(() => {
+    console.log(cart)
     // Retrieve cart from local storage
     if (cart && cart.length > 0) {
       setCartItems(cart);
     } else {
       setCartItems([]);
     }
-  }, []);
+  }, [cart]);
 
   return (
     <div>
@@ -31,10 +32,10 @@ const CartPage = () => {
           <h2 className="cart-page-section-title">
             Cart Items ({cartItems.length} Items)
           </h2>
-          {cartItems.map((item) => (
+          {cartItems.map((item) => ( item &&
             <div key={item.id} className="cart-page-cart-item">
               <CartItem item={item} onIncrement={()=>dispatch(addProductToCart(item))}
-              onDecrement={()=>removeProductFromCart} />
+              onDecrement={()=>dispatch(removeProductFromCart(item))} onRemove={()=>dispatch(removeProductFromCartCompletely(item))} />
             </div>
           ))}
         </div>

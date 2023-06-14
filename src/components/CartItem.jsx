@@ -2,7 +2,8 @@ import "./CartItem.css";
 import React, { useEffect, useState } from "react";
 import {RiDeleteBin6Fill} from "react-icons/ri";
 
-const CartItem = ({ item, onIncrement, onDecrement }) => {
+
+const CartItem = ({ item, onIncrement, onDecrement, onRemove }) => {
   const { title, image, price } = item;
   const [quantity, setQuantity] = useState(item.quantity);
 
@@ -22,15 +23,23 @@ const CartItem = ({ item, onIncrement, onDecrement }) => {
     }
   };
 
+  const handleRemoveProduct = () => {
+    if (quantity > 0) {
+      onRemove();
+      console.log(item)
+      setQuantity(0);
+    }
+  };
+
   return (
     <div className="cart-item">
         <div className="item-image-container">
           <img className="item-image" src={image} alt={title} />
         </div>
         <div className="item-details">
-          <div class="details-left">
+          <div className="details-left">
             <h3 className="item-name">{title}</h3>
-            <button type="button" className="remove-item"> <RiDeleteBin6Fill className="mr-2" /> Remove Item</button>
+            <button type="button" className="remove-item" onClick={handleRemoveProduct} > <RiDeleteBin6Fill className="mr-2" /> Remove Item</button>
           </div>
           <span className="item-price">PKR {price}</span>
           <div className="item-quantity">

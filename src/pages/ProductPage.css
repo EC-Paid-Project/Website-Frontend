@@ -113,14 +113,14 @@
   margin-top: 1rem;
   box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.4);
 
-  &:hover {
+}
+  .add-to-cart:hover {
     background-color: #045484;
     box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.4);
   }
-  &:first-of-type {
-    margin-right: 2rem;
+  .add-to-cart:first-of-type {
+    margin-right: 1.5rem;
   }
-}
 
 .product-page-quantity {
   width: 10vw;

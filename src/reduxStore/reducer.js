@@ -41,6 +41,17 @@ export const centralStore = createSlice({
       }
       updateLocalStorage(state.cart);
     },
+    removeProductFromCartCompletely: (state, action) => {
+      const product1 = action.payload;
+      console.log(product1.id);
+      const existingProductIndex = state.cart.findIndex(
+        (item) => item.id === product1.id
+      );
+      if (existingProductIndex !== -1) {
+        state.cart[existingProductIndex].quantity = 0;
+      }
+      updateLocalStorage(state.cart);
+    },
 
     allProducts: (state, action) => {
       const product = action.payload;
@@ -54,6 +65,7 @@ export const {
   endLoading,
   addProductToCart,
   removeProductFromCart,
+  removeProductFromCartCompletely,
   allProducts,
 } = centralStore.actions;
 
