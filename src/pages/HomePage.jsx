@@ -26,8 +26,6 @@ const isLoading = useSelector((state) => state.centralStore.isLoading);
         console.log(productList);
       }
       );
-
-
     }
   }, [searchQuery]);
 
@@ -67,7 +65,7 @@ const isLoading = useSelector((state) => state.centralStore.isLoading);
                   size={product.size}
                   weight={product.weight}
                   color1={"bg-color-white"}
-                  color0={"bg-color-blue"}
+                  color0={"bg-color-white"}
                 />
               </div>
             ))

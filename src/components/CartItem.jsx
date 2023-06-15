@@ -29,8 +29,8 @@ const CartItem = ({ product, onIncrement, onDecrement }) => {
 
   const handleRemoveProduct = () => {
     if (quantity > 0) {
-      onRemove();
-      console.log(item)
+      // onRemove();
+      console.log(product)
       setQuantity(0);
     }
   };

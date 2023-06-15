@@ -67,7 +67,7 @@ const ProductPage = () => {
     <div>
       <Navbar />
       <div className="product-page-main">
-        <h2 className="product-page-title-main">{product.title}</h2>
+        <h2 className="product-page-title-main">{product.name}</h2>
         <div className={`product-page-back-1 bg-color-white`}></div>
         <div className={`product-page-back-2 bg-color-blue`}></div>
         <div
@@ -76,11 +76,11 @@ const ProductPage = () => {
           data-aos-duration="2000"
         >
           <div className="product-page-image">
-            <img src={product.image} alt="product-image" />
+            <img src={`https://owaisali246.pythonanywhere.com/${product.image}`} alt="product-image" />
           </div>
           <div className="product-page-section">
             <Link to={`/product/${product.id}`}>
-              <h3 className="product-page-title">{product.title}</h3>
+              <h3 className="product-page-title">{product.name}</h3>
             </Link>
             <h4 className="product-page-price">PKR {product.price}</h4>
             <h4 className="product-page-price"> Weight {product.weight}</h4>

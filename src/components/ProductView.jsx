@@ -9,7 +9,7 @@ const ProductView = (props) => {
       <div className={`product-view-back-2 ${props.color0}`}></div>
       <div className="product-view-card">
         <div className="product-view-image">
-          <img src={props.image} alt="product-image" />
+          <img src={`https://owaisali246.pythonanywhere.com/${props.image}`} alt="product-image" />
         </div>
         <div className="product-view-section">
           <Link to={`/product/${props.id}`}>
@@ -24,7 +24,7 @@ const ProductView = (props) => {
               <h4 className="product-view-price"> {!props.availability? "Available":"Not available"}  </h4>
               <h4 className="product-view-price">size {props.size}</h4>
               <h4 className="product-view-price">weight {props.weight}</h4>
-          <Link to={`products/${props.id}`}>
+          <Link to={`product/${props.id}`}>
             <div className="product-view-button">Shop Now</div>
           </Link>
         </div>
