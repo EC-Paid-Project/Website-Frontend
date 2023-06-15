@@ -46,7 +46,7 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
           }
         });
 //   save distributor in local storage
-        localStorage.setItem('closestDistributor', JSON.stringify(closestDistributor));
+        localStorage.setItem('lpgDistributor', JSON.stringify(closestDistributor));
         console.log('Closest Distributor:', closestDistributor);
       });
     } else {

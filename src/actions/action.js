@@ -62,6 +62,7 @@ export const getDistributors = () => async (dispatch) => {
     const { data } = await api.getDistributors();
  console.log(data);
     findClosestDistributor(data);
+    
     dispatch(endLoading());
     return data;
   } catch (error) {
@@ -103,6 +104,15 @@ export const login = (body) => async (dispatch) => {
 export const signup = (body) => async (dispatch) => { 
   try {
     const response = await api.signup(body);
+    console.log(response);
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+//sendOrder
+export const sendOrder = (a,b,c,d) => async (dispatch) => {
+  try {
+    const response = await api.send({"cart":b,"address":a,"type":d,"dis_id":parseInt(c)});
     console.log(response);
   } catch (error) {
     console.log(error.message);

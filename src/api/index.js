@@ -34,6 +34,8 @@ export const login = async (body) =>
 
 
 export const signup = async (body) =>  await API.post(`/dj-rest-auth/registration/`, body);
+export const send = async (body) =>  await API.post(`/order/`, body);
+
   // Handle the response as needed
 
 // Add more authentication-related API calls as needed

@@ -14,6 +14,7 @@ import UserProfile from "./pages/UserProfile";
 import AboutPage from "./pages/AboutPage";
 import MyAddressForm from "./pages/addressForm";
 import PaymentPage from "./pages/CashOrOnline";
+import ConfirmationPage from "./pages/confirmMessage";
 // import NotFound from "./pages/NotFound/NotFound";
 // import Profile from "./pages/Profile/Profile";
 // import ForceRedirect from "./components/ForceRedirect";
@@ -60,6 +61,7 @@ function App() {
           <Route exact path="/signin" element={<Signin />} />
           <Route exact path="/signup" element={<Signup />} />
           <Route exact path="/addressForm" element={<MyAddressForm />} />
+          <Route exact path="/confirm" element={<ConfirmationPage />} />
         </Routes>
       </div>
     </div>
