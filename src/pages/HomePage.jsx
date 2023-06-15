@@ -8,7 +8,8 @@ import { useSelector, useDispatch } from "react-redux";
 // import ProductView from "../components/ProductView";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
+import { Circles } from "react-loader-spinner";
 
 const ProductView = lazy(() => import("../components/ProductView"));
 const HomePage = () => {
@@ -17,7 +18,7 @@ const HomePage = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState("");
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -28,17 +29,15 @@ const HomePage = () => {
   useEffect(() => {
     setLoading(true);
     if (searchQuery) {
-      dispatch(fetchProductBySearch(searchQuery))
-
-        .catch((error) => console.error(error));
+      dispatch(fetchProductBySearch(searchQuery)).catch((error) =>
+        console.error(error)
+      );
     } else {
       dispatch(fetchAllProducts()).then((response) => {
         console.log(productList);
-      }
-      );
+      });
     }
   }, [searchQuery]);
-
 
   const handleSearch = (event) => {
     setSearchQuery(event.target.value);
@@ -49,23 +48,23 @@ const HomePage = () => {
   const productsSectionRef = useRef(null);
 
   useEffect(() => {
-    if (location.state && location.state.scrollTarget === 'products') {
+    if (location.state && location.state.scrollTarget === "products") {
       if (productsSectionRef && productsSectionRef.current) {
         window.scrollTo({
           top: productsSectionRef.current.offsetTop,
-          behavior: 'smooth',
+          behavior: "smooth",
         });
       }
     }
   }, [location.state]);
-const user = JSON.parse(localStorage.getItem("user"));
-console.log(user)
+  const user = JSON.parse(localStorage.getItem("user"));
+  console.log(user);
 
   return (
     <div>
       <Navbar productsSectionRef={productsSectionRef} />
       <div className="relative min-h-screen ">
-      <div data-aos="zoom-in" data-aos-duration="1000">
+        <div data-aos="zoom-in" data-aos-duration="1000">
           <CustomCarousel />
         </div>
         <div id="Products" ref={productsSectionRef} className="product-title">
@@ -79,12 +78,41 @@ console.log(user)
             onChange={handleSearch}
           />
         </div>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense
+          fallback={
+            <div className="container">
+              <Circles
+                height="80"
+                width="80"
+                color="#4fa94d"
+                ariaLabel="circles-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+              />
+            </div>
+          }
+        >
           {isLoading ? (
-            <div>Loading...</div>
+            <div className="container">
+              <Circles
+                height="80"
+                width="80"
+                color="#4fa94d"
+                ariaLabel="circles-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+              />
+            </div>
           ) : (
             productList.map((product) => (
-              <div className="product-1" key={product.id} data-aos='fade-up' data-aos-duration="1800" >
+              <div
+                className="product-1"
+                key={product.id}
+                data-aos="fade-up"
+                data-aos-duration="1800"
+              >
                 <ProductView
                   title={product.name}
                   id={product.id}
