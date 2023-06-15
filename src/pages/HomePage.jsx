@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import "./HomePage.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -7,6 +7,7 @@ import ProductView from "../components/ProductView";
 import productData from "../data/productData";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useLocation } from 'react-router-dom';
 
 const HomePage = () => {
   useEffect(() => {
@@ -14,14 +15,30 @@ const HomePage = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const location = useLocation();
+
+  const productsSectionRef = useRef(null);
+
+  useEffect(() => {
+    if (location.state && location.state.scrollTarget === 'products') {
+      if (productsSectionRef && productsSectionRef.current) {
+        window.scrollTo({
+          top: productsSectionRef.current.offsetTop,
+          behavior: 'smooth',
+        });
+      }
+    }
+  }, [location.state]);
+
+
   return (
     <div>
-      <Navbar />
+      <Navbar productsSectionRef={productsSectionRef} />
       <div className="relative min-h-screen ">
         <div data-aos="zoom-in" data-aos-duration="1000">
           <CustomCarousel />
         </div>
-        <div className="product-title">
+        <div id="Products" ref={productsSectionRef} className="product-title">
           <h2 className="underline">Our Products</h2>
         </div>
         <div className="product-1" data-aos="fade-up">

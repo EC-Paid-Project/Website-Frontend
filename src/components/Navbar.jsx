@@ -1,12 +1,26 @@
-import React from "react";
+import React, {useEffect, useRef} from "react";
 import "./Navbar.css";
 import logo from "../assets/logo.png";
 import cartIcon from "../assets/cart.png";
 import profileImage from "../assets/Cartoonify.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HiShoppingCart } from "react-icons/hi";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
-const Navbar = () => {
+const Navbar = ({productsSectionRef}) => {
+  useEffect(() => {
+    AOS.init();
+    window.scrollTo(0, 0);
+  }, []);
+
+  const navigate = useNavigate();
+
+  const handleProductsClick = (e) => {
+    e.preventDefault();
+    navigate('/', { state: { scrollTarget: 'products' } });
+  };
+
   return (
     <nav>
       <ul>
@@ -23,14 +37,14 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <a href="/about" className="font-bold">
-                About
+              <a href="/" onClick={handleProductsClick} className="font-bold">
+                Products
               </a>
             </li>
             <li>
-              <a href="#" className="font-bold">
-                Services
-              </a>
+              <Link to="/about" className="font-bold">
+                About
+              </Link>
             </li>
             <li>
               <a href="#" className="font-bold">
