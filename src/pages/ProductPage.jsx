@@ -23,7 +23,7 @@ const ProductPage = () => {
   const Navigate = useNavigate();
 
   const handleAddToCart = (product) => {
-    dispatch(addProductToCart(product));
+    // dispatch(addProductToCart(product));
     Navigate("/cart");
   };
 
