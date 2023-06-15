@@ -56,6 +56,7 @@ export const centralStore = createSlice({
       state.productList = products;
     },
     setAddressAndPhone:(state,action)=>{
+      console.log(action.payload);
       const addressAndPhone = action.payload;
       state.addressAndPhone = addressAndPhone;
     }
@@ -69,6 +70,7 @@ export const {
   removeProductFromCart,
   removeProductFromCartCompletely,
   allProducts,
+  setAddressAndPhone,
 } = centralStore.actions;
 
 export default centralStore.reducer;

@@ -82,9 +82,9 @@ const CartPage = () => {
       <span className="cart-summary-value">PKR {calculateTotalPrice(cart)}</span>
     </div>
   </div>
-  <button className="btn-primary" onClick={()=>dispatch(getDistributors())
-  // navigate("/addressForm")
-}>Checkout</button>
+  <button className="btn-primary" onClick={()=>{dispatch(getDistributors())
+  navigate("/addressForm")
+  }}>Checkout</button>
 </div>
 
       </div>

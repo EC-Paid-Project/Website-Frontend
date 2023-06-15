@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import './addressForm.css';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { setAddressAndPhone} from '../reduxStore/reducer';
 const MyAddressForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [houseNo, setHouseNo] = useState('');
   const [postCode, setPostCode] = useState('');
   const [area, setArea] = useState('');
@@ -31,7 +36,7 @@ const MyAddressForm = () => {
       };
 
       // Perform backend request here...
-
+dispatch(setAddressAndPhone(data))
       // Reset form
       setHouseNo('');
       setPostCode('');
@@ -39,6 +44,7 @@ const MyAddressForm = () => {
       setCity('');
       setPhone('');
       setErrorMessage('');
+      navigate('/paymentPage');
     }
   };
 
