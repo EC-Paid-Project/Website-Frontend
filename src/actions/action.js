@@ -4,6 +4,7 @@ import {
   endLoading,
 } from "../reduxStore/reducer.js";
 import * as api from "../api/index.js";
+import { findClosestDistributor } from "./closest_distributor.js";
 
 export const fetchAllProducts = () => async (dispatch) => {
   try {
@@ -59,7 +60,8 @@ export const getDistributors = () => async (dispatch) => {
   try {
     dispatch(startLoading());
     const { data } = await api.getDistributors();
-    console.log(data);
+ console.log(data);
+    findClosestDistributor(data);
     dispatch(endLoading());
     return data;
   } catch (error) {
