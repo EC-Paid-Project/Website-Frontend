@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import "./UserProfile.css";
 import { useParams } from "react-router-dom";
 import userImg from "../assets/Cartoonify.png";
 import { IoMdLogOut } from "react-icons/io";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const UserProfile = () => {
   const { userId } = useParams();
-
+  useEffect(() => {
+    AOS.init();
+    window.scrollTo(0, 0);
+  }, []);
   const handleLogout = () => {
     localStorage.clear();
     window.location.href = "/";
@@ -18,12 +23,33 @@ const UserProfile = () => {
     alert("User details updated successfully!");
   };
 
-  const [fullName, setFullName] = useState("John Doe");
-  const [username, setUsername] = useState("johndoe");
-  const [email, setEmail] = useState("johndoe@example.com");
-  const [phone, setPhone] = useState("1234567890");
-  const [address, setAddress] = useState("123 ABC Street");
+  const [fullName, setFullName] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
   const [isEditing, setIsEditing] = useState(false);
+  const [status, setStatus] = useState(null)
+  useEffect(() => { 
+    const status = localStorage.getItem("user");
+    setStatus(status || null)
+  }, [])
+
+  useEffect(() => {
+    // Check if values exist in localStorage
+    const storedFullName = localStorage.getItem("fullName");
+    const storedUsername = localStorage.getItem("username");
+    const storedEmail = localStorage.getItem("email");
+    const storedPhone = localStorage.getItem("phone");
+    const storedAddress = localStorage.getItem("address");
+
+    // Set values to localStorage values if available, otherwise set default values
+    setFullName(storedFullName || "John Doe");
+    setUsername(storedUsername || "johndoe");
+    setEmail(storedEmail || "johndoe@example.com");
+    setPhone(storedPhone || "1234567890");
+    setAddress(storedAddress || "123 ABC Street");
+  }, []);
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -31,9 +57,14 @@ const UserProfile = () => {
 
   const handleUpdateClick = () => {
     // Perform update logic here, such as making an API request
-
+    localStorage.setItem("fullName", fullName);
+    localStorage.setItem("username", username);
+    localStorage.setItem("email", email);
+    localStorage.setItem("phone", phone);
+    localStorage.setItem("address", address);
     // After updating, set isEditing back to false to lock the inputs
     setIsEditing(false);
+    window.location.reload();
   };
 
   return (
@@ -44,10 +75,10 @@ const UserProfile = () => {
           <img src="https://picsum.photos/1920/320" alt="" />
           <div className="user-page-overlay"></div>
         </div>
-        <button className="logout-btn" onClick={() => handleLogout()}>
+        {status && <button className="logout-btn" onClick={() => handleLogout()}>
           <IoMdLogOut className="mr-2 text-lg" /> Logout
-        </button>
-        <div className="user-image z-10">
+        </button>}
+        <div className="user-image z-10" data-aos='zoom-out' data-aos-duration='1500'>
           <img src={userImg} alt="" />
         </div>
         {/* <div className="user-profile-details"> */}
@@ -75,7 +106,7 @@ const UserProfile = () => {
               Update
             </button>
           </form> */}
-        <form className="user-form">
+        <form className="user-form" data-aos='fade-up' data-aos-duration='1500'>
           <div className="form-row">
             <div className="form-field">
               <label htmlFor="fullName">Full Name:</label>

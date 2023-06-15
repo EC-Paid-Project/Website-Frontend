@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import "./Navbar.css";
 import logo from "../assets/logo.png";
 import cartIcon from "../assets/cart.png";
@@ -13,6 +13,14 @@ const Navbar = ({productsSectionRef}) => {
     AOS.init();
     window.scrollTo(0, 0);
   }, []);
+  const [status, setStatus] = useState(null)
+  const [userName, setUserName] = useState(null)
+  useEffect(() => { 
+    const status = localStorage.getItem("user");
+    const userName = localStorage.getItem("fullName");
+    setStatus(status || null)
+    setUserName(userName || "John Doe")
+  }, [userName])
 
   const navigate = useNavigate();
 
@@ -20,6 +28,7 @@ const Navbar = ({productsSectionRef}) => {
     e.preventDefault();
     navigate('/', { state: { scrollTarget: 'products' } });
   };
+
 
   return (
     <nav>
@@ -67,9 +76,14 @@ const Navbar = ({productsSectionRef}) => {
                   alt="Profile"
                   className="profile-image"
                 />
-                <span className="username">John Doe</span>
+                <span className="username">{userName}</span>
               </div>
             </Link>
+            {!status && <Link to={"/signin"}>
+              <div className="signin">
+                <button className="signin-btn">Signin</button>
+              </div>
+            </Link>}
           </div>
         </li>
       </ul>

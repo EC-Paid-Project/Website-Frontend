@@ -3,13 +3,13 @@ import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 import CustomInput from "../components/CustomInput";
 import "./Signup.css";
 // import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { useDispatch } from "react-redux";
 import { signup } from "../actions/action";
 function 
 Signup() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const [form, setForm] = useState({});
@@ -42,6 +42,8 @@ Signup() {
 dispatch(signup(form) )
     console.log("User sign up form details are: ");
     console.log(form);
+    localStorage.setItem("user", JSON.stringify(form));
+    navigate("/");
   };
 
   return (

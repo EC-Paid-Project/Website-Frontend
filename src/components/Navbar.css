@@ -48,6 +48,23 @@ nav .logo {
   display: flex;
   align-items: center;
 }
+.signin {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+}
+.signin-btn{
+  background: #fff;
+  border: none;
+  cursor: pointer;
+  color: #2c9fe6;
+  padding: 0.2rem 0.7rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+.signin-btn:hover{
+  background: #dddddd;
+}
 
 .profile-image {
   width: 30px;

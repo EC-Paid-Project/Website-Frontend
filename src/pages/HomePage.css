@@ -12,7 +12,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
+    padding: 0 2rem;
   }
   
   .product-title {
@@ -23,4 +23,7 @@
     text-align: center;
     padding: 2rem 0 1rem 0;
   }
-  
+  .search-bar{
+    width: 60%;
+    margin: 0 auto;
+  }

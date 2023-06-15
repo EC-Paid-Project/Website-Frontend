@@ -9,8 +9,8 @@ import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { addProductToCart, removeProductFromCart } from "../reduxStore/reducer";
 import { fetchOneProduct } from "../actions/action";
-// import AOS from "aos";
-// import "aos/dist/aos.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const ProductPage = () => {
   const { cart, isLoading } = useSelector((state) => state.centralStore);

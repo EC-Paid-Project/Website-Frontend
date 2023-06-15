@@ -79,6 +79,12 @@
     color: #2c9fe6;
     margin-bottom: 0.5rem;
   }
+  .product-view-details {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #2c9fe6;
+    /* margin-bottom: 0.5rem; */
+  }
   
   .product-view-desc {
     font-size: 1rem;

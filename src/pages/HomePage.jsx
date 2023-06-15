@@ -17,6 +17,14 @@ const HomePage = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const dispatch = useDispatch()
+  const [searchQuery, setSearchQuery] = useState("");
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  //get product from redux selector
+  const productList = useSelector((state) => state.centralStore.productList);
+  const isLoading = useSelector((state) => state.centralStore.isLoading);
+
   useEffect(() => {
     setLoading(true);
     if (searchQuery) {
@@ -30,26 +38,6 @@ const HomePage = () => {
       );
     }
   }, [searchQuery]);
-  const dispatch = useDispatch()
-  const [searchQuery, setSearchQuery] = useState("");
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  //get product from redux selector
-  const productList = useSelector((state) => state.centralStore.productList);
-  const isLoading = useSelector((state) => state.centralStore.isLoading);
-
-
-
-  useEffect(() => {
-    if (location.state && location.state.scrollTarget === 'products') {
-      if (productsSectionRef && productsSectionRef.current) {
-        window.scrollTo({
-          top: productsSectionRef.current.offsetTop,
-          behavior: 'smooth',
-        });
-      }
-    }
-  }, [location.state]);
 
 
   const handleSearch = (event) => {
@@ -70,7 +58,8 @@ const HomePage = () => {
       }
     }
   }, [location.state]);
-
+const user = JSON.parse(localStorage.getItem("user"));
+console.log(user)
 
   return (
     <div>
@@ -95,7 +84,7 @@ const HomePage = () => {
             <div>Loading...</div>
           ) : (
             productList.map((product) => (
-              <div className="product-1" key={product.id}>
+              <div className="product-1" key={product.id} data-aos='fade-up' data-aos-duration="1800" >
                 <ProductView
                   title={product.name}
                   id={product.id}
