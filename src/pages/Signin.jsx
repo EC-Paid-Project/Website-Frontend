@@ -7,7 +7,7 @@ import GoogleAuth from "./GoogleAuth/GoogleOAuth.jsx";
 import "./Signin.css";
 import logo from "../assets/logo.png";
 import bg from "../assets/bg.jpg";
-import { login } from "../actions/action";
+import { login, signup } from "../actions/action";
 import { useDispatch } from "react-redux";
 
 function Signin() {
@@ -79,7 +79,7 @@ function Signin() {
       navigate("/");
       setIsLoading(false);
     }, 1000);
-  };
+  } 
 
   return (
     <div className="relative min-h-screen SigninBackground">
