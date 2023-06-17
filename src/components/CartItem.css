@@ -3,7 +3,6 @@
     padding: 0.5rem 1.5rem;
     /* margin-bottom: 1.5rem; */
     width: 90%;
-    height: 90%;
     margin: 0 auto;
   }
   
@@ -115,7 +114,7 @@
   @media (max-width: 768px) {
     .product-container {
       flex-direction: row;
-      align-items: flex-start;
+      align-items: center;
     }
   
     .product-image-container {
