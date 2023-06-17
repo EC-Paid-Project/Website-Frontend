@@ -1,33 +1,41 @@
-import React, { useState, useEffect, lazy, Suspense } from "react";
+import React, { useState, useEffect, lazy, Suspense, useRef } from "react";
 import "./HomePage.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import CustomCarousel from "../components/Carousel";
 import { fetchAllProducts, fetchProductBySearch } from "../actions/action";
-import { useSelector,useDispatch } from "react-redux";
-const ProductView = lazy(() => import("../components/ProductView"));
+import { useSelector, useDispatch } from "react-redux";
+// import ProductView from "../components/ProductView";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useLocation } from "react-router-dom";
+import { Circles } from "react-loader-spinner";
 
+const ProductView = lazy(() => import("../components/ProductView"));
 const HomePage = () => {
-const dispatch =useDispatch()
+  useEffect(() => {
+    AOS.init();
+    window.scrollTo(0, 0);
+  }, []);
+
+  const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState("");
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-//get product from redux selector
-const productList = useSelector((state) => state.centralStore.productList);
-const isLoading = useSelector((state) => state.centralStore.isLoading);
+  //get product from redux selector
+  const productList = useSelector((state) => state.centralStore.productList);
+  const isLoading = useSelector((state) => state.centralStore.isLoading);
+
   useEffect(() => {
     setLoading(true);
     if (searchQuery) {
-      dispatch(fetchProductBySearch(searchQuery))
-        
-        .catch((error) => console.error(error));
+      dispatch(fetchProductBySearch(searchQuery)).catch((error) =>
+        console.error(error)
+      );
     } else {
       dispatch(fetchAllProducts()).then((response) => {
         console.log(productList);
-      }
-      );
-
-
+      });
     }
   }, [searchQuery]);
 
@@ -35,12 +43,31 @@ const isLoading = useSelector((state) => state.centralStore.isLoading);
     setSearchQuery(event.target.value);
   };
 
+  const location = useLocation();
+
+  const productsSectionRef = useRef(null);
+
+  useEffect(() => {
+    if (location.state && location.state.scrollTarget === "products") {
+      if (productsSectionRef && productsSectionRef.current) {
+        window.scrollTo({
+          top: productsSectionRef.current.offsetTop,
+          behavior: "smooth",
+        });
+      }
+    }
+  }, [location.state]);
+  const user = JSON.parse(localStorage.getItem("user"));
+  console.log(user);
+
   return (
     <div>
-      <Navbar />
+      <Navbar productsSectionRef={productsSectionRef} />
       <div className="relative min-h-screen ">
-        <CustomCarousel />
-        <div className="product-title">
+        <div data-aos="zoom-in" data-aos-duration="1000">
+          <CustomCarousel />
+        </div>
+        <div id="Products" ref={productsSectionRef} className="product-title">
           <h2 className="underline">Our Products</h2>
         </div>
         <div className="search-bar">
@@ -51,12 +78,41 @@ const isLoading = useSelector((state) => state.centralStore.isLoading);
             onChange={handleSearch}
           />
         </div>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense
+          fallback={
+            <div className="container">
+              <Circles
+                height="80"
+                width="80"
+                color="#4fa94d"
+                ariaLabel="circles-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+              />
+            </div>
+          }
+        >
           {isLoading ? (
-            <div>Loading...</div>
+            <div className="container">
+              <Circles
+                height="80"
+                width="80"
+                color="#4fa94d"
+                ariaLabel="circles-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+              />
+            </div>
           ) : (
             productList.map((product) => (
-              <div className="product-1" key={product.id}>
+              <div
+                className="product-1"
+                key={product.id}
+                data-aos="fade-up"
+                data-aos-duration="1800"
+              >
                 <ProductView
                   title={product.name}
                   id={product.id}
@@ -67,7 +123,7 @@ const isLoading = useSelector((state) => state.centralStore.isLoading);
                   size={product.size}
                   weight={product.weight}
                   color1={"bg-color-white"}
-                  color0={"bg-color-blue"}
+                  color0={"bg-color-white"}
                 />
               </div>
             ))

@@ -29,8 +29,8 @@ const CartItem = ({ product, onIncrement, onDecrement }) => {
 
   const handleRemoveProduct = () => {
     if (quantity > 0) {
-      onRemove();
-      console.log(item)
+      // onRemove();
+      console.log(product)
       setQuantity(0);
     }
   };
@@ -40,11 +40,11 @@ const CartItem = ({ product, onIncrement, onDecrement }) => {
     <div className="cart-product">
       <div className="product-container">
         <div className="product-image-container">
-          <img className="product-image" src={product.image} alt={product.title} />
+          <img className="product-image" src={`https://owaisali246.pythonanywhere.com/${product.image}`} alt={product.title} />
         </div>
         <div className="product-details">
           <h3 className="product-name">{product.name}</h3>
-          <span className="product-name">{product.price}</span>
+          <span className="product-name">PKR {product.price}</span>
           <div className="product-quantity">
             <button className="quantity-button" onClick={handleDecrement}>
               -

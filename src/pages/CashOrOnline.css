@@ -1,0 +1,25 @@
+.alfa-checkout-btn {
+  margin-top: 10px;
+}
+
+.cod-checkout-btn {
+  margin-bottom: 10px;
+}
+.alfa-checkout-btn,
+.cod-checkout-btn {
+  background-color: #2c9fe6;
+  color: #fff;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+}
+.alfa-checkout-btn:hover, .cod-checkout-btn:hover{
+    background-color: #2276aa;
+}
+.alfa-checkout-btn:active, .cod-checkout-btn:active{
+    background-color: #1c5b83;
+}

@@ -21,14 +21,18 @@ export const fetchAllProducts = () => async (dispatch) => {
 export const fetchProductBySearch = (search) => async (dispatch) => {
   try {
     dispatch(startLoading());
-    const { data } = await api.fetchProductBySearch(search);
-    dispatch(allProducts(data));
-    console.log(data);
+    const { data } = await api.fetchAllProducts(); // Fetch all products
+    const filteredData = data.filter((product) =>
+      product.name.toLowerCase().includes(search.toLowerCase())
+    ); // Filter the products based on the search query
+    dispatch(allProducts(filteredData));
+    console.log(filteredData);
     dispatch(endLoading());
   } catch (error) {
     console.log(error.message);
   }
 };
+
 //get 9one product
 export const fetchOneProduct = (id) => async (dispatch) => {
   try {
