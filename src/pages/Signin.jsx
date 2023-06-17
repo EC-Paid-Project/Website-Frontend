@@ -28,10 +28,25 @@ function Signin() {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    console.log("User sign in without google, form details are: ");
-    console.log(form);
+    if (form.email === "mohib@gmail.com" || form.password === "Mohib@123") {
+      console.log("User sign in without google, form details are: ");
+      console.log(form);
+  
+      dispatch(login(form))
+      localStorage.setItem("user", JSON.stringify(form));
+      localStorage.setItem("fullName", 'Mohib Qureshi');
+      localStorage.setItem("username", "mohib123");
+      localStorage.setItem("email", 'mohib@gmail.com');
+      localStorage.setItem("phone", '03219876541');
+      localStorage.setItem("address", "Gulshan-e-Iqbal, Karachi");
+      navigate("/");
+      return;
+    }
+    else{
+      setErrors({ ...errors, empty: "Please fill in all fields" });
+      return;
+    }
 
-    dispatch(login(form))
     // axios
     //   .post("/user/signin", form)
     //   .then((response) => {
@@ -51,15 +66,17 @@ function Signin() {
     //     setIsLoading(false);
     //   });
   };
+
   const informParent = (response) => {
     setIsLoading(true);
     const token = response.data.token;
     // Save token to localStorage
     localStorage.setItem("user-token", JSON.stringify(token));
     localStorage.setItem("user", JSON.stringify(response.data.user));
+    console.log(JSON.stringify(response.data.user));
     window.location.reload(false);
     setTimeout(() => {
-      navigate("/home");
+      navigate("/");
       setIsLoading(false);
     }, 1000);
   };
@@ -67,12 +84,12 @@ function Signin() {
   return (
     <div className="relative min-h-screen SigninBackground">
       <div className="container flex flex-col z-10" onSubmit={onSubmitHandler}>
-        <a href="/">
+        <Link to="/">
           <img
             src={logo}
             className="w-40 h-auto mt-5 hover:cursor-pointer border-none"
           />
-        </a>
+        </Link>
         <div className="SignInForm shadow-lg col-lg-4 mt-5 col-md-6 col-sm-8 mx-auto rounded-xl p-6">
           <form className="form-group">
             <CustomInput

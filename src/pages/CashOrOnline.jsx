@@ -78,10 +78,10 @@ const PaymentPage = () => {
             merchantHash: 'zWsOsg0VNuC82S3w1/nOQq5y6u+PizCOIRxBaFOv2Uw=',
             merchantUsername: 'erenet',
             merchantPassword: 'wH4Lea3Q3VtvFzk4yqF7CA==',
-            redirectUrl: 'https://127.0.0.1:3000/',
+            redirectUrl: 'http://127.0.0.1:3000/',
             secretKey1: '7rUGPrSgzy5ce3ra',
             secretKey2: '5352936840690238',
-            transactionReferenceNumber: '16548',
+            transactionReferenceNumber: '5467',
             transactionAmount: 10,
         }} 
         message="Proceed to Pay"

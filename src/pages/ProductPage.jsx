@@ -83,8 +83,8 @@ const ProductPage = () => {
               <h3 className="product-page-title">{product.name}</h3>
             </Link>
             <h4 className="product-page-price">PKR {product.price}</h4>
-            <h4 className="product-page-price"> Weight {product.weight}</h4>
-            <h4 className="product-page-price">Size{product.size}</h4>
+            <h4 className="product-page-price"> Weight: {product.weight}</h4>
+            <h4 className="product-page-price">Size: {product.size}</h4>
             <p className="product-page-desc">
               <span className="product-page-desc-heading">Description:</span>{" "}
               <br /> {product.description}

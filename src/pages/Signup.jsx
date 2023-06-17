@@ -49,12 +49,12 @@ dispatch(signup(form) )
   return (
     <div className="SignupBackground relative min-h-screen">
       <div className="container flex flex-col">
-        <a href="/">
+        <Link to="/">
           <img
             src={logo}
             className="w-40 h-auto mt-5 hover:cursor-pointer border-none"
           />
-        </a>
+        </Link>
         {/* <div className="App">{isLoading ? <LoadingSpinner /> : ""}</div> */}
         <div className="col-lg-4 col-md-6 mt-10 col-sm-8 mx-auto ">
           <div className="p-6 shadow-lg mb-5 rounded-xl SignupForm">
