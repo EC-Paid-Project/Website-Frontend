@@ -7,7 +7,7 @@ import GoogleAuth from "./GoogleAuth/GoogleOAuth.jsx";
 import "./Signin.css";
 import logo from "../assets/logo.png";
 import bg from "../assets/bg.jpg";
-import { login } from "../actions/action";
+import { login, signup } from "../actions/action";
 import { useDispatch } from "react-redux";
 
 function Signin() {
@@ -31,7 +31,7 @@ function Signin() {
     console.log("User sign in without google, form details are: ");
     console.log(form);
 
-    dispatch(login(form))
+    dispatch(signup(form))
     // axios
     //   .post("/user/signin", form)
     //   .then((response) => {
@@ -51,17 +51,17 @@ function Signin() {
     //     setIsLoading(false);
     //   });
   };
-  const informParent = (response) => {
-    setIsLoading(true);
-    const token = response.data.token;
-    // Save token to localStorage
-    localStorage.setItem("user-token", JSON.stringify(token));
-    localStorage.setItem("user", JSON.stringify(response.data.user));
-    window.location.reload(false);
-    setTimeout(() => {
-      navigate("/home");
-      setIsLoading(false);
-    }, 1000);
+  // const informParent = (response) => {
+  //   setIsLoading(true);
+  //   const token = response.data.token;
+  //   // Save token to localStorage
+  //   localStorage.setItem("user-token", JSON.stringify(token));
+  //   localStorage.setItem("user", JSON.stringify(response.data.user));
+  //   window.location.reload(false);
+  //   setTimeout(() => {
+  //     navigate("/home");
+  //     setIsLoading(false);
+  //   }, 1000);
   };
 
   return (
@@ -126,6 +126,6 @@ function Signin() {
   // return (
   //   <div className="App">{isLoading ? <LoadingSpinner /> : renderSignin}</div>
   // );
-}
+
 
 export default Signin;
