@@ -40,10 +40,10 @@ Signup() {
     //     setIsLoading(false);
     //   });
 dispatch(signup(form) )
-    console.log("User sign up form details are: ");
-    console.log(form);
-    localStorage.setItem("user", JSON.stringify(form));
-    navigate("/");
+    // console.log("User sign up form details are: ");
+    // console.log(form);
+    // localStorage.setItem("user", JSON.stringify(form));
+    // navigate("/");
   };
 
   return (
@@ -63,7 +63,7 @@ dispatch(signup(form) )
                 label="Name"
                 placeholder="name"
                 type="text"
-                name="name"
+                name="username"
                 icon={<FaUser />}
                 className="border rounded"
                 onChange={onChangeHandler}

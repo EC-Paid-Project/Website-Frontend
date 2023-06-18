@@ -55,7 +55,7 @@ function Signin() {
     setIsLoading(true);
     const token = response.data.token;
     // Save token to localStorage
-    localStorage.setItem("user-token", JSON.stringify(token));
+    localStorage.setItem("authToken", JSON.stringify(token));
     localStorage.setItem("user", JSON.stringify(response.data.user));
     window.location.reload(false);
     setTimeout(() => {
