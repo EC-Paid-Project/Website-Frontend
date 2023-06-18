@@ -49,7 +49,7 @@ function App() {
   };
 
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-max">
       <div className="relative">
         <Routes>
           <Route path="/" element={<HomePage />} />

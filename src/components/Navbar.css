@@ -58,9 +58,10 @@ nav .logo {
   border: none;
   cursor: pointer;
   color: #2c9fe6;
-  padding: 0.2rem 0.7rem;
+  padding: 0.3rem 1rem;
   border-radius: 0.5rem;
   transition: all 0.3s ease;
+  font-weight: bold;
 }
 .signin-btn:hover{
   background: #dddddd;

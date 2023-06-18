@@ -5,6 +5,8 @@ import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from "jwt-decode";
 import { useNavigate } from 'react-router-dom';
 
+const GOOGLE_IP = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+
 const GoogleOAuth = () => {
     const navigate = useNavigate();
 
@@ -25,14 +27,14 @@ const GoogleOAuth = () => {
         //  });
         console.log("Google auth sign in details are: ")
         console.log(doc)
-        navigate('/home')
+        navigate('/')
        }
   
     return (
       <div className="">
             <div className="">
               <GoogleOAuthProvider 
-                  clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}`}
+                  clientId={`${GOOGLE_IP}`}
                   >
                <GoogleLogin
                 render={(renderProps) => (

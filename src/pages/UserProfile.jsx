@@ -18,6 +18,8 @@ const UserProfile = () => {
     localStorage.clear();
     window.location.href = "/";
   };
+  const user = JSON.parse(localStorage.getItem("user"));
+  console.log(user);
 
   const updateUserDetails = () => {
     alert("User details updated successfully!");

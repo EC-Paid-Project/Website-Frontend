@@ -69,13 +69,13 @@ const CartPage = () => {
             <hr />
             <div className="cart-summary-row cart-summary-total">
               <span className="cart-summary-label">Total Quantity:</span>
-              <span className="cart-summary-value">PKR {calculateTotalItems(cart)}</span>
+              <span className="cart-summary-value">{calculateTotalItems(cart)}</span>
             </div>
             <hr />
-            <div className="cart-summary-row">
-              <span className="cart-summary-label">Discount:</span>
+            {/* <div className="cart-summary-row"> */}
+              {/* <span className="cart-summary-label">Discount:</span> */}
               {/* <span className="cart-summary-value">PKR {calculateDiscount()}</span> */}
-            </div>
+            {/* </div> */}
             <hr />
             <div className="cart-summary-row">
               <span className="cart-summary-label">Total Price:</span>
@@ -83,6 +83,10 @@ const CartPage = () => {
             </div>
           </div>
           <button className="btn-primary checkout-btn" onClick={() => {
+            if (cart.length === 0) {
+              alert("Cart is empty")
+              return
+            }
             dispatch(getDistributors())
             navigate("/addressForm")
           }}>Checkout</button>

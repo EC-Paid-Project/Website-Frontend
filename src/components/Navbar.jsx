@@ -81,7 +81,7 @@ const Navbar = ({productsSectionRef}) => {
             </Link>
             {!status && <Link to={"/signin"}>
               <div className="signin">
-                <button className="signin-btn">Signin</button>
+                <button className="signin-btn">Login</button>
               </div>
             </Link>}
           </div>
