@@ -18,7 +18,7 @@ const UserProfile = () => {
     localStorage.clear();
     window.location.href = "/";
   };
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(localStorage.getItem("lpgUser"));
   console.log(user);
 
   const updateUserDetails = () => {
@@ -33,24 +33,24 @@ const UserProfile = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [status, setStatus] = useState(null)
   useEffect(() => { 
-    const status = localStorage.getItem("user");
-    setStatus(status || null)
+   
+   
   }, [])
 
   useEffect(() => {
     // Check if values exist in localStorage
-    const storedFullName = localStorage.getItem("fullName");
-    const storedUsername = localStorage.getItem("username");
-    const storedEmail = localStorage.getItem("email");
-    const storedPhone = localStorage.getItem("phone");
-    const storedAddress = localStorage.getItem("address");
+    // const storedFullName = localStorage.getItem("fullName");
+    // const storedUsername = localStorage.getItem("username");
+    // const storedEmail = localStorage.getItem("email");
+    // const storedPhone = localStorage.getItem("phone");
+    // const storedAddress = localStorage.getItem("address");
 
     // Set values to localStorage values if available, otherwise set default values
-    setFullName(storedFullName || "John Doe");
-    setUsername(storedUsername || "johndoe");
-    setEmail(storedEmail || "johndoe@example.com");
-    setPhone(storedPhone || "1234567890");
-    setAddress(storedAddress || "123 ABC Street");
+    // setFullName(storedFullName || "John Doe");
+    // setUsername(storedUsername || "johndoe");
+    // setEmail(storedEmail || "johndoe@example.com");
+    // setPhone(storedPhone || "1234567890");
+    // setAddress(storedAddress || "123 ABC Street");
   }, []);
 
   const handleEditClick = () => {
@@ -59,11 +59,11 @@ const UserProfile = () => {
 
   const handleUpdateClick = () => {
     // Perform update logic here, such as making an API request
-    localStorage.setItem("fullName", fullName);
-    localStorage.setItem("username", username);
-    localStorage.setItem("email", email);
-    localStorage.setItem("phone", phone);
-    localStorage.setItem("address", address);
+    // localStorage.setItem("fullName", fullName);
+    // localStorage.setItem("username", username);
+    // localStorage.setItem("email", email);
+    // localStorage.setItem("phone", phone);
+    // localStorage.setItem("address", address);
     // After updating, set isEditing back to false to lock the inputs
     setIsEditing(false);
     window.location.reload();
@@ -115,7 +115,7 @@ const UserProfile = () => {
               <input
                 type="text"
                 id="fullName"
-                value={fullName}
+                value={user.first_name+" "+user.last_name}
                 onChange={(e) => setFullName(e.target.value)}
                 readOnly={!isEditing}
               />
@@ -125,7 +125,7 @@ const UserProfile = () => {
               <input
                 type="text"
                 id="username"
-                value={username}
+                value={user.username}
                 onChange={(e) => setUsername(e.target.value)}
                 readOnly={!isEditing}
               />
@@ -137,7 +137,7 @@ const UserProfile = () => {
               <input
                 type="email"
                 id="email"
-                value={email}
+                value={user.email}
                 onChange={(e) => setEmail(e.target.value)}
                 readOnly={!isEditing}
               />

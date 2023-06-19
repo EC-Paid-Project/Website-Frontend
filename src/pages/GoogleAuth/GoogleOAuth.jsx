@@ -4,30 +4,37 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from "jwt-decode";
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';  
+import { googlelogin } from '../../actions/action';
+import { user } from '../../api';
 
 const GOOGLE_IP = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
 const GoogleOAuth = () => {
     const navigate = useNavigate();
-
+const dispatch = useDispatch();
     const responseGoogle = (response) => {
         console.log(response);
          const userObject = jwt_decode(response.credential);
-         //console.log(userObject);
-         localStorage.setItem('user', JSON.stringify(userObject));
-         const { name, sub, picture } = userObject;
-         const doc = {
-           _id: sub,
-           _type: 'user',
-           userName: name,
-           image: picture,
-         };
+         console.log(userObject.credential);
+         const a=dispatch(googlelogin(userObject.credential))
+         if(a){
+           navigate('/')
+
+         }
+        //  localStorage.setItem('user', JSON.stringify(userObject));
+        //  const { name, sub, picture } = userObject;
+        //  const doc = {
+        //    _id: sub,
+        //    _type: 'user',
+        //    userName: name,
+        //    image: picture,
+        //  };
         //  client.createIfNotExists(doc).then(() => {
         //    navigate('/', { replace: true });
         //  });
         console.log("Google auth sign in details are: ")
-        console.log(doc)
-        navigate('/')
+        // console.log(doc)
        }
   
     return (

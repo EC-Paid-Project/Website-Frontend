@@ -11,6 +11,7 @@ import { addProductToCart, removeProductFromCart } from "../reduxStore/reducer";
 import { fetchOneProduct } from "../actions/action";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { Circles } from "react-loader-spinner";
 
 const ProductPage = () => {
   const { cart, isLoading } = useSelector((state) => state.centralStore);
@@ -60,7 +61,17 @@ const ProductPage = () => {
 
   if (isLoading) {
     // Show isLoading state while fetching the product
-    return <p>Loading...</p>;
+    return <div className="container" style={{width:"10vw",margin:"auto"}}>
+      <Circles
+                height="80"
+                width="80"
+                color="#F0F8FF"
+                ariaLabel="circles-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+              />
+    </div>;
   }
 
   return (

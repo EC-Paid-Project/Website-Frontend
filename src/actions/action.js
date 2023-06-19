@@ -101,6 +101,7 @@ export const login = (body) => async (dispatch) => {
     const response = await api.login(body);
     console.log(response);
     localStorage.setItem("authToken", JSON.stringify(response.data.key));
+    dispatch(getUser());
   } catch (error) {
     console.log(error.message);
   }
@@ -118,6 +119,29 @@ export const sendOrder = (a,b,c,d) => async (dispatch) => {
   try {
     const response = await api.send({"cart":b,"address":a,"type":d,"dis_id":parseInt(c)});
     console.log(response);
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+//get user
+export const getUser = () => async (dispatch) => {
+  try {
+    const response = await api.user();
+    console.log(response);
+    localStorage.setItem("lpgUser", JSON.stringify(response.data));
+    return response.data;
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+//google login
+export const googlelogin = (body) => async (dispatch) => {
+  try {
+    const response = await api.googlelogin(body);
+    console.log(response);
+    localStorage.setItem("authToken", JSON.stringify(response.data.key));
+    dispatch(getUser());
   } catch (error) {
     console.log(error.message);
   }

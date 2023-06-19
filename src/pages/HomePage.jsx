@@ -80,7 +80,7 @@ const HomePage = () => {
         </div>
         <Suspense
           fallback={
-            <div className="container">
+            <div className="container" >
               <Circles
                 height="80"
                 width="80"
@@ -94,7 +94,7 @@ const HomePage = () => {
           }
         >
           {isLoading ? (
-            <div className="container">
+            <div className="container"  >
               <Circles
                 height="80"
                 width="80"
