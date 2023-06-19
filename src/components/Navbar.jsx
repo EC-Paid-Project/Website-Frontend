@@ -8,7 +8,10 @@ import { HiShoppingCart } from "react-icons/hi";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+
 const Navbar = ({productsSectionRef}) => {
+
+  const user=JSON.parse(localStorage.getItem("lpgUser"))
   useEffect(() => {
     AOS.init();
     window.scrollTo(0, 0);
@@ -16,10 +19,6 @@ const Navbar = ({productsSectionRef}) => {
   const [status, setStatus] = useState(null)
   const [userName, setUserName] = useState(null)
   useEffect(() => { 
-    const status = localStorage.getItem("user");
-    const userName = localStorage.getItem("fullName");
-    setStatus(status || null)
-    setUserName(userName || "John Doe")
   }, [userName])
 
   const navigate = useNavigate();
@@ -76,14 +75,22 @@ const Navbar = ({productsSectionRef}) => {
                   alt="Profile"
                   className="profile-image"
                 />
-                <span className="username">{userName}</span>
+                <span className="username">{user.first_name+" "+user.last_name}</span>
               </div>
             </Link>
-            {!status && <Link to={"/signin"}>
+            {!user ?<Link to={"/signin"}> 
               <div className="signin">
                 <button className="signin-btn">Login</button>
               </div>
-            </Link>}
+            </Link>:
+              <div className="signin">
+                <button className="signin-btn"
+                onClick={()=>{
+                  localStorage.removeItem("lpgUser");
+                  navigate("/signin");
+                }}>LoginOut</button>
+              </div>
+            }
           </div>
         </li>
       </ul>

@@ -28,19 +28,21 @@ function Signin() {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    if (form.email === "mohib@gmail.com" || form.password === "Mohib@123") {
+    
       console.log("User sign in without google, form details are: ");
       console.log(form);
   
-      dispatch(login(form))
-      localStorage.setItem("user", JSON.stringify(form));
-      localStorage.setItem("fullName", 'Mohib Qureshi');
-      localStorage.setItem("username", "mohib123");
-      localStorage.setItem("email", 'mohib@gmail.com');
-      localStorage.setItem("phone", '03219876541');
-      localStorage.setItem("address", "Gulshan-e-Iqbal, Karachi");
-      navigate("/");
-      return;
+     const a=dispatch(login(form))
+      if(a){
+        console.log(a)
+      
+      // localStorage.setItem("user", JSON.stringify(form));
+      // localStorage.setItem("fullName", 'Mohib Qureshi');
+      // localStorage.setItem("username", "mohib123");
+      // localStorage.setItem("email", 'mohib@gmail.com');
+      // localStorage.setItem("phone", '03219876541');
+      // localStorage.setItem("address", "Gulshan-e-Iqbal, Karachi");
+      // navigate("/");
     }
     else{
       setErrors({ ...errors, empty: "Please fill in all fields" });
@@ -71,7 +73,7 @@ function Signin() {
     setIsLoading(true);
     const token = response.data.token;
     // Save token to localStorage
-    localStorage.setItem("user-token", JSON.stringify(token));
+    localStorage.setItem("authToken", JSON.stringify(token));
     localStorage.setItem("user", JSON.stringify(response.data.user));
     console.log(JSON.stringify(response.data.user));
     window.location.reload(false);

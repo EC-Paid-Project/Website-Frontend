@@ -27,3 +27,8 @@
     width: 60%;
     margin: 0 auto;
   }
+  .container{
+    width: 10vw;
+    /* height: 100vh; */
+    margin:  auto;
+  }
