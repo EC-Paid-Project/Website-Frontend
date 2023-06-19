@@ -47,15 +47,14 @@
     background-color: #f2f2f2;
     -moz-appearance: textfield ;
 
-    &::-webkit-inner-spin-button,
-    &::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
     }
 
-    &:active, &:focus {
-      outline: 1px solid #2c9fe6;
-    }
+  input[type='number']:active, input[type='number']:focus{
+    outline: 1px solid #2c9fe6;
+  }
+  input[type='number']::-webkit-inner-spin-button, input[type='number']::-webkit-outer-spin-button{
+    -webkit-appearance: none;
+      margin: 0;
   }
   
   .submit-btn {

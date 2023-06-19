@@ -87,10 +87,9 @@
   margin-left: 3vw;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-
-  &:hover {
-    transform: scale(1.05);
-  }
+}
+.product-page-image:hover {
+  transform: scale(1.05);
 }
 
 .product-page-section {

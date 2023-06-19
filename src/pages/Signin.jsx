@@ -6,7 +6,7 @@ import CustomInput from "../components/CustomInput";
 import GoogleAuth from "./GoogleAuth/GoogleOAuth.jsx";
 import "./Signin.css";
 import logo from "../assets/logo.png";
-import bg from "../assets/bg.jpg";
+// import bg from "../assets/bg.jpg";
 import { login, signup } from "../actions/action";
 import { useDispatch } from "react-redux";
 
