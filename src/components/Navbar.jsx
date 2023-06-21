@@ -3,6 +3,7 @@ import "./Navbar.css";
 import logo from "../assets/logo.png";
 import cartIcon from "../assets/cart.png";
 import profileImage from "../assets/Cartoonify.png";
+import noUser from "../assets/noUser.png";
 import { Link, useNavigate } from "react-router-dom";
 import { HiShoppingCart } from "react-icons/hi";
 import AOS from "aos";
@@ -70,12 +71,20 @@ const Navbar = ({productsSectionRef}) => {
             </Link>
             <Link to={"/profile"}>
               <div className="user-profile">
-                <img
+                {user?.first_name?
+                  <img
                   src={profileImage}
                   alt="Profile"
                   className="profile-image"
-                />
-                <span className="username">{user.first_name+" "+user.last_name}</span>
+                />:
+                <img
+                  src={noUser}
+                  alt="Profile"
+                  className="profile-image"
+                />}
+                {user?.first_name? 
+                  <span className="username">{user?.first_name+" "+user?.last_name}</span>:
+                  <span className="username">User</span>}
               </div>
             </Link>
             {!user ?<Link to={"/signin"}> 

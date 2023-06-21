@@ -85,7 +85,7 @@ function Signin() {
 
   return (
     <div className="relative min-h-screen SigninBackground">
-      <div className="container flex flex-col z-10" onSubmit={onSubmitHandler}>
+      <div className="flex flex-col z-10 justify-center items-center" onSubmit={onSubmitHandler}>
         <Link to="/">
           <img
             src={logo}

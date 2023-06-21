@@ -48,7 +48,7 @@ dispatch(signup(form) )
 
   return (
     <div className="SignupBackground relative min-h-screen">
-      <div className="container flex flex-col">
+      <div className="flex flex-col justify-center items-center">
         <Link to="/">
           <img
             src={logo}
