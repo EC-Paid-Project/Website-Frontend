@@ -15,6 +15,8 @@ import AboutPage from "./pages/AboutPage";
 import MyAddressForm from "./pages/addressForm";
 import PaymentPage from "./pages/CashOrOnline";
 import ConfirmationPage from "./pages/confirmMessage";
+import OrderHistory from "./pages/OrderHistorty";
+import OrderDetailPage from "./pages/orderdetail";
 // import NotFound from "./pages/NotFound/NotFound";
 // import Profile from "./pages/Profile/Profile";
 // import ForceRedirect from "./components/ForceRedirect";
@@ -54,6 +56,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route exact path="/product/:id" element={<ProductPage />} />
+          <Route exact path="/orderDetail/:id" element={<OrderDetailPage />} />
           <Route exact path="/cart" element={<CartPage />} />
           <Route exact path="/profile" element={<UserProfile />} />
           <Route exact path="/about" element={<AboutPage />} />
@@ -61,6 +64,7 @@ function App() {
           <Route exact path="/signin" element={<Signin />} />
           <Route exact path="/signup" element={<Signup />} />
           <Route exact path="/addressForm" element={<MyAddressForm />} />
+          <Route exact path="/orderhistory" element={<OrderHistory />} />
           <Route exact path="/confirm" element={<ConfirmationPage />} />
         </Routes>
       </div>

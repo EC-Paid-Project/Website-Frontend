@@ -18,11 +18,21 @@ Signup() {
 
   //add a User
   const onChangeHandler = (event) => {
-    setForm({
-      ...form,
-      [event.target.name]: event.target.value,
-    });
-  };
+    const { name, value } = event.target;
+  
+    if (name === 'email') {
+      setForm((prevForm) => ({
+        ...prevForm,
+        username: value.split('@')[0],
+        [name]: value,
+      }));
+    } else {
+      setForm((prevForm) => ({
+        ...prevForm,
+        [name]: value,
+      }));
+    }
+  }
 
   const onSubmitHandler = (event) => {
     // setIsLoading(true);
@@ -39,6 +49,7 @@ Signup() {
     //     setErrors(err.response.data);
     //     setIsLoading(false);
     //   });
+    console.log(form)
 dispatch(signup(form) )
     // console.log("User sign up form details are: ");
     // console.log(form);
@@ -61,9 +72,19 @@ dispatch(signup(form) )
             <form class="form-group" onSubmit={onSubmitHandler}>
               <CustomInput
                 label="Name"
-                placeholder="name"
+                placeholder="first name"
                 type="text"
-                name="username"
+                name="first_name"
+                icon={<FaUser />}
+                className="border rounded"
+                onChange={onChangeHandler}
+                errors={errors.name}
+              />
+              <CustomInput
+                label="Name"
+                placeholder="last name"
+                type="text"
+                name="last_name"
                 icon={<FaUser />}
                 className="border rounded"
                 onChange={onChangeHandler}

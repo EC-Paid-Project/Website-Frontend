@@ -1,0 +1,49 @@
+.order-history {
+    margin: 20px;
+  }
+  
+  .order-history__title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+  
+  .order-history__list {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+  }
+  
+  .order-history__empty {
+    color: #999;
+  }
+  
+  .order-history__item {
+    border-bottom: 1px solid #ccc;
+    padding: 16px 0;
+  }
+  
+  .order-history__item-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .order-history__item-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .order-history__item-id {
+    font-weight: bold;
+  }
+  
+  .order-history__item-status {
+    color: #999;
+  }
+  
+  .order-history__item-qty {
+    font-size: 14px;
+    color: #777;
+  }
+  

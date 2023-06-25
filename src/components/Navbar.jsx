@@ -4,9 +4,10 @@ import logo from "../assets/logo.png";
 import cartIcon from "../assets/cart.png";
 import profileImage from "../assets/Cartoonify.png";
 import { Link, useNavigate } from "react-router-dom";
-import { HiShoppingCart } from "react-icons/hi";
+import { HiShoppingCart,HiArchive } from "react-icons/hi";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { logout } from "../api";
 
 
 const Navbar = ({productsSectionRef}) => {
@@ -68,6 +69,11 @@ const Navbar = ({productsSectionRef}) => {
                 <HiShoppingCart />
               </button>
             </Link>
+            <Link to={"/orderhistory"}>
+              <button className="cart-button">
+                <HiArchive />
+              </button>
+            </Link>
             <Link to={"/profile"}>
               <div className="user-profile">
                 <img
@@ -75,7 +81,7 @@ const Navbar = ({productsSectionRef}) => {
                   alt="Profile"
                   className="profile-image"
                 />
-                <span className="username">{user.first_name+" "+user.last_name}</span>
+                <span className="username">{user?.first_name+" "+user?.last_name}</span>
               </div>
             </Link>
             {!user ?<Link to={"/signin"}> 
@@ -85,7 +91,8 @@ const Navbar = ({productsSectionRef}) => {
             </Link>:
               <div className="signin">
                 <button className="signin-btn"
-                onClick={()=>{
+                onClick={async()=>{
+                  await logout();
                   localStorage.removeItem("lpgUser");
                   navigate("/signin");
                 }}>LoginOut</button>
