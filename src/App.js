@@ -54,7 +54,6 @@ function App() {
     <div className="relative min-h-max">
       <div className="relative">
         <Routes>
-          <Route path="/" element={<HomePage />} />
           <Route exact path="/product/:id" element={<ProductPage />} />
           <Route exact path="/orderDetail/:id" element={<OrderDetailPage />} />
           <Route exact path="/cart" element={<CartPage />} />
@@ -66,6 +65,7 @@ function App() {
           <Route exact path="/addressForm" element={<MyAddressForm />} />
           <Route exact path="/orderhistory" element={<OrderHistory />} />
           <Route exact path="/confirm" element={<ConfirmationPage />} />
+          <Route path="/*" element={<HomePage />} />
         </Routes>
       </div>
     </div>

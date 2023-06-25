@@ -10,6 +10,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 
+
 const PaymentPage = () => {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const { addressAndPhone, cart } = useSelector((state) => state.centralStore);

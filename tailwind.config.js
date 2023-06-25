@@ -1,18 +1,9 @@
+/** @type {import('tailwindcss').Config} */
+
 module.exports = {
-    content: [
-      // Example content paths...
-      './public/**/*.html',
-      './src/**/*.{js,jsx,ts,tsx,vue}',
-    ],
+    content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
     theme: {
-      fontFamily: {
-        'sans': ['Open Sans', 'sans-serif'],
-      },
-      extend: {
-        fontFamily: {
-          'open-sans': ['Open Sans', 'sans-serif'],
-        },
-      },
+      extend: {},
     },
     variants: {
       extend: {},

@@ -80,11 +80,11 @@ const HomePage = () => {
         </div>
         <Suspense
           fallback={
-            <div className="container" >
+            <div className="mx-auto w-max">
               <Circles
                 height="80"
                 width="80"
-                color="#4fa94d"
+                color="#2c9fe6"
                 ariaLabel="circles-loading"
                 wrapperStyle={{}}
                 wrapperClass=""
@@ -94,11 +94,11 @@ const HomePage = () => {
           }
         >
           {isLoading ? (
-            <div className="container"  >
+            <div className="mx-auto w-max h-[50vh] mt-20">
               <Circles
                 height="80"
                 width="80"
-                color="#4fa94d"
+                color="#2c9fe6"
                 ariaLabel="circles-loading"
                 wrapperStyle={{}}
                 wrapperClass=""

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import ProductView from "../components/ProductView";
 import "./ProductPage.css";
 import { useParams } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
@@ -14,6 +13,10 @@ import "aos/dist/aos.css";
 import { Circles } from "react-loader-spinner";
 
 const ProductPage = () => {
+  useEffect(() => {
+    AOS.init();
+    window.scrollTo(0, 0);
+  }, []);
   const { cart, isLoading } = useSelector((state) => state.centralStore);
   const dispatch = useDispatch();
 

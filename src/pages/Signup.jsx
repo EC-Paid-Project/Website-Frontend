@@ -64,6 +64,7 @@ dispatch(signup(form) )
           <img
             src={logo}
             className="w-40 h-auto mt-5 hover:cursor-pointer border-none"
+            alt="logo"
           />
         </Link>
         {/* <div className="App">{isLoading ? <LoadingSpinner /> : ""}</div> */}
@@ -128,8 +129,7 @@ dispatch(signup(form) )
                 Already have an account? {FaEnvelope}{" "}
                 <Link to="/signin">
                   <span className="font-bold no-underline">Sign in</span>
-                </Link>{" "}
-                here
+                </Link>{" "} here
               </div>
             </form>
           </div>

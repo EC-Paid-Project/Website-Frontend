@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import "./UserProfile.css";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import userImg from "../assets/Cartoonify.png";
 import { IoMdLogOut } from "react-icons/io";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 const UserProfile = () => {
-  const { userId } = useParams();
+  // const { userId } = useParams();
   useEffect(() => {
     AOS.init();
     window.scrollTo(0, 0);
@@ -21,9 +21,6 @@ const UserProfile = () => {
   const user = JSON.parse(localStorage.getItem("lpgUser"));
   console.log(user);
 
-  const updateUserDetails = () => {
-    alert("User details updated successfully!");
-  };
 
   const [fullName, setFullName] = useState("");
   const [username, setUsername] = useState("");
