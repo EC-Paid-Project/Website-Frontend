@@ -63,19 +63,19 @@ const ProductPage = () => {
   }, [cart, product.quantity]);
 
   if (isLoading) {
-    // Show isLoading state while fetching the product
-    return <div className="container" style={{width:"10vw",margin:"auto"}}>
-      <Circles
-                height="80"
-                width="80"
-                color="#F0F8FF"
-                ariaLabel="circles-loading"
-                wrapperStyle={{}}
-                wrapperClass=""
-                visible={true}
-              />
-    </div>;
+    return  <div className="container"  style={{width:"10px",margin:"auto"}}>
+    <Circles
+      height="80"
+      width="80"
+      color="#4fa94d"
+      ariaLabel="circles-loading"
+      wrapperStyle={{}}
+      wrapperClass=""
+      visible={true}
+    />
+  </div>
   }
+
 
   return (
     <div>

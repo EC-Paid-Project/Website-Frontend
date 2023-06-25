@@ -112,7 +112,7 @@ const UserProfile = () => {
               <input
                 type="text"
                 id="fullName"
-                value={user.first_name+" "+user.last_name}
+                value={user?.first_name+" "+user?.last_name}
                 onChange={(e) => setFullName(e.target.value)}
                 readOnly={!isEditing}
               />
@@ -122,7 +122,7 @@ const UserProfile = () => {
               <input
                 type="text"
                 id="username"
-                value={user.username}
+                value={user?.username}
                 onChange={(e) => setUsername(e.target.value)}
                 readOnly={!isEditing}
               />
@@ -134,7 +134,7 @@ const UserProfile = () => {
               <input
                 type="email"
                 id="email"
-                value={user.email}
+                value={user?.email}
                 onChange={(e) => setEmail(e.target.value)}
                 readOnly={!isEditing}
               />

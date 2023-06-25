@@ -42,7 +42,7 @@ function Signin() {
       // localStorage.setItem("email", 'mohib@gmail.com');
       // localStorage.setItem("phone", '03219876541');
       // localStorage.setItem("address", "Gulshan-e-Iqbal, Karachi");
-      // navigate("/");
+      navigate("/");
     }
     else{
       setErrors({ ...errors, empty: "Please fill in all fields" });
@@ -71,6 +71,7 @@ function Signin() {
 
   const informParent = (response) => {
     setIsLoading(true);
+    
     const token = response.data.token;
     // Save token to localStorage
     localStorage.setItem("authToken", JSON.stringify(token));
