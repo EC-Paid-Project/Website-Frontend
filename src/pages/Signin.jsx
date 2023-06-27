@@ -7,8 +7,12 @@ import GoogleAuth from "./GoogleAuth/GoogleOAuth.jsx";
 import "./Signin.css";
 import logo from "../assets/logo.png";
 // import bg from "../assets/bg.jpg";
-import { login, signup } from "../actions/action";
+import { googlelogin, login, signup } from "../actions/action";
 import { useDispatch } from "react-redux";
+import { auth, provider } from "./Firebase/config";
+import { signInWithPopup } from "firebase/auth";
+import { setLogLevel } from "firebase/app";
+
 
 function Signin() {
   const dispatch = useDispatch(); 
@@ -32,7 +36,7 @@ function Signin() {
       console.log("User sign in without google, form details are: ");
       console.log(form);
   
-     const a=dispatch(login(form))
+     const a = dispatch(login(form))
       if(a){
         console.log(a)
       
@@ -42,7 +46,7 @@ function Signin() {
       // localStorage.setItem("email", 'mohib@gmail.com');
       // localStorage.setItem("phone", '03219876541');
       // localStorage.setItem("address", "Gulshan-e-Iqbal, Karachi");
-      navigate("/");
+      // navigate("/");
     }
     else{
       setErrors({ ...errors, empty: "Please fill in all fields" });
@@ -69,24 +73,47 @@ function Signin() {
     //   });
   };
 
-  const informParent = (response) => {
-    setIsLoading(true);
+  const handleFirebaseLogin = (event) => {
+    event.preventDefault();
+    setIsLoading(true)
+    signInWithPopup(auth, provider).then((result) => {
+      console.log(result._tokenResponse.idToken)
+      console.log(result)
+      const a=dispatch(googlelogin(result._tokenResponse.idToken))
+      const {email, displayName, photoURL, uid} = result.user;
+      const userDetails = {email,name:displayName, img:photoURL, uid, username:email.split("@")[0]};
+      localStorage.setItem("user", JSON.stringify(userDetails))
+      console.log(userDetails)
+      setTimeout(() => {
+        navigate('/')
+        setIsLoading(false)
+      },3000)
+
+  }).catch((error) => {
+      window.alert('Signin Unsuccessful, Please try again!')
+  });
+}
+
+  // const informParent = (response) => {
+  //   setIsLoading(true);
     
-    const token = response.data.token;
-    // Save token to localStorage
-    localStorage.setItem("authToken", JSON.stringify(token));
-    localStorage.setItem("user", JSON.stringify(response.data.user));
-    console.log(JSON.stringify(response.data.user));
-    window.location.reload(false);
-    setTimeout(() => {
-      navigate("/");
-      setIsLoading(false);
-    }, 1000);
-  } 
+  //   const token = response.data.token;
+  //   // Save token to localStorage
+  //   localStorage.setItem("authToken", JSON.stringify(token));
+  //   localStorage.setItem("user", JSON.stringify(response.data.user));
+  //   console.log(JSON.stringify(response.data.user));
+  //   window.location.reload(false);
+  //   setTimeout(() => {
+  //     navigate("/");
+  //     setIsLoading(false);
+  //   }, 1000);
+  // } 
+
+
 
   return (
     <div className="relative min-h-screen SigninBackground">
-      <div className="flex flex-col z-10 justify-center items-center" onSubmit={onSubmitHandler}>
+      <div className="flex flex-col z-10 justify-center items-center">
         <Link to="/">
           <img
             src={logo}
@@ -94,6 +121,7 @@ function Signin() {
           />
         </Link>
         <div className="SignInForm shadow-lg col-lg-4 mt-5 col-md-6 col-sm-8 mx-auto rounded-xl p-6">
+          {/* <form className="form-group" > */}
           <form className="form-group">
             <CustomInput
               label="Email"
@@ -115,7 +143,8 @@ function Signin() {
               password
             />
             <button
-              type="submit"
+              type="button"
+              onClick={onSubmitHandler}
               className=" bg-[#F90105] hover:bg-gray-600 w-full relative inline-flex items-center justify-center px-2 md:px-4 py-2 overflow-hidden font-medium transition duration-300 ease-out rounded-full shadow-xl group hover:ring-4 hover:ring-purple-500"
             >
               <span className="relative text-white font-bold px-4">
@@ -128,11 +157,17 @@ function Signin() {
                 <span className="or text-center text-lg">OR</span>
               </p>
             </div>
-            <div className="flex flex-col mb-3 gap-2 items-center text-sm social-media">
+            {/* <div className="flex flex-col mb-3 gap-2 items-center text-sm social-media">
               <GoogleAuth informParent={informParent} />
-            </div>
+            </div> */}
+            <button onClick={handleFirebaseLogin} 
+            className=" bg-[#F90105] hover:bg-gray-600 w-full relative inline-flex items-center justify-center px-2 md:px-4 py-2 overflow-hidden font-medium transition duration-300 ease-out rounded-full shadow-xl group hover:ring-4 hover:ring-purple-500">
+              <span className="relative text-white font-bold px-4">
+              Sign in with Google
+              </span>
+            </button>
             <div className="text-sm text-center">
-              If you dont have an account yet,{" "}
+              If you don't have an account yet,{" "}
               <Link to="/signup">
                 <span className="font-bold underline">Create One</span>
               </Link>{" "}

@@ -3,7 +3,7 @@ import "./HomePage.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import CustomCarousel from "../components/Carousel";
-import { fetchAllProducts, fetchProductBySearch } from "../actions/action";
+import { fetchAllProducts, fetchProductBySearch, getDistributors } from "../actions/action";
 import { useSelector, useDispatch } from "react-redux";
 // import ProductView from "../components/ProductView";
 import AOS from "aos";
@@ -14,6 +14,7 @@ import { Circles } from "react-loader-spinner";
 const ProductView = lazy(() => import("../components/ProductView"));
 const HomePage = () => {
   useEffect(() => {
+    dispatch(getDistributors())
     AOS.init();
     window.scrollTo(0, 0);
   }, []);
@@ -21,6 +22,7 @@ const HomePage = () => {
   const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState("");
   const [products, setProducts] = useState([]);
+  const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true);
   //get product from redux selector
   const productList = useSelector((state) => state.centralStore.productList);
@@ -48,6 +50,7 @@ const HomePage = () => {
   const productsSectionRef = useRef(null);
 
   useEffect(() => {
+    // console.log(productList)
     if (location.state && location.state.scrollTarget === "products") {
       if (productsSectionRef && productsSectionRef.current) {
         window.scrollTo({
@@ -57,7 +60,7 @@ const HomePage = () => {
       }
     }
   }, [location.state]);
-  const user = JSON.parse(localStorage.getItem("user"));
+  // setUser(JSON.parse(localStorage.getItem("user")))
   console.log(user);
 
   return (
@@ -106,7 +109,7 @@ const HomePage = () => {
               />
             </div>
           ) : (
-            productList.map((product) => (
+            (productList).map((product) => (
               <div
                 className="product-1"
                 key={product.id}

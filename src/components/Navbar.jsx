@@ -13,7 +13,7 @@ import { logout } from "../api";
 
 const Navbar = ({productsSectionRef}) => {
 
-  const user=JSON.parse(localStorage.getItem("lpgUser"))
+  const user=JSON.parse(localStorage.getItem("user"))
   useEffect(() => {
     AOS.init();
     window.scrollTo(0, 0);
@@ -102,9 +102,9 @@ const Navbar = ({productsSectionRef}) => {
                 <button className="signin-btn"
                 onClick={async()=>{
                   await logout();
-                  localStorage.removeItem("lpgUser");
+                  localStorage.removeItem("user");
                   navigate("/signin");
-                }}>LoginOut</button>
+                }}>Logout</button>
               </div>
             }
           </div>

@@ -16,13 +16,13 @@ const dispatch = useDispatch();
     const responseGoogle = (response) => {
         console.log(response);
          const userObject = jwt_decode(response.credential);
-         console.log(userObject.credential);
+         console.log(userObject);
          const a=dispatch(googlelogin(userObject.credential))
         //  if(a){
         //    navigate('/')
 
         //  }
-        console.log(a)
+        console.log('UserObject:, ', a)
         //  localStorage.setItem('user', JSON.stringify(userObject));
         //  const { name, sub, picture } = userObject;
         //  const doc = {

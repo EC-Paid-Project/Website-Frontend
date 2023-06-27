@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "https://owaisali246.pythonanywhere.com/" });
+const API = axios.create({ baseURL: "http://127.0.0.1:8000/" });
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("authToken")) {
@@ -38,7 +38,7 @@ export const send = async (body) =>  await API.post(`/order/`, body);
 export const fetchorderhistory = async (body) =>  await API.get(`/history`);
 export const fetchOrderDetails = async (id) =>  await API.get(`/order/${id}`);
 export const user = async (body) =>  await API.get(`dj-rest-auth/user`);
-export const googlelogin = async (body) =>  await API.post(`dj-rest-auth/google/`,{"auth_token":body});
+export const googlelogin = async (body) =>  await API.post(`dj-rest-auth/google/`,{"access_token":body});
 export const logout = async (body) =>  await API.post(`dj-rest-auth/logout/`);
 
 

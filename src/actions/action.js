@@ -10,8 +10,9 @@ export const fetchAllProducts = () => async (dispatch) => {
   try {
     dispatch(startLoading());
     const { data } = await api.fetchAllProducts();
-    dispatch(allProducts(data));
-    console.log(data);
+    const a=(data.map((product) => product.cylinder));
+    
+    dispatch(allProducts(a));
     dispatch(endLoading());
   } catch (error) {
     console.log(error.message);
@@ -22,7 +23,8 @@ export const fetchProductBySearch = (search) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const { data } = await api.fetchAllProducts(); // Fetch all products
-    const filteredData = data.filter((product) =>
+    const a=(data.map((product) => product.cylinder));
+    const filteredData = a.filter((product) =>
       product.name.toLowerCase().includes(search.toLowerCase())
     ); // Filter the products based on the search query
     dispatch(allProducts(filteredData));
@@ -40,7 +42,7 @@ export const fetchOneProduct = (id) => async (dispatch) => {
     const { data } = await api.fetchOneProduct(id);
 
     dispatch(endLoading());
-    return data;
+    return data.cylinder;
     console.log(data);
   } catch (error) {
     console.log(error.message);
@@ -129,7 +131,7 @@ export const getUser = () => async (dispatch) => {
   try {
     const response = await api.user();
     console.log(response);
-    localStorage.setItem("lpgUser", JSON.stringify(response.data));
+    localStorage.setItem("user", JSON.stringify(response.data));
     return response.data;
   } catch (error) {
     console.log(error.message);
@@ -138,6 +140,7 @@ export const getUser = () => async (dispatch) => {
 //google login
 export const googlelogin = (body) => async (dispatch) => {
   try {
+    console.log(body);
     const response = await api.googlelogin(body);
     console.log(response);
     localStorage.setItem("authToken", JSON.stringify(response.data.key));

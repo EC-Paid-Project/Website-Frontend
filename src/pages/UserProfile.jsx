@@ -18,7 +18,7 @@ const UserProfile = () => {
     localStorage.clear();
     window.location.href = "/";
   };
-  const user = JSON.parse(localStorage.getItem("lpgUser"));
+  const user = JSON.parse(localStorage.getItem("user"));
   console.log(user);
 
 

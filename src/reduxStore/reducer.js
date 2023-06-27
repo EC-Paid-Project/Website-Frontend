@@ -54,6 +54,7 @@ export const centralStore = createSlice({
     allProducts: (state, action) => {
       const products = action.payload;
       state.productList = products;
+    console.log(products);
     },
     setAddressAndPhone:(state,action)=>{
       console.log(action.payload);

@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { setAddressAndPhone} from '../reduxStore/reducer';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { findClosestDistributor } from '../actions/closest_distributor';
+import { getDistributors } from '../actions/action';
 
 
 const MyAddressForm = () => {
@@ -17,7 +19,7 @@ const MyAddressForm = () => {
   const [phone, setPhone] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = () => {
+  const handleSubmit = async() => {
     // Validate input fields
     if (
       houseNo === '' ||
@@ -49,6 +51,7 @@ dispatch(setAddressAndPhone(data))
       setPhone('');
       setErrorMessage('');
       navigate('/paymentPage');
+await dispatch(getDistributors())
     }
   };
 

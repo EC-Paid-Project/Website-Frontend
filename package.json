@@ -15,6 +15,7 @@
     "axios": "^1.2.1",
     "bootstrap": "^5.2.3",
     "classnames": "^2.3.2",
+    "firebase": "^9.23.0",
     "gapi-script": "^1.2.0",
     "geolib": "^3.3.4",
     "jwt-decode": "^3.1.2",
