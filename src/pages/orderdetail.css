@@ -1,5 +1,6 @@
 .order-detail-page {
-    margin: 20px;
+    padding: 40px;
+    min-height: max-content;
   }
   
   .order-detail-page__title {
@@ -12,7 +13,7 @@
     margin: 10px;
     padding: 10px;
     border-radius: 10px;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
   }
   
   .order-detail-page__section {

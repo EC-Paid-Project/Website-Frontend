@@ -1,20 +1,16 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useState, useEffect} from "react";
 import "./Navbar.css";
 import logo from "../assets/logo.png";
-import cartIcon from "../assets/cart.png";
-// import profileImage from "../assets/Cartoonify.png";
 import noUser from "../assets/noUser.png";
 import { Link, useNavigate } from "react-router-dom";
 import { HiShoppingCart,HiArchive } from "react-icons/hi";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import { logout } from "../api";
 import { FirebaseSignOut } from "../pages/Firebase/config";
 
 
-const Navbar = ({productsSectionRef}) => {
+const Navbar = () => {
 
-  const user=JSON.parse(localStorage.getItem("user"))
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")))
   const [img, setImg] = useState(user?.img || "https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg")
 
   const navigate = useNavigate();

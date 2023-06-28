@@ -65,7 +65,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <Navbar productsSectionRef={productsSectionRef} />
+      <Navbar />
       <div className="relative min-h-screen ">
         <div data-aos="zoom-in" data-aos-duration="1000">
           <CustomCarousel />

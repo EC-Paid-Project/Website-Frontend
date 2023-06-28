@@ -131,7 +131,11 @@ export const getUser = () => async (dispatch) => {
   try {
     const response = await api.user();
     console.log(response);
-    localStorage.setItem("user", JSON.stringify(response.data));
+    const user = {
+      ...response.data,
+      name: response.data.first_name + " " + response.data.last_name,
+    }
+    localStorage.setItem("user", JSON.stringify(user));
     return response.data;
   } catch (error) {
     console.log(error.message);

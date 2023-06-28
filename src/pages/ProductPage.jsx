@@ -53,7 +53,7 @@ const ProductPage = () => {
 
   useEffect(() => {
     if (cart.length > 0) {
-      const productInCart = cart.find((item) => item.id == product.id);
+      const productInCart = cart.find((item) => item.id === product.id);
       if (productInCart) {
         setQuantity(productInCart.quantity);
       } else {

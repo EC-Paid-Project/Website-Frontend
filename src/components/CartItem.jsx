@@ -2,14 +2,14 @@ import "./CartItem.css";
 import { useDispatch } from "react-redux";
 import {addProductToCart,removeProductFromCart} from "../reduxStore/reducer"
 import React, { useEffect, useState } from "react";
-import {RiDeleteBin6Fill} from "react-icons/ri";
 
 
 const CartItem = ({ product, onIncrement, onDecrement }) => {
-  const { title, image, price } = product;
   const [quantity, setQuantity] = useState(product.quantity);
   const dispatch = useDispatch();
+  
   useEffect(() => {
+    window.scrollTo(0, 0);
     setQuantity(product.quantity);
   }, [product.quantity]);
 
@@ -27,20 +27,20 @@ const CartItem = ({ product, onIncrement, onDecrement }) => {
     }
   };
 
-  const handleRemoveProduct = () => {
-    if (quantity > 0) {
-      // onRemove();
-      console.log(product)
-      setQuantity(0);
-    }
-  };
+  // const handleRemoveProduct = () => {
+  //   if (quantity > 0) {
+  //     // onRemove();
+  //     console.log(product)
+  //     setQuantity(0);
+  //   }
+  // };
 
   return (
 
     <div className="cart-product">
       <div className="product-container">
         <div className="product-image-container">
-          <img className="product-image" src={`https://owaisali246.pythonanywhere.com/${product.image}`} alt={product.title} />
+          <img className="product-image" src={`http://127.0.0.1:8000${product.image}`} alt={product.title} />
         </div>
         <div className="product-details">
           <h3 className="product-name">{product.name}</h3>

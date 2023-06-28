@@ -1,5 +1,6 @@
 .order-history {
-    margin: 20px;
+    padding: 40px;
+    min-height: 75vh;
   }
   
   .order-history__title {
@@ -10,8 +11,10 @@
   
   .order-history__list {
     background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
     padding: 16px;
+    width: 80%;
+    border-radius: 10px;
   }
   
   .order-history__empty {
