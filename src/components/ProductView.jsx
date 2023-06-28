@@ -9,7 +9,7 @@ const ProductView = (props) => {
       <div className={`product-view-back-2 ${props.color0}`}></div>
       <div className="product-view-card">
         <div className="product-view-image">
-          <img src={`https://owaisali246.pythonanywhere.com/${props.image}`} alt="product-image" />
+          <img src={`http://127.0.0.1:8000${props.image}`} alt="product-image" />
         </div>
         <div className="product-view-section">
           <Link to={`/product/${props.id}`}>

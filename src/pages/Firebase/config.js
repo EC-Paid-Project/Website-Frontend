@@ -1,9 +1,9 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signOut } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAQi--AIzaSyA4zYATzBWduF5Kvhbi0ST0pgJfnX_o2i8",
+  apiKey: "AIzaSyAQi--lYpHpyLKweMkY2ldEf_GSiMoKlRc",
   authDomain: "ec-paid-project.firebaseapp.com",
   projectId: "ec-paid-project",
   storageBucket: "ec-paid-project.appspot.com",
@@ -16,4 +16,5 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app); 
 const provider = new GoogleAuthProvider();
-export {auth,provider}
+const FirebaseSignOut = () => signOut(auth).then(() => {}).catch((error) => {window.alert("Logout Failed")});
+export {auth,provider, FirebaseSignOut}

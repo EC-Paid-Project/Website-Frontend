@@ -83,7 +83,7 @@ function Signin() {
       const {email, displayName, photoURL, uid} = result.user;
       const userDetails = {email,name:displayName, img:photoURL, uid, username:email.split("@")[0]};
       localStorage.setItem("user", JSON.stringify(userDetails))
-      console.log(userDetails)
+      console.log(JSON.stringify( userDetails))
       setTimeout(() => {
         navigate('/')
         setIsLoading(false)

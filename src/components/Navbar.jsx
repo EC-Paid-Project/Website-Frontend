@@ -2,26 +2,20 @@ import React, {useEffect, useRef, useState} from "react";
 import "./Navbar.css";
 import logo from "../assets/logo.png";
 import cartIcon from "../assets/cart.png";
-import profileImage from "../assets/Cartoonify.png";
+// import profileImage from "../assets/Cartoonify.png";
 import noUser from "../assets/noUser.png";
 import { Link, useNavigate } from "react-router-dom";
 import { HiShoppingCart,HiArchive } from "react-icons/hi";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { logout } from "../api";
+import { FirebaseSignOut } from "../pages/Firebase/config";
 
 
 const Navbar = ({productsSectionRef}) => {
 
   const user=JSON.parse(localStorage.getItem("user"))
-  useEffect(() => {
-    AOS.init();
-    window.scrollTo(0, 0);
-  }, []);
-  const [status, setStatus] = useState(null)
-  const [userName, setUserName] = useState(null)
-  useEffect(() => { 
-  }, [userName])
+  const [img, setImg] = useState(user?.img || "https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg")
 
   const navigate = useNavigate();
 
@@ -77,9 +71,9 @@ const Navbar = ({productsSectionRef}) => {
             </Link>
             <Link to={"/profile"}>
               <div className="user-profile">
-                {user?.first_name?
+                {user?
                   <img
-                  src={profileImage}
+                  src={img}
                   alt="Profile"
                   className="profile-image"
                 />:
@@ -88,8 +82,8 @@ const Navbar = ({productsSectionRef}) => {
                   alt="Profile"
                   className="profile-image"
                 />}
-                {user?.first_name? 
-                  <span className="username">{user?.first_name+" "+user?.last_name}</span>:
+                {user ?
+                  <span className="username">{user?.name}</span>:
                   <span className="username">User</span>}
               </div>
             </Link>
@@ -101,8 +95,9 @@ const Navbar = ({productsSectionRef}) => {
               <div className="signin">
                 <button className="signin-btn"
                 onClick={async()=>{
+                  FirebaseSignOut();
                   await logout();
-                  localStorage.removeItem("user");
+                  localStorage.clear();
                   navigate("/signin");
                 }}>Logout</button>
               </div>

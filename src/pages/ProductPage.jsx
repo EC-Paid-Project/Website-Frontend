@@ -63,19 +63,20 @@ const ProductPage = () => {
   }, [cart, product.quantity]);
 
   if (isLoading) {
-    return  <div className="container"  style={{width:"10px",margin:"auto"}}>
-    <Circles
-      height="80"
-      width="80"
-      color="#4fa94d"
-      ariaLabel="circles-loading"
-      wrapperStyle={{}}
-      wrapperClass=""
-      visible={true}
-    />
-  </div>
+    return (
+      <div className="container" style={{ width: "10px", margin: "auto" }}>
+        <Circles
+          height="80"
+          width="80"
+          color="#4fa94d"
+          ariaLabel="circles-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+        />
+      </div>
+    );
   }
-
 
   return (
     <div>
@@ -90,7 +91,10 @@ const ProductPage = () => {
           data-aos-duration="2000"
         >
           <div className="product-page-image">
-            <img src={`https://owaisali246.pythonanywhere.com/${product.image}`} alt="product-image" />
+            <img
+              src={`http://127.0.0.1:8000${product.image}`}
+              alt="product-image"
+            />
           </div>
           <div className="product-page-section">
             <Link to={`/product/${product.id}`}>
@@ -104,18 +108,27 @@ const ProductPage = () => {
               <br /> {product.description}
             </p>
             <div className="product-page-quantity">
-              <button onClick={() => handleMinus(product)} className="minus-button">
+              <button
+                onClick={() => handleMinus(product)}
+                className="minus-button"
+              >
                 <AiFillMinusCircle />
               </button>
               <h4 className="product-page-quantity-number">{quantity}</h4>
-              <button onClick={() => handlePlus(product)} className="plus-button">
+              <button
+                onClick={() => handlePlus(product)}
+                className="plus-button"
+              >
                 <AiFillPlusCircle />
               </button>
             </div>
-            <button className="add-to-cart" onClick={()=>{
-handleAddToCart(product)
-Navigate("/cart")
-            } }>
+            <button
+              className="add-to-cart"
+              onClick={() => {
+                handleAddToCart(product);
+                Navigate("/cart");
+              }}
+            >
               Add to Cart
             </button>
           </div>
