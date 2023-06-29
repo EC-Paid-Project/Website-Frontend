@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./OrderHistory.css";
+import "./orderhistory.css";
 import { fetchorderhistory } from "../api";
 import { useNavigate } from "react-router-dom";
 import { Circles } from "react-loader-spinner";
@@ -25,7 +25,7 @@ function OrderHistory() {
         <Circles
           height="80"
           width="80"
-          color="#4fa94d"
+          color="#2c9fe6"
           ariaLabel="circles-loading"
           wrapperStyle={{}}
           wrapperClass=""
@@ -48,8 +48,8 @@ function OrderHistory() {
               {orderHistory.map((order) => (
                 <li
                   key={order.id}
-                  className="order-history__item"
-                  onClick={() => navigate(`/orderDetail/${order.id}`)}
+                  className="order-history__item cursor-pointer hover:bg-slate-200"
+                  onClick={() => navigate(`/orderDetail/${order.id}`) }
                 >
                   <div className="order-history__item-content">
                     <div className="order-history__item-info">
@@ -61,7 +61,7 @@ function OrderHistory() {
                       </span>
                     </div>
                     <div className="order-history__item-qty">
-                      Qty: {order.totalItemsQty}
+                      Qty: {order.total_items_qty}
                     </div>
                   </div>
                 </li>

@@ -14,7 +14,6 @@ import { Circles } from "react-loader-spinner";
 const ProductView = lazy(() => import("../components/ProductView"));
 const HomePage = () => {
   useEffect(() => {
-    dispatch(getDistributors())
     AOS.init();
     window.scrollTo(0, 0);
   }, []);
@@ -28,16 +27,14 @@ const HomePage = () => {
   const productList = useSelector((state) => state.centralStore.productList);
   const isLoading = useSelector((state) => state.centralStore.isLoading);
 
-  useEffect(() => {
+  useEffect(() =>async()=> {
     setLoading(true);
     if (searchQuery) {
       dispatch(fetchProductBySearch(searchQuery)).catch((error) =>
         console.error(error)
       );
     } else {
-      dispatch(fetchAllProducts()).then((response) => {
-        console.log(productList);
-      });
+      await dispatch(fetchAllProducts());
     }
   }, [searchQuery]);
 

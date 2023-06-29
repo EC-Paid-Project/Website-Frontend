@@ -1,6 +1,7 @@
 import axios from "axios";
-
-const API = axios.create({ baseURL: "http://127.0.0.1:8000/" });
+export const baseURL="https://owaisali246.pythonanywhere.com/"
+// const API = axios.create({ baseURL: "http://127.0.0.1:8000/" });
+const API = axios.create({ baseURL: baseURL });
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("authToken")) {
@@ -31,7 +32,7 @@ export const getOrderHistory = async () =>  await API.get(`/history`);
 
 export const login = async (body) => 
    await API.post(`/dj-rest-auth/login/`, body);
-
+export const getoffer= async () =>await API.get(`/offers`);
 
 export const signup = async (body) =>  await API.post(`/dj-rest-auth/registration/`, body);
 export const send = async (body) =>  await API.post(`/order/`, body);

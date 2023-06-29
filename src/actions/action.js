@@ -4,7 +4,7 @@ import {
   endLoading,
 } from "../reduxStore/reducer.js";
 import * as api from "../api/index.js";
-import { findClosestDistributor } from "./closest_distributor.js";
+import { findClosestDistributors } from "./closest_distributor.js";
 
 export const fetchAllProducts = () => async (dispatch) => {
   try {
@@ -67,10 +67,10 @@ export const getDistributors = () => async (dispatch) => {
     dispatch(startLoading());
     const { data } = await api.getDistributors();
  console.log(data);
-    findClosestDistributor(data);
-    
+    const a=await findClosestDistributors(data)
+
     dispatch(endLoading());
-    return data;
+    return a;
   } catch (error) {
     console.log(error.message);
 
@@ -104,22 +104,34 @@ export const login = (body) => async (dispatch) => {
     console.log(response);
     localStorage.setItem("authToken", JSON.stringify(response.data.key));
     dispatch(getUser());
+    return response;
   } catch (error) {
     console.log(error.message);
   }
 }
 export const signup = (body) => async (dispatch) => { 
-  try {
+  // try {
     const response = await api.signup(body);
+    // console.log(response+"l;kdl");
+    return response;
+  // } catch (error) {
+  //   console.log(response);
+  // }
+}
+export const getoffer = () => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await api.getoffer();
+    dispatch(endLoading());
     console.log(response);
+    return response.data;
   } catch (error) {
     console.log(error.message);
-  }
-}
+  }}
 //sendOrder
-export const sendOrder = (a,b,c,d) => async (dispatch) => {
+export const sendOrder = (a,b,c,d,transactionId=0) => async (dispatch) => {
   try {
-    const response = await api.send({"cart":b,"address":a,"type":d,"dis_id":parseInt(c)});
+    const response = await api.send({"cart":b,"address":a,"type":d,"dis_id":parseInt(c),"Transaction_id":transactionId});
     console.log(response);
   } catch (error) {
     console.log(error.message);

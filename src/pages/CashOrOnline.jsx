@@ -24,6 +24,12 @@ const PaymentPage = () => {
   const handleConfirmPayment = () => {
     // Perform online payment logic
     setShowConfirmation(false);
+    const distributor = JSON.parse(
+      localStorage.getItem("lpgDistributor")
+    );
+    console.log(distributor);
+    dispatch(sendOrder(addressAndPhone, cart, distributor?.id, "Alpha Pay",generateRandomNumber));
+    navigate("/confirm");
   };
 
   const generateRandomNumber = () => {

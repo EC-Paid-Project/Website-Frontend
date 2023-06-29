@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 // import axios from 'axios';
 import { useHistory, useParams } from 'react-router-dom';
 // import moment from 'moment';
-import './OrderDetail.css';
+import './orderdetail.css';
 import { fetchOrderDetails } from '../api';
 import { Circles } from 'react-loader-spinner';
 import Navbar from '../components/Navbar';
@@ -39,7 +39,7 @@ setLoading(true)
     <Circles
       height="80"
       width="80"
-      color="#4fa94d"
+      color="#2c9fe6"
       ariaLabel="circles-loading"
       wrapperStyle={{}}
       wrapperClass=""
@@ -80,11 +80,11 @@ setLoading(true)
               </li>
               <li>
                 <span className="order-detail-page__info-label">Total Items Qty:</span>
-                <span className="order-detail-page__info-value">{order.order_info.totalItemsQty}</span>
+                <span className="order-detail-page__info-value">{order.order_info.total_items_qty}</span>
               </li>
               <li>
                 <span className="order-detail-page__info-label">Total Price:</span>
-                <span className="order-detail-page__info-value">{order.order_info.totalPrice}</span>
+                <span className="order-detail-page__info-value">{order.order_info.total_price}</span>
               </li>
             </ul>
           </div>

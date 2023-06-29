@@ -15,6 +15,7 @@ Signup() {
   const [form, setForm] = useState({});
   // eslint-disable-next-line no-unused-vars
   const [errors, setErrors] = useState({});
+  const [myError, setMyError] = useState("");
 
   //add a User
   const onChangeHandler = (event) => {
@@ -34,7 +35,7 @@ Signup() {
     }
   }
 
-  const onSubmitHandler = (event) => {
+  const onSubmitHandler = async(event) => {
     // setIsLoading(true);
     event.preventDefault();
     // axios
@@ -50,7 +51,25 @@ Signup() {
     //     setIsLoading(false);
     //   });
     console.log(form)
-dispatch(signup(form) )
+    try{
+      const a=await dispatch(signup(form) )
+      console.log(a)
+      if(a.status===204){
+        setMyError("")
+navigate("/signin")
+}
+else if (a.status===400){
+  if(a.body.non_field_errors[0]!=null){
+    navigate("/signin")
+    setMyError("")
+    
+        }
+        
+      }
+
+    }catch(err){
+      setMyError("fill form correctly")
+    }
     // console.log("User sign up form details are: ");
     // console.log(form);
     // localStorage.setItem("user", JSON.stringify(form));
@@ -72,24 +91,24 @@ dispatch(signup(form) )
           <div className="p-6 shadow-lg mb-5 rounded-xl SignupForm">
             <form class="form-group" onSubmit={onSubmitHandler}>
               <CustomInput
-                label="Name"
+                label="First Name"
                 placeholder="first name"
                 type="text"
                 name="first_name"
                 icon={<FaUser />}
                 className="border rounded"
                 onChange={onChangeHandler}
-                errors={errors.name}
+                // errors={errors.name}
               />
               <CustomInput
-                label="Name"
+                label="Last Name"
                 placeholder="last name"
                 type="text"
                 name="last_name"
                 icon={<FaUser />}
                 className="border rounded"
                 onChange={onChangeHandler}
-                errors={errors.name}
+                // errors={errors.name}
               />
               <CustomInput
                 label="Email"
@@ -110,7 +129,7 @@ dispatch(signup(form) )
                 errors={errors.password}
               />
               <CustomInput
-                label="Password"
+                label="Confirm Password"
                 placeholder="confirm password"
                 type="password"
                 name="password2"
@@ -118,6 +137,7 @@ dispatch(signup(form) )
                 onChange={onChangeHandler}
                 errors={errors.password}
               />
+              <p className="text-red-700 text-center font-semibold">{myError}</p>
               <button
                 className=" bg-[#F90105] text-white hover:bg-gray-600 w-full relative inline-flex items-center justify-center px-2 md:px-4 py-2 overflow-hidden font-medium transition duration-300 ease-out rounded-full shadow-xl group hover:ring-4 hover:ring-purple-500"
                 type="submit"

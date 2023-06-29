@@ -2,6 +2,7 @@ import "./CartItem.css";
 import { useDispatch } from "react-redux";
 import {addProductToCart,removeProductFromCart} from "../reduxStore/reducer"
 import React, { useEffect, useState } from "react";
+import { baseURL } from "../api";
 
 
 const CartItem = ({ product, onIncrement, onDecrement }) => {
@@ -40,7 +41,7 @@ const CartItem = ({ product, onIncrement, onDecrement }) => {
     <div className="cart-product">
       <div className="product-container">
         <div className="product-image-container">
-          <img className="product-image" src={`http://127.0.0.1:8000${product.image}`} alt={product.title} />
+          <img className="product-image" src={`${baseURL}${product.image}`} alt={product.title} />
         </div>
         <div className="product-details">
           <h3 className="product-name">{product.name}</h3>

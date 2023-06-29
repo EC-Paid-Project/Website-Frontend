@@ -17,7 +17,7 @@ function Signin() {
   const navigate = useNavigate();
   const [form, setForm] = useState({ email: "", password: "" });
   // eslint-disable-next-line no-unused-vars
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState();
   // eslint-disable-next-line no-unused-vars
   const [isLoading, setIsLoading] = useState(false);
   //User signin
@@ -28,21 +28,28 @@ function Signin() {
     });
   };
 
-  const onSubmitHandler = (event) => {
+  const onSubmitHandler = async(event) => {
     event.preventDefault();
     setIsLoading(true);
 
-    console.log("User sign in without google, form details are: ");
-    console.log(form);
 
-    const response = dispatch(login(form));
-    if (response) {
+    // console.log(form);
+    try{
+  const response =await  dispatch(login(form));
+
+    // console.log(response)
+
+    if (response.status===200) {
       setTimeout(() => {
         navigate("/");
         setIsLoading(false);
-      }, 1000);
+        setErrors(  "" );
+      }, 100);
     } else {
-      setErrors({ ...errors, empty: "Please fill in all fields" });
+      setErrors(  "Invalid Credentials" );
+      return;
+    }}catch(error){
+      setErrors(  "Invalid Credentials" );
       return;
     }
   };
@@ -99,7 +106,7 @@ function Signin() {
               name="email"
               icon={<FaEnvelope />}
               onChange={onChangeHandler}
-              errors={errors.email}
+              // errors={errors.email}
             />
             <CustomInput
               label="Password"
@@ -108,9 +115,12 @@ function Signin() {
               name="password"
               icon={<FaLock />}
               onChange={onChangeHandler}
-              errors={errors.password}
+              // errors={errors.password}
               password
             />
+            {errors && (
+  <p className="text-red-500 text-sm text-center align-middle">{errors}</p>
+)}
             <button
               type="button"
               onClick={onSubmitHandler}

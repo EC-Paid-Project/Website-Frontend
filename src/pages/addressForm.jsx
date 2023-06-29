@@ -50,8 +50,7 @@ dispatch(setAddressAndPhone(data))
       setCity('');
       setPhone('');
       setErrorMessage('');
-      navigate('/paymentPage');
-await dispatch(getDistributors())
+      navigate('/map');
     }
   };
 

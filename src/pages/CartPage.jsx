@@ -87,7 +87,6 @@ const CartPage = () => {
               alert("Cart is empty")
               return
             }
-            dispatch(getDistributors())
             navigate("/addressForm")
           }}>Checkout</button>
         </div>

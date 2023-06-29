@@ -13,7 +13,7 @@ const Footer = () => {
           <h4 className="font-bold text-lg">Company Info</h4>
           <p className="text-sm">
             <span className="font-bold">Address:</span> A-23, St-12, Sector
-            14-B, New York, USA
+            14-B, Karachi, Pakistan
           </p>
           <p className="text-sm">
             <span className="font-bold">Phone:</span> 123-456-7890

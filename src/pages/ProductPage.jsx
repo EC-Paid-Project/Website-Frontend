@@ -11,6 +11,7 @@ import { fetchOneProduct } from "../actions/action";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { Circles } from "react-loader-spinner";
+import { baseURL } from "../api";
 
 const ProductPage = () => {
   useEffect(() => {
@@ -63,7 +64,7 @@ const ProductPage = () => {
   }, [cart, product.quantity]);
 
   if (isLoading) {
-    return (
+    return (  
       <div className="container" style={{ width: "10px", margin: "auto" }}>
         <Circles
           height="80"
@@ -92,7 +93,7 @@ const ProductPage = () => {
         >
           <div className="product-page-image">
             <img
-              src={`http://127.0.0.1:8000${product.image}`}
+              src={`${baseURL}${product.image}`}
               alt="product-image"
             />
           </div>
