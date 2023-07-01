@@ -28,21 +28,24 @@ function Signin() {
     });
   };
 
-  const onSubmitHandler = (event) => {
+  const onSubmitHandler = async (event) => {
     event.preventDefault();
     setIsLoading(true);
 
-    console.log("User sign in without google, form details are: ");
-    console.log(form);
+    // console.log("User sign in without google, form details are: ");
+    // console.log(form);
 
-    const response = dispatch(login(form));
-    if (response) {
+    const response = await dispatch(login(form));
+
+    console.log("SignIn:", response);
+    if (response.status === 200) {
       setTimeout(() => {
         navigate("/");
         setIsLoading(false);
       }, 1000);
     } else {
       setErrors({ ...errors, empty: "Please fill in all fields" });
+      window.alert("Sign in failed, Please try again.");
       return;
     }
   };
@@ -99,6 +102,7 @@ function Signin() {
               name="email"
               icon={<FaEnvelope />}
               onChange={onChangeHandler}
+              required={true}
               errors={errors.email}
             />
             <CustomInput
@@ -109,7 +113,8 @@ function Signin() {
               icon={<FaLock />}
               onChange={onChangeHandler}
               errors={errors.password}
-              password
+              // password
+              required={true}
             />
             <button
               type="button"

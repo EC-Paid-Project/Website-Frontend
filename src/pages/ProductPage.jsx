@@ -92,7 +92,8 @@ const ProductPage = () => {
         >
           <div className="product-page-image">
             <img
-              src={`http://127.0.0.1:8000${product.image}`}
+              // src={`http://127.0.0.1:8000${product.image}`}
+              src={`http://owaisali246.pythonanywhere.com/${product.image}`}
               alt="product-image"
             />
           </div>

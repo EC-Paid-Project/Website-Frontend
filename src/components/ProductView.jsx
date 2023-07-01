@@ -9,7 +9,11 @@ const ProductView = (props) => {
       <div className={`product-view-back-2 ${props.color0}`}></div>
       <div className="product-view-card">
         <div className="product-view-image">
-          <img src={`http://127.0.0.1:8000${props.image}`} alt="product-image" />
+          {/* <img src={`http://127.0.0.1:8000${props.image}`} alt="product-image" /> */}
+          <img
+            src={`http://owaisali246.pythonanywhere.com/${props.image}`}
+            alt="product-image"
+          />
         </div>
         <div className="product-view-section">
           <Link to={`/product/${props.id}`}>
@@ -21,9 +25,9 @@ const ProductView = (props) => {
               ? props.desc.slice(0, 180) + "..."
               : props.desc}
           </p>
-              {/* <h4 className="product-view-details">{!props.availability? "Available":"Not available"}  </h4> */}
-              {/* <h4 className="product-view-details">Size: {props.size}</h4> */}
-              <h4 className="product-view-details"> Weight: {props.weight}Kg</h4>
+          {/* <h4 className="product-view-details">{!props.availability? "Available":"Not available"}  </h4> */}
+          {/* <h4 className="product-view-details">Size: {props.size}</h4> */}
+          <h4 className="product-view-details"> Weight: {props.weight}Kg</h4>
           <Link to={`product/${props.id}`}>
             <div className="product-view-button">Shop Now</div>
           </Link>
