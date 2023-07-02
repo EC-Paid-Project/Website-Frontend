@@ -5,6 +5,7 @@
         "googlelogin",
         "orderhistory",
         "Signin",
+        "Signup",
         "tailwindcss"
     ],
     "githubPullRequests.ignoredPullRequestBranches": [

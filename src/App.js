@@ -17,6 +17,7 @@ import PaymentPage from "./pages/CashOrOnline";
 import ConfirmationPage from "./pages/confirmMessage";
 import OrderHistory from "./pages/OrderHistory";
 import OrderDetailPage from "./pages/OrderDetail";
+import Distributors from "./pages/Distributors";
 // import NotFound from "./pages/NotFound/NotFound";
 // import Profile from "./pages/Profile/Profile";
 // import ForceRedirect from "./components/ForceRedirect";
@@ -65,6 +66,7 @@ function App() {
           <Route exact path="/addressForm" element={<MyAddressForm />} />
           <Route exact path="/orderhistory" element={<OrderHistory />} />
           <Route exact path="/confirm" element={<ConfirmationPage />} />
+          <Route exact path="/distributors" element={<Distributors />} />
           <Route path="/*" element={<HomePage />} />
         </Routes>
       </div>

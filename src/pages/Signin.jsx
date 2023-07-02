@@ -85,7 +85,7 @@ function Signin() {
 
   return (
     <div className="relative min-h-screen SigninBackground">
-      <div className="flex flex-col z-10 justify-center items-center">
+      <div className="SignInMain">
         <Link to="/">
           <img
             src={logo}

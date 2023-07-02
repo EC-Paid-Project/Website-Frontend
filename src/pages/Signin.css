@@ -5,7 +5,7 @@
   align-items: center;
 }
 
-.submitt {
+.submit {
   width: 100%;
   color: white;
   padding: 14px 10px;
@@ -15,7 +15,7 @@
   cursor: pointer;
 }
 
-.submitt:hover {
+.submit:hover {
   background-color: gray;
 }
 
@@ -43,13 +43,26 @@
   align-items: center;
 }
 
-.SigninBackground{
-  background-image: url('../assets/bg.jpg');
+.SigninBackground {
+  background-image: url("../assets/bg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-.SignInForm{
+.SignInMain {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: max-content;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.SignInForm {
   background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(4px);
+  min-width: 320px;
 }

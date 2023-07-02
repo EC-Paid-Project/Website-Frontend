@@ -27,7 +27,7 @@ function CustomInput({
           name={name}
           onChange={onChange}
           required={required}
-          className="py-1 rounded-[0.5rem] px-2 w-5/5 outline-none border focus:border-slate-500"
+          className="py-1 rounded-[2rem] px-2 w-5/5 outline-none border focus:border-slate-500"
         />
         {/* {password && (
           <span className="input-group-text">

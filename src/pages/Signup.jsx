@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
+import { FaUser, FaEnvelope, FaLock, FaPhone } from "react-icons/fa";
 import CustomInput from "../components/CustomInput";
 import "./Signup.css";
 // import axios from "axios";
@@ -58,7 +58,7 @@ function Signup() {
 
   return (
     <div className="SignupBackground relative min-h-screen">
-      <div className="flex flex-col justify-center items-center">
+      <div className=" SignupMain">
         <Link to="/">
           <img
             src={logo}
@@ -67,9 +67,9 @@ function Signup() {
           />
         </Link>
         {/* <div className="App">{isLoading ? <LoadingSpinner /> : ""}</div> */}
-        <div className="p-6 shadow-lg mb-5 rounded-xl SignupForm mx-auto w-2/4">
+        <div className="p-6 shadow-lg mb-5 rounded-xl SignupForm">
           <form class="form-group" onSubmit={onSubmitHandler}>
-            <div class="from-row">
+            <div class="form-row">
               <div class="form-field">
                 <CustomInput
                   label="First Name"
@@ -95,39 +95,61 @@ function Signup() {
                 />
               </div>
             </div>
-            <CustomInput
-              label="Email"
-              placeholder="name@exemple.com"
-              type="text"
-              name="email"
-              icon={<FaEnvelope />}
-              onChange={onChangeHandler}
-              errors={errors.email}
-            />
-            <CustomInput
-              label="Password1"
-              placeholder="password"
-              type="password"
-              name="password1"
-              icon={<FaLock />}
-              onChange={onChangeHandler}
-              errors={errors.password}
-            />
-            <CustomInput
-              label="Password"
-              placeholder="confirm password"
-              type="password"
-              name="password2"
-              icon={<FaLock />}
-              onChange={onChangeHandler}
-              errors={errors.password}
-            />
+            <div class="form-row">
+              <div class="form-field">
+                <CustomInput
+                  label="Email"
+                  placeholder="name@exemple.com"
+                  type="text"
+                  name="email"
+                  icon={<FaEnvelope />}
+                  onChange={onChangeHandler}
+                  errors={errors.email}
+                />
+              </div>
+              <div class="form-field">
+                <CustomInput
+                  label="Phone Number"
+                  placeholder="0331234567"
+                  type="text"
+                  name="email"
+                  icon={<FaPhone />}
+                  onChange={onChangeHandler}
+                  errors={errors.email}
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <CustomInput
+                  label="Password"
+                  placeholder="password"
+                  type="password"
+                  name="password1"
+                  icon={<FaLock />}
+                  onChange={onChangeHandler}
+                  errors={errors.password}
+                />
+              </div>
+              <div class="form-field">
+                <CustomInput
+                  label="Confirm Password"
+                  placeholder="confirm password"
+                  type="password"
+                  name="password2"
+                  icon={<FaLock />}
+                  onChange={onChangeHandler}
+                  errors={errors.password}
+                />
+              </div>
+            </div>
             <button
-              className=" bg-[#F90105] text-white hover:bg-gray-600 w-full relative inline-flex items-center justify-center px-2 md:px-4 py-2 overflow-hidden font-medium transition duration-300 ease-out rounded-full shadow-xl group hover:ring-4 hover:ring-purple-500"
+              className=" bg-[#F90105] hover:bg-gray-600 w-full relative inline-flex items-center justify-center px-2 md:px-4 py-2 overflow-hidden font-medium transition duration-300 ease-out rounded-full shadow-xl group hover:ring-4 hover:ring-purple-500"
               type="submit"
               disabled={isLoading}
             >
-              Register
+              <span class="relative text-white font-bold px-4">Register</span>
             </button>
             <div className="text-sm text-center mt-2">
               Already have an account? {FaEnvelope}{" "}
