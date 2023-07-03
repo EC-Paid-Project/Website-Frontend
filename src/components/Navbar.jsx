@@ -91,10 +91,20 @@ const Navbar = () => {
               <div className="signin">
                 <button className="signin-btn"
                 onClick={async()=>{
-                  FirebaseSignOut();
-                  await logout();
-                  localStorage.clear();
-                  navigate("/signin");
+                  // FirebaseSignOut();
+                  try{
+
+                    const a=await
+                     logout();
+                     if(a.status===200){
+
+                       localStorage.removeItem("user");
+                       localStorage.removeItem("authToken");
+                       navigate("/signin");
+                     }
+                  }catch(err){
+                    console.log(err);
+                  }
                 }}>Logout</button>
               </div>
             }

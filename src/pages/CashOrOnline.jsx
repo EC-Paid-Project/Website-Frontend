@@ -29,7 +29,7 @@ const PaymentPage = () => {
     );
     console.log(distributor);
     dispatch(sendOrder(addressAndPhone, cart, distributor?.id, "Alpha Pay",generateRandomNumber));
-    navigate("/confirm");
+    navigate("/confirm", { replace: true });
   };
 
   const generateRandomNumber = () => {
@@ -102,10 +102,11 @@ const PaymentPage = () => {
               secretKey2: `${process.env.REACT_APP_SECRET_KEY_2}`,
               transactionReferenceNumber: `${randomOrderNumber}`,
               transactionAmount: 10,
-          }}
+          } }
           message="Proceed to Pay"
           className="alfa-checkout-btn"
           isSandbox = {true}
+          onSuccess={(response) => {console.log(response)}}
       />
         {showConfirmation && (
           <div style={{ textAlign: "center", marginTop: "20px" }}>
@@ -131,3 +132,6 @@ const PaymentPage = () => {
 };
 
 export default PaymentPage;
+// owaisali246.soa@gmail.com
+// 930003009542301
+// 03363042666

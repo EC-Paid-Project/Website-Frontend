@@ -11,7 +11,7 @@ const ConfirmationPage = () => {
     // Simulating an order confirmation after a delay of 3 seconds
     const timer = setTimeout(() => {
       setShowConfirmation(true);
-      navigate("/orderhistory");
+      navigate("/orderhistory",{replace:true});
     }, 100);
 
     return () => clearTimeout(timer);

@@ -14,9 +14,14 @@ function OrderHistory() {
   useEffect(() => {
     setIsLoading(true);
     fetchorderhistory()
-      .then((data) => setOrderHistory(data.data))
+    .then((data)=> {
+      setIsLoading(false);
+      setOrderHistory(data.data)
+    }
+      )
+    
+
       .catch((error) => console.error("Error: ", error));
-    setIsLoading(false);
   }, []);
 
   if (isLoading) {

@@ -17,6 +17,7 @@ import PaymentPage from "./pages/CashOrOnline";
 import ConfirmationPage from "./pages/confirmMessage";
 import OrderHistory from "./pages/OrderHistory";
 import OrderDetailPage from "./pages/orderdetail";
+import ForgetPassword from "./pages/forgetPassword";
 import MapComponent from "./pages/closestdist";
 // import NotFound from "./pages/NotFound/NotFound";
 // import Profile from "./pages/Profile/Profile";
@@ -65,6 +66,7 @@ function App() {
           <Route exact path="/signup" element={<Signup />} />
           <Route exact path="/addressForm" element={<MyAddressForm />} />
           <Route exact path="/orderhistory" element={<OrderHistory />} />
+          <Route exact path="/forgetPassword" element={<ForgetPassword />} />
           <Route exact path="/confirm" element={<ConfirmationPage />} />
           <Route exact path="/map" element={<MapComponent />} />
           <Route path="/*" element={<HomePage />} />

@@ -16,13 +16,12 @@ const OrderDetailPage = () => {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-setLoading(true)
     fetchOrderDetails(id).then((data) => {
-        setOrder(data.data)
+      setOrder(data.data)
+      setLoading(false)
     }).catch((error) => {
         console.error('Error: ', error);
     })
-    setLoading(false)
   }, [id]);
 
   const handleCancelOrder = () => {
@@ -47,7 +46,7 @@ setLoading(true)
     />
   </div>
   }
-  if (!order) {
+  else if(!order) {
     return <div className="no-data">No order data found</div>;
   }
 

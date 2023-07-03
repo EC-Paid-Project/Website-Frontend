@@ -38,18 +38,7 @@ Signup() {
   const onSubmitHandler = async(event) => {
     // setIsLoading(true);
     event.preventDefault();
-    // axios
-    //   .post("/user/signup", form)
-    //   .then((response) => {
-    //     setTimeout(() => {
-    //       setIsLoading(false);
-    //       navigate("/signin");
-    //     }, 1000);
-    //   })
-    //   .catch((err) => {
-    //     setErrors(err.response.data);
-    //     setIsLoading(false);
-    //   });
+
     console.log(form)
     try{
       const a=await dispatch(signup(form) )

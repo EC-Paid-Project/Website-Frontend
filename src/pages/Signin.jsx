@@ -41,7 +41,7 @@ function Signin() {
 
     if (response.status===200) {
       setTimeout(() => {
-        navigate("/");
+        navigate("/",{replace:true});
         setIsLoading(false);
         setErrors(  "" );
       }, 100);
@@ -75,7 +75,7 @@ function Signin() {
           localStorage.setItem("user", JSON.stringify(userDetails));
           // console.log(JSON.stringify(userDetails))
           setTimeout(() => {
-            navigate("/");
+            navigate("/",{replace:true});
             setIsLoading(false);
           }, 1000);
         } else {
@@ -132,18 +132,24 @@ function Signin() {
             </button>
             <div className="flex flex-col items-center px-3 mb-2">
               <div className="line"></div>
+              <div className="text-sm text-center">
+              <Link to="/forgetPassword">
+                <span className="font-bold underline">Forget Password</span>
+              </Link>{" "}
+            </div>
               <p>
                 <span className="or text-center text-lg">OR</span>
               </p>
             </div>
-            <button
+            {/* <button
               onClick={handleFirebaseLogin}
               className=" bg-[#F90105] hover:bg-gray-600 w-full relative inline-flex items-center justify-center px-2 md:px-4 py-2 overflow-hidden font-medium transition duration-300 ease-out rounded-full shadow-xl group hover:ring-4 hover:ring-purple-500"
             >
               <span className="relative text-white font-bold px-4">
                 Sign in with Google
               </span>
-            </button>
+            </button> */}
+           
             <div className="text-sm text-center">
               If you don't have an account yet,{" "}
               <Link to="/signup">

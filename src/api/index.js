@@ -41,6 +41,8 @@ export const fetchOrderDetails = async (id) =>  await API.get(`/order/${id}`);
 export const user = async (body) =>  await API.get(`dj-rest-auth/user`);
 export const googlelogin = async (body) =>  await API.post(`dj-rest-auth/google/`,{"access_token":body});
 export const logout = async (body) =>  await API.post(`dj-rest-auth/logout/`);
+export const resetPassword = async (body) =>  await API.post(`dj-rest-auth/password/reset/`,body);
+export const sendOtp = async (body,uuid,token) =>  await API.post(`dj-rest-auth/password/reset/confirm/${uuid}/${token}/`,body);
 
 
 

@@ -88,8 +88,7 @@ alert("lkl")
                             <b
                   style={{backgroundColor:"lightblue", color: "black", cursor: "pointer" }}
                   onClick={() => {
-                    alert("lkl");
-                    navigate("/paymentPage");
+                    navigate("/paymentPage", { replace: true });
                     localStorage.setItem("lpgDistributor", JSON.stringify(marker));
                   }}
                 >

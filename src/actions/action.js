@@ -165,3 +165,24 @@ export const googlelogin = (body) => async (dispatch) => {
     console.log(error.message);
   }
 }
+export const resetPassword = (body) => async (dispatch) => {
+  try {
+    const {data} = await api.resetPassword(body);
+
+    return data.pass_data
+    
+  } catch (error) {
+    return null
+  }
+}
+export const sendOtp = (body,uuid,token) => async (dispatch) => {
+  try {
+    console.log(body);
+    const response = await api.sendOtp(body,uuid,token);
+    console.log(response);
+    return response.status
+    
+  } catch (error) {
+    return 400
+  }
+}

@@ -6,11 +6,12 @@ import "./UserProfile.css";
 import { IoMdLogOut } from "react-icons/io";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
   // const { userId } = useParams();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")))
-
+const navigate = useNavigate();
   
   useEffect(() => {
     AOS.init();
@@ -26,8 +27,9 @@ const UserProfile = () => {
   const [isEditing, setIsEditing] = useState(false);
   
   const handleLogout = () => {
-    localStorage.clear();
-    window.location.href = "/";
+    localStorage.removeItem("user");
+    localStorage.removeItem("authToken");
+    navigate("/signin");
   };
 
 
