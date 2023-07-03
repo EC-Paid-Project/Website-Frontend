@@ -1,25 +1,25 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 import logo from "../assets/logo.png";
 import noUser from "../assets/noUser.png";
 import { Link, useNavigate } from "react-router-dom";
-import { HiShoppingCart,HiArchive } from "react-icons/hi";
+import { HiShoppingCart, HiArchive } from "react-icons/hi";
 import { logout } from "../api";
 import { FirebaseSignOut } from "../pages/Firebase/config";
 
-
 const Navbar = () => {
-
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")))
-  const [img, setImg] = useState(user?.img || "https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg")
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+  const [img, setImg] = useState(
+    user?.img ||
+      "https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg"
+  );
 
   const navigate = useNavigate();
 
   const handleProductsClick = (e) => {
     e.preventDefault();
-    navigate('/', { state: { scrollTarget: 'products' } });
+    navigate("/", { state: { scrollTarget: "products" } });
   };
-
 
   return (
     <nav>
@@ -51,6 +51,11 @@ const Navbar = () => {
                 Contact
               </a>
             </li>
+            <li>
+              <Link to="/distributors" className="font-bold">
+                Distributors
+              </Link>
+            </li>
           </ul>
         </li>
         <li>
@@ -67,27 +72,25 @@ const Navbar = () => {
             </Link>
             <Link to={"/profile"}>
               <div className="user-profile">
-                {user?
-                  <img
-                  src={img}
-                  alt="Profile"
-                  className="profile-image"
-                />:
-                <img
-                  src={noUser}
-                  alt="Profile"
-                  className="profile-image"
-                />}
-                {user ?
-                  <span className="username">{user?.name}</span>:
-                  <span className="username">User</span>}
+                {user ? (
+                  <img src={img} alt="Profile" className="profile-image" />
+                ) : (
+                  <img src={noUser} alt="Profile" className="profile-image" />
+                )}
+                {user ? (
+                  <span className="username">{user?.name}</span>
+                ) : (
+                  <span className="username">User</span>
+                )}
               </div>
             </Link>
-            {!user ?<Link to={"/signin"}> 
-              <div className="signin">
-                <button className="signin-btn">Login</button>
-              </div>
-            </Link>:
+            {!user ? (
+              <Link to={"/signin"}>
+                <div className="signin">
+                  <button className="signin-btn">Login</button>
+                </div>
+              </Link>
+            ) : (
               <div className="signin">
                 <button className="signin-btn"
                 onClick={async()=>{
@@ -107,7 +110,7 @@ const Navbar = () => {
                   }
                 }}>Logout</button>
               </div>
-            }
+            )}
           </div>
         </li>
       </ul>

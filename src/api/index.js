@@ -5,29 +5,26 @@ const API = axios.create({ baseURL: baseURL });
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("authToken")) {
-    req.headers.Authorization = `Token ${
-      JSON.parse(localStorage.getItem("authToken"))
-    }`;
+    req.headers.Authorization = `Token ${JSON.parse(
+      localStorage.getItem("authToken")
+    )}`;
   }
 
   return req;
 });
 
-export const fetchAllProducts = async () =>
-   await API.get(`/products`, );
-export const getDistributors = async () =>
-   await API.get(`/distributor`, );
+export const fetchAllProducts = async () => await API.get(`/products`);
+export const getDistributors = async () => await API.get(`/distributor`);
 
 export const fetchProductBySearch = async (search) =>
-    await API.get(`/products?search=${search}`, );
-export const fetchOneProduct = async (id) =>
-    await API.get(`/products/${id}`, );
+  await API.get(`/products?search=${search}`);
+export const fetchOneProduct = async (id) => await API.get(`/products/${id}`);
 
-export const sendCart = async (cart) => 
-  await API.post(`/send_cart/`, cart,);
+export const sendCart = async (cart) => await API.post(`/send_cart/`, cart);
 
-export const sendAddress = async (address) =>  await API.post(`/address/`, address);
-export const getOrderHistory = async () =>  await API.get(`/history`);
+export const sendAddress = async (address) =>
+  await API.post(`/address/`, address);
+export const getOrderHistory = async () => await API.get(`/history`);
 
 
 export const login = async (body) => 
@@ -44,15 +41,11 @@ export const logout = async (body) =>  await API.post(`dj-rest-auth/logout/`);
 export const resetPassword = async (body) =>  await API.post(`dj-rest-auth/password/reset/`,body);
 export const sendOtp = async (body,uuid,token) =>  await API.post(`dj-rest-auth/password/reset/confirm/${uuid}/${token}/`,body);
 
-
-
-
-  // Handle the response as needed
+// Handle the response as needed
 
 // Add more authentication-related API calls as needed
 
 //...
-
 
 // Add more POST API calls as needed
 

@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import "./UserProfile.css";
 // import { useParams } from "react-router-dom";
-import { IoMdLogOut } from "react-icons/io";
+// import { IoMdLogOut } from "react-icons/io";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useNavigate } from "react-router-dom";
@@ -22,17 +22,18 @@ const navigate = useNavigate();
   const [username, setUsername] = useState(user?.username || "johndoe");
   const [email, setEmail] = useState(user?.email || "johndow@example.com");
   const [phone, setPhone] = useState(user?.phone || "1234567890");
-  const [img, setImg] = useState(user?.img || "https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg")
+  const [img, setImg] = useState(
+    user?.img ||
+      "https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg"
+  );
   const [address, setAddress] = useState(user?.address || "123 ABC Street");
   const [isEditing, setIsEditing] = useState(false);
-  
+
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("authToken");
     navigate("/signin");
   };
-
-
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -41,12 +42,12 @@ const navigate = useNavigate();
   const handleUpdateClick = () => {
     const updatedUser = {
       ...user,
-      name : fullName,
-      username : username,
-      email : email,
-      phone : phone,
-      address : address
-    }
+      name: fullName,
+      username: username,
+      email: email,
+      phone: phone,
+      address: address,
+    };
     localStorage.setItem("user", JSON.stringify(updatedUser));
     setIsEditing(false);
     // window.location.reload();
@@ -60,13 +61,17 @@ const navigate = useNavigate();
           <img src="https://picsum.photos/1920/320" alt="" />
           <div className="user-page-overlay"></div>
         </div>
-        {user && <button className="logout-btn" onClick={() => handleLogout()}>
+        {/* {user && <button className="logout-btn" onClick={() => handleLogout()}>
           <IoMdLogOut className="mr-2 text-lg" /> Logout
-        </button>}
-        <div className="user-image z-10" data-aos='zoom-out' data-aos-duration='1500'>
+        </button>} */}
+        <div
+          className="user-image z-10"
+          data-aos="zoom-out"
+          data-aos-duration="1500"
+        >
           <img src={img} alt="" />
         </div>
-        <form className="user-form" data-aos='fade-up' data-aos-duration='1500'>
+        <form className="user-form" data-aos="fade-up" data-aos-duration="1500">
           <div className="form-row">
             <div className="form-field">
               <label htmlFor="fullName">Full Name:</label>

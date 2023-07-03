@@ -8,20 +8,26 @@ function CustomInput({
   name,
   onChange,
   errors,
+  required,
   // password,
 }) {
   // const [passwordVisible, setPasswordVisible] = useState(password);
 
   return (
     <div className="mb-4">
-      <label className="form-label"><span className="ml-2 font-bold text-sm flex justify-start items-center">{icon}&nbsp; {label}</span></label>
+      <label className="form-label">
+        <span className="ml-2 font-bold text-sm flex justify-start items-center">
+          {icon}&nbsp; {label}
+        </span>
+      </label>
       <div className="input-group">
         <input
           type={type}
           placeholder={placeholder}
           name={name}
           onChange={onChange}
-          className='py-1 border rounded-[0.5rem] px-2 w-4/5 outline-none border-b-2 focus:border-slate-500'
+          required={required}
+          className="py-1 rounded-[2rem] px-2 w-5/5 outline-none border focus:border-slate-500"
         />
         {/* {password && (
           <span className="input-group-text">

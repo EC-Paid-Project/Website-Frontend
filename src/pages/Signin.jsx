@@ -89,7 +89,7 @@ function Signin() {
 
   return (
     <div className="relative min-h-screen SigninBackground">
-      <div className="flex flex-col z-10 justify-center items-center">
+      <div className="SignInMain">
         <Link to="/">
           <img
             src={logo}
@@ -106,6 +106,8 @@ function Signin() {
               name="email"
               icon={<FaEnvelope />}
               onChange={onChangeHandler}
+              required={true}
+              errors={errors.email}
               // errors={errors.email}
             />
             <CustomInput
@@ -115,6 +117,9 @@ function Signin() {
               name="password"
               icon={<FaLock />}
               onChange={onChangeHandler}
+              errors={errors.password}
+              // password
+              required={true}
               // errors={errors.password}
               password
             />
