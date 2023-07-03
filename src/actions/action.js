@@ -65,9 +65,7 @@ export const getDistributors = () => async (dispatch) => {
   try {
     dispatch(startLoading());
     const { data } = await api.getDistributors();
- console.log(data);
     const a=await findClosestDistributors(data)
-
     dispatch(endLoading());
     return a;
   } catch (error) {

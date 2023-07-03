@@ -2,6 +2,7 @@ import "./CartItem.css";
 import { useDispatch } from "react-redux";
 import { addProductToCart, removeProductFromCart } from "../reduxStore/reducer";
 import React, { useEffect, useState } from "react";
+import { baseURL } from "../api";
 
 
 const CartItem = ({ product, onIncrement, onDecrement }) => {

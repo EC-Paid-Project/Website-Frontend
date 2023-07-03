@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./orderhistory.css";
+import "./OrderHistory.css";
 import { fetchorderhistory } from "../api";
 import { useNavigate } from "react-router-dom";
 import { Circles } from "react-loader-spinner";

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 // import axios from 'axios';
 import { useHistory, useParams } from 'react-router-dom';
 // import moment from 'moment';
-import './orderdetail.css';
+import './OrderDetail.css';
 import { fetchOrderDetails } from '../api';
 import { Circles } from 'react-loader-spinner';
 import Navbar from '../components/Navbar';

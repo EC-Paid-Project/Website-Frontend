@@ -16,7 +16,7 @@ import MyAddressForm from "./pages/addressForm";
 import PaymentPage from "./pages/CashOrOnline";
 import ConfirmationPage from "./pages/confirmMessage";
 import OrderHistory from "./pages/OrderHistory";
-import OrderDetailPage from "./pages/orderdetail";
+import OrderDetailPage from "./pages/OrderDetail";
 import ForgetPassword from "./pages/forgetPassword";
 import MapComponent from "./pages/closestdist";
 // import NotFound from "./pages/NotFound/NotFound";
@@ -31,7 +31,7 @@ function App() {
 
   const checkUserToken = () => {
     if (typeof window !== "undefined") {
-      const user = JSON.parse(localStorage.getItem("user-token"));
+      const user = JSON.parse(localStorage.getItem("authToken"));
       // const username = JSON.parse(localStorage.getItem("user-token")).name;
       if (user) {
         setIsconnected(true);
@@ -46,7 +46,7 @@ function App() {
 
   // eslint-disable-next-line no-unused-vars
   const Logout = () => {
-    if (localStorage.getItem("user-token")) {
+    if (localStorage.getItem("authToken")) {
       localStorage.clear();
       setIsconnected(false);
     }

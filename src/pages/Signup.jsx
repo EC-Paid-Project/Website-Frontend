@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaUser, FaEnvelope, FaLock, FaPhone } from "react-icons/fa";
+import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 import CustomInput from "../components/CustomInput";
 import "./Signup.css";
 // import axios from "axios";
@@ -7,7 +7,8 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { useDispatch } from "react-redux";
 import { signup } from "../actions/action";
-function Signup() {
+function 
+Signup() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
@@ -19,11 +20,11 @@ function Signup() {
   //add a User
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
-
-    if (name === "email") {
+  
+    if (name === 'email') {
       setForm((prevForm) => ({
         ...prevForm,
-        username: value.split("@")[0],
+        username: value.split('@')[0],
         [name]: value,
       }));
     } else {
@@ -32,7 +33,7 @@ function Signup() {
         [name]: value,
       }));
     }
-  };
+  }
 
   const onSubmitHandler = async(event) => {
     // setIsLoading(true);
@@ -66,7 +67,7 @@ else if (a.status===400){
 
   return (
     <div className="SignupBackground relative min-h-screen">
-      <div className=" SignupMain">
+      <div className="flex flex-col justify-center items-center">
         <Link to="/">
           <img
             src={logo}

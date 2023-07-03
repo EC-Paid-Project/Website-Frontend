@@ -2,7 +2,6 @@ import axios from "axios";
 export const baseURL="https://owaisali246.pythonanywhere.com/"
 // const API = axios.create({ baseURL: "http://127.0.0.1:8000/" });
 const API = axios.create({ baseURL: baseURL });
-
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("authToken")) {
     req.headers.Authorization = `Token ${JSON.parse(
