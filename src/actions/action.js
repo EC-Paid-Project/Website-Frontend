@@ -65,7 +65,7 @@ export const getDistributors = () => async (dispatch) => {
   try {
     dispatch(startLoading());
     const { data } = await api.getDistributors();
-    const a=await findClosestDistributors(data)
+    const a = await findClosestDistributors(data);
     dispatch(endLoading());
     return a;
   } catch (error) {
@@ -105,16 +105,16 @@ export const login = (body) => async (dispatch) => {
     // console.log(error);
     return error.response;
   }
-}
-export const signup = (body) => async (dispatch) => { 
+};
+export const signup = (body) => async (dispatch) => {
   // try {
-    const response = await api.signup(body);
-    // console.log(response+"l;kdl");
-    return response;
+  const response = await api.signup(body);
+  // console.log(response+"l;kdl");
+  return response;
   // } catch (error) {
   //   console.log(response);
   // }
-}
+};
 export const getoffer = () => async (dispatch) => {
   try {
     dispatch(startLoading());
@@ -124,16 +124,26 @@ export const getoffer = () => async (dispatch) => {
     return response.data;
   } catch (error) {
     console.log(error.message);
-  }}
-//sendOrder
-export const sendOrder = (a,b,c,d,transactionId=0) => async (dispatch) => {
-  try {
-    const response = await api.send({"cart":b,"address":a,"type":d,"dis_id":parseInt(c),"Transaction_id":transactionId});
-    console.log(response);
-  } catch (error) {
-    console.log(error.message);
   }
 };
+//sendOrder
+export const sendOrder =
+  (a, b, c, d, transactionId = 0) =>
+  async (dispatch) => {
+    try {
+      const response = await api.send({
+        "cart": b,
+        "address": a,
+        "type": d,
+        "dis_id": parseInt(c),
+      });
+      console.log(response);
+      return 200;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
 
 //get user
 export const getUser = () => async (dispatch) => {
@@ -161,25 +171,23 @@ export const googlelogin = (body) => async (dispatch) => {
   } catch (error) {
     console.log(error.message);
   }
-}
+};
 export const resetPassword = (body) => async (dispatch) => {
   try {
-    const {data} = await api.resetPassword(body);
+    const { data } = await api.resetPassword(body);
 
-    return data.pass_data
-    
+    return data.pass_data;
   } catch (error) {
-    return null
+    return null;
   }
-}
-export const sendOtp = (body,uuid,token) => async (dispatch) => {
+};
+export const sendOtp = (body, uuid, token) => async (dispatch) => {
   try {
     console.log(body);
-    const response = await api.sendOtp(body,uuid,token);
+    const response = await api.sendOtp(body, uuid, token);
     console.log(response);
-    return response.status
-    
+    return response.status;
   } catch (error) {
-    return 400
+    return 400;
   }
-}
+};

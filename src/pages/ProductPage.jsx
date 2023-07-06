@@ -6,7 +6,11 @@ import { useParams } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
-import { addProductToCart, removeProductFromCart } from "../reduxStore/reducer";
+import {
+  addProductToCart,
+  removeProductFromCart,
+  addProductQuantity,
+} from "../reduxStore/reducer";
 import { fetchOneProduct } from "../actions/action";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -28,22 +32,23 @@ const ProductPage = () => {
   const Navigate = useNavigate();
 
   const handleAddToCart = (product) => {
-    // dispatch(addProductToCart(product));
+    dispatch(addProductToCart( product));
     Navigate("/cart");
   };
 
   const handlePlus = (product) => {
     if (product.id != null) {
-      dispatch(addProductToCart(product));
+      // dispatch(addProductToCart(product));
       setQuantity(quantity + 1); // Increment the quantity
     }
   };
 
   const handleMinus = (product) => {
-    if (quantity > 0) {
-      dispatch(removeProductFromCart(product));
-      setQuantity(quantity - 1); // Decrement the quantity
+    if (quantity == 1) {
+      return;
     }
+    dispatch(removeProductFromCart(product));
+    setQuantity(quantity - 1); // Decrement the quantity
   };
 
   useEffect(() => {
@@ -64,7 +69,7 @@ const ProductPage = () => {
   }, [cart, product.quantity]);
 
   if (isLoading) {
-    return (  
+    return (
       <div className="container" style={{ width: "10px", margin: "auto" }}>
         <Circles
           height="80"
@@ -92,10 +97,7 @@ const ProductPage = () => {
           data-aos-duration="2000"
         >
           <div className="product-page-image">
-            <img
-              src={`${baseURL}${product.image}`}
-              alt="product-image"
-            />
+            <img src={`${baseURL}${product.image}`} alt="product-image" />
           </div>
           <div className="product-page-section">
             <Link to={`/product/${product.id}`}>
@@ -108,7 +110,7 @@ const ProductPage = () => {
               <span className="product-page-desc-heading">Description:</span>{" "}
               <br /> {product.description}
             </p>
-            <div className="product-page-quantity">
+            {/* <div className="product-page-quantity">
               <button
                 onClick={() => handleMinus(product)}
                 className="minus-button"
@@ -122,7 +124,7 @@ const ProductPage = () => {
               >
                 <AiFillPlusCircle />
               </button>
-            </div>
+            </div> */}
             <button
               className="add-to-cart"
               onClick={() => {

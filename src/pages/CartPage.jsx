@@ -83,6 +83,10 @@ const CartPage = () => {
             </div>
           </div>
           <button className="btn-primary checkout-btn" onClick={() => {
+            const a=(JSON.parse(localStorage.getItem("authToken")))
+            if(a==null){
+              navigate("/login",{replace:true})
+            }
             if (cart.length === 0) {
               alert("Cart is empty")
               return

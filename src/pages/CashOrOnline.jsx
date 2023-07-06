@@ -4,12 +4,11 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { sendOrder } from "../actions/action";
-import ReactAlfaPayment from 'react-alfa-payment'
-import './CashOrOnline.css'
+import ReactAlfaPayment from "react-alfa-payment";
+import "./CashOrOnline.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-
-
+import { deleteCart } from "../reduxStore/reducer";
 
 const PaymentPage = () => {
   const [showConfirmation, setShowConfirmation] = useState(false);
@@ -21,14 +20,35 @@ const PaymentPage = () => {
     setShowConfirmation(true);
   };
 
+  const handleCashPayment = async () => {
+    // Perform online payment logic
+
+
+    const distributor = JSON.parse(localStorage.getItem("lpgDistributor"));
+    console.log(distributor);
+    const a = await dispatch(
+      sendOrder(addressAndPhone, cart, distributor?.id, "COD")
+    );
+    if (a != null) {
+      navigate("/confirm",{replace:true});
+      dispatch(deleteCart);
+
+    }
+  };
   const handleConfirmPayment = () => {
     // Perform online payment logic
     setShowConfirmation(false);
-    const distributor = JSON.parse(
-      localStorage.getItem("lpgDistributor")
-    );
+    const distributor = JSON.parse(localStorage.getItem("lpgDistributor"));
     console.log(distributor);
-    dispatch(sendOrder(addressAndPhone, cart, distributor?.id, "Alpha Pay",generateRandomNumber));
+    dispatch(
+      sendOrder(
+        addressAndPhone,
+        cart,
+        distributor?.id,
+        "Alpha Pay",
+        generateRandomNumber
+      )
+    );
     navigate("/confirm", { replace: true });
   };
 
@@ -37,12 +57,11 @@ const PaymentPage = () => {
     return randomNumber;
   };
 
-
   const randomOrderNumber = generateRandomNumber();
 
   return (
     <div>
-    <Navbar />
+      <Navbar />
       <div
         style={{
           display: "flex",
@@ -52,17 +71,7 @@ const PaymentPage = () => {
           minHeight: "70vh",
         }}
       >
-        <button
-          className="cod-checkout-btn"
-          onClick={() => {
-            const distributor = JSON.parse(
-              localStorage.getItem("lpgDistributor")
-            );
-            console.log(distributor);
-            dispatch(sendOrder(addressAndPhone, cart, distributor?.id, "COD"));
-            navigate("/confirm");
-          }}
-        >
+        <button className="cod-checkout-btn" onClick={handleCashPayment}>
           <span style={{ marginRight: "10px" }}>Cash On Delivery</span>
           <i className="fas fa-money-bill-wave" />
         </button>
@@ -91,23 +100,25 @@ const PaymentPage = () => {
         </button> */}
         <ReactAlfaPayment
           alfaConfig={{
-              merchantId: `${process.env.REACT_APP_MERCHANT_ID}`,
-              storeId: `${process.env.REACT_APP_STORE_ID}`,
-              channelId: `${process.env.REACT_APP_CHANNEL_ID}`,
-              merchantHash: `${process.env.REACT_APP_MERCHANT_HASH}`,
-              merchantUsername: `${process.env.REACT_APP_MERCHANT_USERNAME}`,
-              merchantPassword: `${process.env.REACT_APP_MERCHANT_PASSWORD}`,
-              redirectUrl: `${process.env.REACT_APP_REDIRECT_URL}`,
-              secretKey1: `${process.env.REACT_APP_SECRET_KEY_1}`,
-              secretKey2: `${process.env.REACT_APP_SECRET_KEY_2}`,
-              transactionReferenceNumber: `${randomOrderNumber}`,
-              transactionAmount: 10,
-          } }
+            merchantId: `${process.env.REACT_APP_MERCHANT_ID}`,
+            storeId: `${process.env.REACT_APP_STORE_ID}`,
+            channelId: `${process.env.REACT_APP_CHANNEL_ID}`,
+            merchantHash: `${process.env.REACT_APP_MERCHANT_HASH}`,
+            merchantUsername: `${process.env.REACT_APP_MERCHANT_USERNAME}`,
+            merchantPassword: `${process.env.REACT_APP_MERCHANT_PASSWORD}`,
+            redirectUrl: `${process.env.REACT_APP_REDIRECT_URL}`,
+            secretKey1: `${process.env.REACT_APP_SECRET_KEY_1}`,
+            secretKey2: `${process.env.REACT_APP_SECRET_KEY_2}`,
+            transactionReferenceNumber: `${randomOrderNumber}`,
+            transactionAmount: 10,
+          }}
           message="Proceed to Pay"
           className="alfa-checkout-btn"
-          isSandbox = {true}
-          onSuccess={(response) => {console.log(response)}}
-      />
+          isSandbox={true}
+          onSuccess={(response) => {
+            console.log(response);
+          }}
+        />
         {showConfirmation && (
           <div style={{ textAlign: "center", marginTop: "20px" }}>
             <p>Please confirm your online payment.</p>

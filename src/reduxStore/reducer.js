@@ -5,7 +5,7 @@ const initialState = {
   isLoading: false,
   userData: null,
   productList: [],
-  addressAndPhone:{}
+  addressAndPhone: {},
 };
 
 export const centralStore = createSlice({
@@ -31,6 +31,23 @@ export const centralStore = createSlice({
       }
       updateLocalStorage(state.cart); // Update local storage
     },
+
+    addProductQuantity: (state, action) => {
+      const { product } = action.payload;
+      const { quantity } = action.payload;
+
+      const existingProductIndex = state.cart.findIndex(
+        (item) => item.id === product.id
+      );
+      if (existingProductIndex !== -1) {
+        if (quantity > 0) {
+          state.cart[existingProductIndex].quantity = quantity;
+        }
+      } else {
+        product.quantity = quantity;
+        state.cart.push(product);
+      }
+    },
     removeProductFromCart: (state, action) => {
       const product = action.payload;
       console.log(product.id);
@@ -49,18 +66,20 @@ export const centralStore = createSlice({
       }
       updateLocalStorage(state.cart);
     },
-    
-
+deleteCart:(state,payload)=>{
+state.cart=[]
+localStorage.removeItem("cart")
+},
     allProducts: (state, action) => {
       const products = action.payload;
       state.productList = products;
-    console.log(products);
+      console.log(products);
     },
-    setAddressAndPhone:(state,action)=>{
+    setAddressAndPhone: (state, action) => {
       console.log(action.payload);
       const addressAndPhone = action.payload;
       state.addressAndPhone = addressAndPhone;
-    }
+    },
   },
 });
 
@@ -72,6 +91,8 @@ export const {
   removeProductFromCartCompletely,
   allProducts,
   setAddressAndPhone,
+  addProductQuantity,
+  deleteCart,
 } = centralStore.actions;
 
 export default centralStore.reducer;

@@ -1,5 +1,5 @@
 import axios from "axios";
-export const baseURL="https://owaisali246.pythonanywhere.com/"
+export const baseURL = "https://owaisali246.pythonanywhere.com/";
 // const API = axios.create({ baseURL: "http://127.0.0.1:8000/" });
 const API = axios.create({ baseURL: baseURL });
 API.interceptors.request.use((req) => {
@@ -25,20 +25,23 @@ export const sendAddress = async (address) =>
   await API.post(`/address/`, address);
 export const getOrderHistory = async () => await API.get(`/history`);
 
+export const login = async (body) =>
+  await API.post(`/dj-rest-auth/login/`, body);
+export const getoffer = async () => await API.get(`/offers`);
 
-export const login = async (body) => 
-   await API.post(`/dj-rest-auth/login/`, body);
-export const getoffer= async () =>await API.get(`/offers`);
-
-export const signup = async (body) =>  await API.post(`/dj-rest-auth/registration/`, body);
-export const send = async (body) =>  await API.post(`/order/`, body);
-export const fetchorderhistory = async (body) =>  await API.get(`/history`);
-export const fetchOrderDetails = async (id) =>  await API.get(`/order/${id}`);
-export const user = async (body) =>  await API.get(`dj-rest-auth/user`);
-export const googlelogin = async (body) =>  await API.post(`dj-rest-auth/google/`,{"access_token":body});
-export const logout = async (body) =>  await API.post(`dj-rest-auth/logout/`);
-export const resetPassword = async (body) =>  await API.post(`dj-rest-auth/password/reset/`,body);
-export const sendOtp = async (body,uuid,token) =>  await API.post(`dj-rest-auth/password/reset/confirm/${uuid}/${token}/`,body);
+export const signup = async (body) =>
+  await API.post(`/dj-rest-auth/registration/`, body);
+export const send = async (body) => await API.post(`/order/`, body);
+export const fetchorderhistory = async (body) => await API.get(`/history`);
+export const fetchOrderDetails = async (id) => await API.get(`/order/${id}`);
+export const user = async (body) => await API.get(`dj-rest-auth/user`);
+export const googlelogin = async (body) =>
+  await API.post(`dj-rest-auth/google/`, { access_token: body });
+export const logout = async (body) => await API.post(`dj-rest-auth/logout/`);
+export const resetPassword = async (body) =>
+  await API.post(`dj-rest-auth/password/reset/`, body);
+export const sendOtp = async (body, uuid, token) =>
+  await API.post(`dj-rest-auth/password/reset/confirm/${uuid}/${token}/`, body);
 
 // Handle the response as needed
 
