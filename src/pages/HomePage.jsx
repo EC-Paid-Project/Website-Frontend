@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import CustomCarousel from "../components/Carousel";
 import { fetchAllProducts, fetchProductBySearch, getDistributors } from "../actions/action";
+import {BsSearch} from "react-icons/bs";
 import { useSelector, useDispatch } from "react-redux";
 // import ProductView from "../components/ProductView";
 import AOS from "aos";
@@ -70,14 +71,18 @@ const HomePage = () => {
         <div id="Products" ref={productsSectionRef} className="product-title">
           <h2 className="underline">Our Products</h2>
         </div>
-        <div className="search-bar">
-          <input
-            type="text"
-            placeholder="Search products..."
-            value={searchQuery}
-            onChange={handleSearch}
-          />
-        </div>
+
+        <div className="search-bar flex justify-center items-center bg-gray-100 rounded-md px-4 py-2 w-1/2 shadow-md">
+  <input
+    className="bg-gray-400 rounded-md px-4 py-2 w-1/2 shadow-md"
+    type="text"
+    placeholder="Search products..."
+    value={searchQuery}
+    onChange={handleSearch}
+  />
+  <span className="justify-self-center align-text-bottom px-2"><BsSearch/></span>
+</div>
+
         <Suspense
           fallback={
             <div className="mx-auto w-max">

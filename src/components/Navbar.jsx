@@ -4,11 +4,12 @@ import logo from "../assets/logo.png";
 import noUser from "../assets/noUser.png";
 import { Link, useNavigate } from "react-router-dom";
 import { HiShoppingCart, HiArchive } from "react-icons/hi";
+import { CiLogout ,CiLogin} from "react-icons/ci";
 import { logout } from "../api";
 import { FirebaseSignOut } from "../pages/Firebase/config";
 
 const Navbar = () => {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+  const user = JSON.parse(localStorage.getItem("user"))
   const [img, setImg] = useState(
     user?.img ||
       "https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg"
@@ -22,9 +23,9 @@ const Navbar = () => {
   };
 
   return (
-    <nav>
-      <ul>
-        <li>
+    <nav className="w-full">
+      <ul >
+        <li >
           <Link to="/">
             <img src={logo} alt="Logo" className="logo" />
           </Link>
@@ -71,28 +72,27 @@ const Navbar = () => {
               </button>
             </Link>
             <Link to={"/profile"}>
-              <div className="user-profile">
+              <div className="user-profile  mr-14">
                 {user ? (
                   <img src={img} alt="Profile" className="profile-image" />
                 ) : (
                   <img src={noUser} alt="Profile" className="profile-image" />
                 )}
                 {user ? (
-                  <span className="username">{user?.name}</span>
+                  <span className="username justify-center">{user?.name}</span>
                 ) : (
-                  <span className="username">User</span>
+                  <span className="username justify-center">User</span>
                 )}
               </div>
             </Link>
             {!user ? (
               <Link to={"/signin"}>
-                <div className="signin">
-                  <button className="signin-btn">Login</button>
+                <div className="cursor-pointer">
+                  <button className="signin-btn"><CiLogin/></button>
                 </div>
               </Link>
             ) : (
-              <div className="signin">
-                <button className="signin-btn"
+              <button
                 onClick={async()=>{
                   // FirebaseSignOut();
                   try{
@@ -108,8 +108,9 @@ const Navbar = () => {
                   }catch(err){
                     console.log(err);
                   }
-                }}>Logout</button>
-              </div>
+                }}>
+                <CiLogout/>
+              </button>
             )}
           </div>
         </li>

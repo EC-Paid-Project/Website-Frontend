@@ -5,7 +5,7 @@ const initialState = {
   isLoading: false,
   userData: null,
   productList: [],
-  addressAndPhone: {},
+  addressAndPhone: null,
 };
 
 export const centralStore = createSlice({

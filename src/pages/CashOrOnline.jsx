@@ -31,7 +31,7 @@ const PaymentPage = () => {
     );
     if (a != null) {
       navigate("/confirm",{replace:true});
-      dispatch(deleteCart);
+      dispatch(deleteCart());
 
     }
   };

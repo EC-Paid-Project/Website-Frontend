@@ -12,7 +12,7 @@ const ConfirmationPage = () => {
     const timer = setTimeout(() => {
       setShowConfirmation(true);
       navigate("/orderhistory",{replace:true});
-    }, 100);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, []);

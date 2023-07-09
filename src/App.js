@@ -19,6 +19,8 @@ import OrderHistory from "./pages/OrderHistory";
 import OrderDetailPage from "./pages/OrderDetail";
 import ForgetPassword from "./pages/forgetPassword";
 import MapComponent from "./pages/closestdist";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "./api";
 // import NotFound from "./pages/NotFound/NotFound";
 // import Profile from "./pages/Profile/Profile";
 // import ForceRedirect from "./components/ForceRedirect";
@@ -27,8 +29,12 @@ import MapComponent from "./pages/closestdist";
 
 function App() {
   const [isConnected, setIsconnected] = useState(false);
+  const {cart,addressAndPhone}=useSelector((state)=>state.centralStore)
+  const distributor = JSON.parse(localStorage.getItem("lpgDistributor"));
   // const user =  JSON.parse(localStorage.getItem('user'))._id
+  const dispatch=useDispatch()
 
+  
   const checkUserToken = () => {
     if (typeof window !== "undefined") {
       const user = JSON.parse(localStorage.getItem("authToken"));
@@ -42,13 +48,17 @@ function App() {
   };
   useEffect(() => {
     checkUserToken();
-  }, [isConnected]);
+  }, []);
 
   // eslint-disable-next-line no-unused-vars
-  const Logout = () => {
+  const Logout = async() => {
     if (localStorage.getItem("authToken")) {
-      localStorage.clear();
-      setIsconnected(false);
+     const {response}= await dispatch(logout())
+     if(response.status==200){
+       localStorage.removeItem("authToken");
+       setIsconnected(false);
+
+     }
     }
   };
 
@@ -57,18 +67,18 @@ function App() {
       <div className="relative">
         <Routes>
           <Route exact path="/product/:id" element={<ProductPage />} />
-          <Route exact path="/orderDetail/:id" element={<OrderDetailPage />} />
           <Route exact path="/cart" element={<CartPage />} />
           <Route exact path="/profile" element={<UserProfile />} />
           <Route exact path="/about" element={<AboutPage />} />
-          <Route exact path="/paymentPage" element={<PaymentPage />} />
           <Route exact path="/signin" element={<Signin />} />
           <Route exact path="/signup" element={<Signup />} />
-          <Route exact path="/addressForm" element={<MyAddressForm />} />
-          <Route exact path="/orderhistory" element={<OrderHistory />} />
           <Route exact path="/forgetPassword" element={<ForgetPassword />} />
-          <Route exact path="/confirm" element={<ConfirmationPage />} />
-          <Route exact path="/map" element={<MapComponent />} />
+  {addressAndPhone && cart[0] && distributor && isConnected && <Route exact path="/paymentPage" element={<PaymentPage />} />}
+  {cart[0] &&  isConnected && <Route exact path="/addressForm" element={<MyAddressForm />} />}
+  {isConnected && <Route exact path="/orderhistory" element={<OrderHistory />} />}
+  {isConnected && <Route exact path="/confirm" element={<ConfirmationPage />} />}
+  {addressAndPhone && isConnected && <Route exact path="/map" element={<MapComponent />} />}
+  {isConnected && <Route exact path="/orderDetail/:id" element={<OrderDetailPage />} />}
           <Route path="/*" element={<HomePage />} />
         </Routes>
       </div>
