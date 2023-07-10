@@ -21,6 +21,7 @@ import ForgetPassword from "./pages/forgetPassword";
 import MapComponent from "./pages/closestdist";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "./api";
+import NotFound from "./pages/NotFound";
 // import NotFound from "./pages/NotFound/NotFound";
 // import Profile from "./pages/Profile/Profile";
 // import ForceRedirect from "./components/ForceRedirect";
@@ -29,12 +30,11 @@ import { logout } from "./api";
 
 function App() {
   const [isConnected, setIsconnected] = useState(false);
-  const {cart,addressAndPhone}=useSelector((state)=>state.centralStore)
+  const { cart, addressAndPhone } = useSelector((state) => state.centralStore);
   const distributor = JSON.parse(localStorage.getItem("lpgDistributor"));
   // const user =  JSON.parse(localStorage.getItem('user'))._id
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
 
-  
   const checkUserToken = () => {
     if (typeof window !== "undefined") {
       const user = JSON.parse(localStorage.getItem("authToken"));
@@ -51,14 +51,13 @@ function App() {
   }, []);
 
   // eslint-disable-next-line no-unused-vars
-  const Logout = async() => {
+  const Logout = async () => {
     if (localStorage.getItem("authToken")) {
-     const {response}= await dispatch(logout())
-     if(response.status==200){
-       localStorage.removeItem("authToken");
-       setIsconnected(false);
-
-     }
+      const { response } = await dispatch(logout());
+      if (response.status === 200) {
+        localStorage.removeItem("authToken");
+        setIsconnected(false);
+      }
     }
   };
 
@@ -73,13 +72,30 @@ function App() {
           <Route exact path="/signin" element={<Signin />} />
           <Route exact path="/signup" element={<Signup />} />
           <Route exact path="/forgetPassword" element={<ForgetPassword />} />
-  {addressAndPhone && cart[0] && distributor && isConnected && <Route exact path="/paymentPage" element={<PaymentPage />} />}
-  {cart[0] &&  isConnected && <Route exact path="/addressForm" element={<MyAddressForm />} />}
-  {isConnected && <Route exact path="/orderhistory" element={<OrderHistory />} />}
-  {isConnected && <Route exact path="/confirm" element={<ConfirmationPage />} />}
-  {addressAndPhone && isConnected && <Route exact path="/map" element={<MapComponent />} />}
-  {isConnected && <Route exact path="/orderDetail/:id" element={<OrderDetailPage />} />}
-          <Route path="/*" element={<HomePage />} />
+          {addressAndPhone && cart[0] && distributor && isConnected && (
+            <Route exact path="/paymentPage" element={<PaymentPage />} />
+          )}
+          {cart[0] && isConnected && (
+            <Route exact path="/addressForm" element={<MyAddressForm />} />
+          )}
+          {isConnected && (
+            <Route exact path="/orderhistory" element={<OrderHistory />} />
+          )}
+          {isConnected && (
+            <Route exact path="/confirm" element={<ConfirmationPage />} />
+          )}
+          {addressAndPhone && isConnected && (
+            <Route exact path="/map" element={<MapComponent />} />
+          )}
+          {isConnected && (
+            <Route
+              exact
+              path="/orderDetail/:id"
+              element={<OrderDetailPage />}
+            />
+          )}
+          <Route path="/" element={<HomePage />} />
+          <Route path="/*" element={<NotFound />} />
         </Routes>
       </div>
     </div>
