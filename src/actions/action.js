@@ -10,7 +10,13 @@ export const fetchAllProducts = () => async (dispatch) => {
   try {
     dispatch(startLoading());
     const { data } = await api.fetchAllProducts();
-    const a = data.map((product) => product.cylinder);
+    const a = data.map((product) => 
+    {
+      const b=product.cylinder;
+      const c=product.discount;
+      return {...b,discount:c}
+      })
+
 
     dispatch(allProducts(a));
     dispatch(endLoading());
@@ -21,14 +27,23 @@ export const fetchAllProducts = () => async (dispatch) => {
 // fetch product by search
 export const fetchProductBySearch = (search) => async (dispatch) => {
   try {
+    console.log(search);
     dispatch(startLoading());
-    const { data } = await api.fetchAllProducts(); // Fetch all products
-    const a = data.map((product) => product.cylinder);
+    const { data } = await api.fetchAllProducts(); 
+    const a = data.map((product) => 
+    {
+      const b=product.cylinder;
+      const c=product.discount;
+      return {...b,discount:c}
+      })
+    // Fetch all products
     const filteredData = a.filter((product) =>
+    
       product.name.toLowerCase().includes(search.toLowerCase())
-    ); // Filter the products based on the search query
+    
+      );
+       // Filter the products based on the search query
     dispatch(allProducts(filteredData));
-    console.log(filteredData);
     dispatch(endLoading());
   } catch (error) {
     console.log(error.message);
@@ -42,8 +57,8 @@ export const fetchOneProduct = (id) => async (dispatch) => {
     const { data } = await api.fetchOneProduct(id);
 
     dispatch(endLoading());
-    return data.cylinder;
-    console.log(data);
+    const newData = { ...data.cylinder,discount:data.discount}
+    return newData;
   } catch (error) {
     console.log(error.message);
   }

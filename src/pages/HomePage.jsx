@@ -29,11 +29,8 @@ const HomePage = () => {
   const isLoading = useSelector((state) => state.centralStore.isLoading);
 
   useEffect(() =>async()=> {
-    setLoading(true);
     if (searchQuery) {
-      dispatch(fetchProductBySearch(searchQuery)).catch((error) =>
-        console.error(error)
-      );
+      dispatch(fetchProductBySearch(searchQuery))
     } else {
       await dispatch(fetchAllProducts());
     }
@@ -48,7 +45,7 @@ const HomePage = () => {
   const productsSectionRef = useRef(null);
 
   useEffect(() => {
-    // console.log(productList)
+   
     if (location.state && location.state.scrollTarget === "products") {
       if (productsSectionRef && productsSectionRef.current) {
         window.scrollTo({
@@ -59,7 +56,6 @@ const HomePage = () => {
     }
   }, [location.state]);
   // setUser(JSON.parse(localStorage.getItem("user")))
-  console.log(user);
 
   return (
     <div>

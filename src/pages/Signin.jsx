@@ -33,11 +33,9 @@ function Signin() {
     setIsLoading(true);
 
 
-    // console.log(form);
     try{
   const response =await  dispatch(login(form));
 
-    // console.log(response)
 
     if (response.status===200) {
       setTimeout(() => {
@@ -59,11 +57,8 @@ function Signin() {
     setIsLoading(true);
     signInWithPopup(auth, provider)
       .then((result) => {
-        // console.log(result._tokenResponse.idToken)
-        // console.log(result)
         const a = dispatch(googlelogin(result._tokenResponse.idToken));
         if (a) {
-          // console.log(a)
           const { email, displayName, photoURL, uid } = result.user;
           const userDetails = {
             email,
@@ -73,7 +68,6 @@ function Signin() {
             username: email.split("@")[0],
           };
           localStorage.setItem("user", JSON.stringify(userDetails));
-          // console.log(JSON.stringify(userDetails))
           setTimeout(() => {
             navigate("/",{replace:true});
             setIsLoading(false);

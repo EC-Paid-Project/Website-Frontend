@@ -25,11 +25,9 @@ const Distributors = () => {
   useEffect(() => {
     const gettingDistributors = async () => {
       const distribs = await dispatch(getDistributors());
-      //   console.log("Distributors:", distribs);
 
       const transformedDistribs = distribs.map((distrib) => {
         const [lat, lng] = distrib.location.split(",");
-        console.log("Lat:", lat, "Lng:", lng);
         return {
           ...distrib,
           location: {
@@ -40,10 +38,8 @@ const Distributors = () => {
       });
 
       setDistributors(transformedDistribs);
-      console.log("Transformed Distributors:", transformedDistribs);
     };
     gettingDistributors();
-    console.log("Distributors:", distributors);
   }, []);
 
   function mapset(map) {

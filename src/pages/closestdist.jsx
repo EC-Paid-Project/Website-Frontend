@@ -12,17 +12,15 @@ const MapComponent = () => {
   const { isLoading } = useSelector(state => state.centralStore);
   const [activeInfoWindow, setActiveInfoWindow] = useState("");
   const mapClicked = (event) => { 
-    console.log(event.latLng.lat(), event.latLng.lng()) 
+
 }
 const navigate=useNavigate()
 const markerClicked = (marker, index) => {  
     setActiveInfoWindow(index)
-    console.log(marker, index) 
 }
 
 const markerDragEnd = (event, index) => { 
-    console.log(event.latLng.lat())
-    console.log(event.latLng.lng())
+
 }
   const fetchData = async () => {
     if (navigator.geolocation) {
@@ -31,8 +29,8 @@ const markerDragEnd = (event, index) => {
       });
     
     const distributorData = await dispatch(getDistributors());
+  
     setDistributors(distributorData);
-    console.log(parseFloat(distributorData[0].location.split(",")[0]));
   };}
   useEffect(() => {
 
@@ -43,7 +41,7 @@ const markerDragEnd = (event, index) => {
     height: "100vh",
   };
 
-  if (isLoading) {
+  if (isLoading && distributors.length === 0) {
     return (  
       <div className="container" style={{ width: "10px", margin: "auto" }}>
         <Circles

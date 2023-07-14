@@ -25,7 +25,7 @@ const PaymentPage = () => {
 
 
     const distributor = JSON.parse(localStorage.getItem("lpgDistributor"));
-    console.log(distributor);
+
     const a = await dispatch(
       sendOrder(addressAndPhone, cart, distributor?.id, "COD")
     );
@@ -39,7 +39,7 @@ const PaymentPage = () => {
     // Perform online payment logic
     setShowConfirmation(false);
     const distributor = JSON.parse(localStorage.getItem("lpgDistributor"));
-    console.log(distributor);
+  
     dispatch(
       sendOrder(
         addressAndPhone,

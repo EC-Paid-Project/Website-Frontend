@@ -39,10 +39,9 @@ Signup() {
     // setIsLoading(true);
     event.preventDefault();
 
-    console.log(form)
+  
     try{
       const a=await dispatch(signup(form) )
-      console.log(a)
       if(a.status===204){
         setMyError("")
 navigate("/signin")
@@ -59,8 +58,7 @@ else if (a.status===400){
     }catch(err){
       setMyError("fill form correctly")
     }
-    // console.log("User sign up form details are: ");
-    // console.log(form);
+
     // localStorage.setItem("user", JSON.stringify(form));
     // navigate("/");
   };

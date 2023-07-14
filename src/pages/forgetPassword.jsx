@@ -36,7 +36,6 @@ function ForgetPassword() {
   const onSubmitEmailHandler = async (event) => {
     event.preventDefault();
     const a=await dispatch(resetPassword({email:form.email}))
-    console.log(a)
     if(a!=null){
       setEmailSent(true)
       setFirstResponse(a)
@@ -45,7 +44,6 @@ function ForgetPassword() {
 
   const onSubmitOTPHandler = async (event) => {
     event.preventDefault();
-    console.log(firstResponse.otp)
     if(otp==firstResponse.otp){
       const a=await dispatch(sendOtp({
         "uid":firstResponse.uid,

@@ -31,7 +31,6 @@ const CartPage = () => {
 
   const dispatch = useDispatch()
   useEffect(() => {
-    console.log(cart)
     // Retrieve cart from local storage
     if (cart && cart.length > 0) {
       setCartItems(cart);
@@ -84,7 +83,7 @@ const CartPage = () => {
           </div>
           <button className="btn-primary checkout-btn" onClick={() => {
             const a=(JSON.parse(localStorage.getItem("authToken")))
-            console.log(a)
+
             if(a==null){
               navigate("/signin",{replace:true})
             }

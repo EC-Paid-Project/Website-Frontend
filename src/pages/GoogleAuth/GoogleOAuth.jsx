@@ -14,15 +14,15 @@ const GoogleOAuth = () => {
     const navigate = useNavigate();
 const dispatch = useDispatch();
     const responseGoogle = (response) => {
-        console.log(response);
+
          const userObject = jwt_decode(response.credential);
-         console.log(userObject);
+
          const a=dispatch(googlelogin(userObject.credential))
         //  if(a){
         //    navigate('/')
 
         //  }
-        console.log('UserObject:, ', a)
+   
         //  localStorage.setItem('user', JSON.stringify(userObject));
         //  const { name, sub, picture } = userObject;
         //  const doc = {
@@ -34,8 +34,8 @@ const dispatch = useDispatch();
         //  client.createIfNotExists(doc).then(() => {
         //    navigate('/', { replace: true });
         //  });
-        console.log("Google auth sign in details are: ")
-        // console.log(doc)
+     
+
        }
   
     return (

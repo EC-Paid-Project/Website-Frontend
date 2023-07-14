@@ -74,7 +74,7 @@ const ProductPage = () => {
         <Circles
           height="80"
           width="80"
-          color="#4fa94d"
+          color="#2c9fe6"
           ariaLabel="circles-loading"
           wrapperStyle={{}}
           wrapperClass=""

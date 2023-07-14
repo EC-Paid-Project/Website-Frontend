@@ -77,7 +77,7 @@ function App() {
   {cart[0] &&  isConnected && <Route exact path="/addressForm" element={<MyAddressForm />} />}
   {isConnected && <Route exact path="/orderhistory" element={<OrderHistory />} />}
   {isConnected && <Route exact path="/confirm" element={<ConfirmationPage />} />}
-  {addressAndPhone && isConnected && <Route exact path="/map" element={<MapComponent />} />}
+  { isConnected && <Route exact path="/map" element={<MapComponent />} />}
   {isConnected && <Route exact path="/orderDetail/:id" element={<OrderDetailPage />} />}
           <Route path="/*" element={<HomePage />} />
         </Routes>
