@@ -78,7 +78,8 @@ function App() {
   {isConnected && <Route exact path="/confirm" element={<ConfirmationPage />} />}
   { isConnected && <Route exact path="/map" element={<MapComponent />} />}
   {isConnected && <Route exact path="/orderDetail/:id" element={<OrderDetailPage />} />}
-  <Route path="/*" element={<NotFound />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/*" element={<NotFound />} />
         </Routes>
       </div>
     </div>
