@@ -7,8 +7,9 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { useDispatch } from "react-redux";
 import { signup } from "../actions/action";
-function 
-Signup() {
+
+
+function Signup() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
@@ -20,11 +21,11 @@ Signup() {
   //add a User
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
-  
-    if (name === 'email') {
+
+    if (name === "email") {
       setForm((prevForm) => ({
         ...prevForm,
-        username: value.split('@')[0],
+        username: value.split("@")[0],
         [name]: value,
       }));
     } else {
@@ -33,9 +34,9 @@ Signup() {
         [name]: value,
       }));
     }
-  }
+  };
 
-  const onSubmitHandler = async(event) => {
+  const onSubmitHandler = async (event) => {
     // setIsLoading(true);
     event.preventDefault();
 
@@ -52,11 +53,9 @@ else if (a.status===400){
     setMyError("")
     
         }
-        
       }
-
-    }catch(err){
-      setMyError("fill form correctly")
+    } catch (err) {
+      setMyError("fill form correctly");
     }
 
     // localStorage.setItem("user", JSON.stringify(form));
@@ -124,7 +123,9 @@ else if (a.status===400){
                 onChange={onChangeHandler}
                 errors={errors.password}
               />
-              <p className="text-red-700 text-center font-semibold">{myError}</p>
+              <p className="text-red-700 text-center font-semibold">
+                {myError}
+              </p>
               <button
                 className=" bg-[#F90105] text-white hover:bg-gray-600 w-full relative inline-flex items-center justify-center px-2 md:px-4 py-2 overflow-hidden font-medium transition duration-300 ease-out rounded-full shadow-xl group hover:ring-4 hover:ring-purple-500"
                 type="submit"
@@ -136,7 +137,8 @@ else if (a.status===400){
                 Already have an account? {FaEnvelope}{" "}
                 <Link to="/signin">
                   <span className="font-bold no-underline">Sign in</span>
-                </Link>{" "} here
+                </Link>{" "}
+                here
               </div>
             </form>
           </div>
