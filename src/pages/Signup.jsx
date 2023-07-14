@@ -43,7 +43,7 @@ function Signup() {
   
     try{
       const a=await dispatch(signup(form) )
-      if(a.status===204){
+      if(a.status===204 || a.status===201 || a.status===200){
         setMyError("")
 navigate("/signin")
 }
