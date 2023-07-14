@@ -50,7 +50,15 @@ const CartPage = () => {
           <h2 className="cart-page-section-title">
             Cart Items ({cartItems.length} Items)
           </h2>
-          {cartItems.map((item) => (item &&
+          
+          {
+          
+          cartItems.length===0?
+          <div className="mx-auto w-max h-[50vh] mt-20">
+              <h1 className="text-2xl font-bold">No Item Found</h1>
+            </div> :
+          
+          cartItems.map((item) => (item &&
             <div key={item.id} className="cart-page-cart-item">
               <CartItem product={item} onIncrement={() => dispatch(addProductToCart(item))}
                 onDecrement={() => removeProductFromCart(item)} />

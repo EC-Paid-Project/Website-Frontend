@@ -39,7 +39,7 @@ if(isLoading){
         centerSlidePercentage={100}
         infiniteLoop={true}
       >
-        {offer.map((img, index) => {
+        {offer?.map((img, index) => {
           return (
             <div key={index} className="carousel_item">
               <img src={baseURL+img.image} alt="no-text" className="carousel_img" />

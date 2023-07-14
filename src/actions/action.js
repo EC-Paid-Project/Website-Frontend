@@ -27,7 +27,6 @@ export const fetchAllProducts = () => async (dispatch) => {
 // fetch product by search
 export const fetchProductBySearch = (search) => async (dispatch) => {
   try {
-    console.log(search);
     dispatch(startLoading());
     const { data } = await api.fetchAllProducts(); 
     const a = data.map((product) => 
@@ -84,7 +83,7 @@ export const getDistributors = () => async (dispatch) => {
     dispatch(endLoading());
     return a;
   } catch (error) {
-    console.log(error.message);
+    return null
   }
 };
 // add to
@@ -135,7 +134,6 @@ export const getoffer = () => async (dispatch) => {
     dispatch(startLoading());
     const response = await api.getoffer();
     dispatch(endLoading());
-    console.log(response);
     return response.data;
   } catch (error) {
     console.log(error.message);
@@ -152,7 +150,6 @@ export const sendOrder =
         "type": d,
         "dis_id": parseInt(c),
       });
-      console.log(response);
       return 200;
     } catch (error) {
       console.log(error);
@@ -178,7 +175,7 @@ export const getUser = () => async (dispatch) => {
 //google login
 export const googlelogin = (body) => async (dispatch) => {
   try {
-    console.log(body);
+
     const response = await api.googlelogin(body);
     console.log(response);
     localStorage.setItem("authToken", JSON.stringify(response.data.key));
@@ -198,9 +195,7 @@ export const resetPassword = (body) => async (dispatch) => {
 };
 export const sendOtp = (body, uuid, token) => async (dispatch) => {
   try {
-    console.log(body);
     const response = await api.sendOtp(body, uuid, token);
-    console.log(response);
     return response.status;
   } catch (error) {
     return 400;

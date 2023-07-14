@@ -6,13 +6,13 @@ import CustomCarousel from "../components/Carousel";
 import { fetchAllProducts, fetchProductBySearch, getDistributors } from "../actions/action";
 import {BsSearch} from "react-icons/bs";
 import { useSelector, useDispatch } from "react-redux";
-// import ProductView from "../components/ProductView";
+import ProductView from "../components/ProductView";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useLocation } from "react-router-dom";
 import { Circles } from "react-loader-spinner";
 
-const ProductView = lazy(() => import("../components/ProductView"));
+// const ProductView = lazy(() => import("../components/ProductView"));
 const HomePage = () => {
   useEffect(() => {
     AOS.init();
@@ -28,16 +28,22 @@ const HomePage = () => {
   const productList = useSelector((state) => state.centralStore.productList);
   const isLoading = useSelector((state) => state.centralStore.isLoading);
 
-  useEffect(() =>async()=> {
-    if (searchQuery) {
-      dispatch(fetchProductBySearch(searchQuery))
-    } else {
-      await dispatch(fetchAllProducts());
-    }
+  useEffect(() => {
+    const fetchData = async () => {
+      if (searchQuery !== "") {
+        await dispatch(fetchProductBySearch(searchQuery));
+      } else {
+        await dispatch(fetchAllProducts());
+      
+      }
+    };
+    fetchData();
   }, [searchQuery]);
 
   const handleSearch = (event) => {
-    setSearchQuery(event.target.value);
+    const a=event.target.value
+    setSearchQuery(a);
+
   };
 
   const location = useLocation();
@@ -57,6 +63,7 @@ const HomePage = () => {
   }, [location.state]);
   // setUser(JSON.parse(localStorage.getItem("user")))
 
+  
   return (
     <div>
       <Navbar />
@@ -73,28 +80,24 @@ const HomePage = () => {
     className="bg-gray-400 rounded-md px-4 py-2 w-1/2 shadow-md"
     type="text"
     placeholder="Search products..."
-    value={searchQuery}
+    // value={searchQuery}
     onChange={handleSearch}
   />
   <span className="justify-self-center align-text-bottom px-2"><BsSearch/></span>
 </div>
 
-        <Suspense
-          fallback={
-            <div className="mx-auto w-max">
-              <Circles
-                height="80"
-                width="80"
-                color="#2c9fe6"
-                ariaLabel="circles-loading"
-                wrapperStyle={{}}
-                wrapperClass=""
-                visible={true}
-              />
-            </div>
-          }
-        >
-          {isLoading ? (
+       
+          {
+          
+          (productList.length===0)?
+             (
+              <div className="mx-auto w-max h-[50vh] mt-20">
+              <h1 className="text-2xl font-bold">No Item Found</h1>
+            </div> 
+            ):
+          
+          
+          isLoading ? (
             <div className="mx-auto w-max h-[50vh] mt-20">
               <Circles
                 height="80"
@@ -123,13 +126,14 @@ const HomePage = () => {
                   available={product.availablility}
                   size={product.size}
                   weight={product.weight}
+                  discount={product.discount}
                   color1={"bg-color-white"}
                   color0={"bg-color-white"}
                 />
               </div>
             ))
           )}
-        </Suspense>
+    
       </div>
       <Footer />
     </div>

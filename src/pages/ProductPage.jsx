@@ -22,33 +22,31 @@ const ProductPage = () => {
     AOS.init();
     window.scrollTo(0, 0);
   }, []);
+
   const { cart, isLoading } = useSelector((state) => state.centralStore);
   const dispatch = useDispatch();
-
   const { id } = useParams();
-
   const [quantity, setQuantity] = useState(0);
   const [product, setProduct] = useState({});
   const Navigate = useNavigate();
 
   const handleAddToCart = (product) => {
-    dispatch(addProductToCart( product));
+    dispatch(addProductToCart(product));
     Navigate("/cart");
   };
 
   const handlePlus = (product) => {
     if (product.id != null) {
-      // dispatch(addProductToCart(product));
-      setQuantity(quantity + 1); // Increment the quantity
+      setQuantity(quantity + 1);
     }
   };
 
   const handleMinus = (product) => {
-    if (quantity == 1) {
+    if (quantity === 1) {
       return;
     }
     dispatch(removeProductFromCart(product));
-    setQuantity(quantity - 1); // Decrement the quantity
+    setQuantity(quantity - 1);
   };
 
   useEffect(() => {
@@ -84,6 +82,16 @@ const ProductPage = () => {
     );
   }
 
+  const calculateDiscountedPrice = () => {
+    if (product.discount && product.price) {
+      const discountAmount = (product.price * product.discount) / 100;
+      return product.price - discountAmount;
+    }
+    return null;
+  };
+
+  const discountedPrice = calculateDiscountedPrice();
+
   return (
     <div>
       <Navbar />
@@ -103,28 +111,24 @@ const ProductPage = () => {
             <Link to={`/product/${product.id}`}>
               <h3 className="product-page-title">{product.name}</h3>
             </Link>
-            <h4 className="product-page-price">PKR {product.price}</h4>
+            {discountedPrice ? (
+              <div className="product-page-price-wrapper">
+                <span className="product-page-cancel-price line-through text-gray-500">
+                  PKR {product.price}
+                </span>
+                <span className="product-page-discount-price text-red-600 font-bold ml-2">
+                  PKR {discountedPrice}
+                </span>
+              </div>
+            ) : (
+              <h4 className="product-page-price">PKR {product.price}</h4>
+            )}
             <h4 className="product-page-price"> Weight: {product.weight}</h4>
             <h4 className="product-page-price">Size: {product.size}</h4>
             <p className="product-page-desc">
               <span className="product-page-desc-heading">Description:</span>{" "}
               <br /> {product.description}
             </p>
-            {/* <div className="product-page-quantity">
-              <button
-                onClick={() => handleMinus(product)}
-                className="minus-button"
-              >
-                <AiFillMinusCircle />
-              </button>
-              <h4 className="product-page-quantity-number">{quantity}</h4>
-              <button
-                onClick={() => handlePlus(product)}
-                className="plus-button"
-              >
-                <AiFillPlusCircle />
-              </button>
-            </div> */}
             <button
               className="add-to-cart"
               onClick={() => {

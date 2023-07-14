@@ -12,15 +12,17 @@ const MapComponent = () => {
   const { isLoading } = useSelector(state => state.centralStore);
   const [activeInfoWindow, setActiveInfoWindow] = useState("");
   const mapClicked = (event) => { 
-
+    console.log(event.latLng.lat(), event.latLng.lng()) 
 }
 const navigate=useNavigate()
 const markerClicked = (marker, index) => {  
     setActiveInfoWindow(index)
+    console.log(marker, index) 
 }
 
 const markerDragEnd = (event, index) => { 
-
+    console.log(event.latLng.lat())
+    console.log(event.latLng.lng())
 }
   const fetchData = async () => {
     if (navigator.geolocation) {
@@ -41,7 +43,7 @@ const markerDragEnd = (event, index) => {
     height: "100vh",
   };
 
-  if (isLoading && distributors.length === 0) {
+  if (isLoading ) {
     return (  
       <div className="container" style={{ width: "10px", margin: "auto" }}>
         <Circles
@@ -56,6 +58,12 @@ const markerDragEnd = (event, index) => {
       </div>
     );
   }
+  if(!distributors ){
+    return (<div className="container" style={{ width: "10px", margin: "auto" }}>
+        <h1 className="text-2xl font-bold">No Distrbutor Found</h1>
+      </div>)
+
+  }
 
   return (
     // <LoadScript googleMapsApiKey='AIzaSyBLQSJcaTQHHsQ8N6k1takZ-WbvtiW3s98'>
@@ -66,7 +74,7 @@ const markerDragEnd = (event, index) => {
         center={{ lat: userLocation.latitude, lng: userLocation.longitude }}
         zoom={15}
       >
-        {distributors.map((marker, index) => (
+        {distributors?.map((marker, index) => (
           <Marker
             key={index}
             position={{ lat: parseFloat(marker.location.split(",")[0]), lng: parseFloat(marker.location.split(",")[1]) }}

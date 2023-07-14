@@ -37,6 +37,8 @@ const CartItem = ({ product, onIncrement, onDecrement }) => {
   // };
 
   return (
+
+    
     <div className="cart-product">
       <div className="product-container">
         <div className="product-image-container">
@@ -44,7 +46,7 @@ const CartItem = ({ product, onIncrement, onDecrement }) => {
         </div>
         <div className="product-details">
           <h3 className="product-name">{product.name}</h3>
-          <span className="product-name">PKR {product.price}</span>
+          <span className="product-name">PKR {product.price-(product.discount*product.price/1000)}</span>
           <div className="product-quantity">
             <button className="quantity-button" onClick={handleDecrement}>
               -
