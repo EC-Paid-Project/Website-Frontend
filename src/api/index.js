@@ -1,5 +1,6 @@
 import axios from "axios";
 export const baseURL = "https://owaisali246.pythonanywhere.com/";
+// export const baseURL = "https://76ae-115-186-48-54.ngrok-free.app/";
 // const API = axios.create({ baseURL: "http://127.0.0.1:8000/" });
 const API = axios.create({ baseURL: baseURL });
 API.interceptors.request.use((req) => {

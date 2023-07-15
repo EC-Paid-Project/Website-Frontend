@@ -77,11 +77,11 @@ const markerDragEnd = (event, index) => {
         {distributors?.map((marker, index) => (
           <Marker
             key={index}
-            position={{ lat: parseFloat(marker.location.split(",")[0]), lng: parseFloat(marker.location.split(",")[1]) }}
+            position={{ lat: parseFloat(marker.geolocation.split(",")[0]), lng: parseFloat(marker.geogeolocation.split(",")[1]) }}
 
             // visible={true}
             // draggable={marker.draggable}
-                        // onDragEnd={event => markerDragEnd(event, index)}
+                       geo // onDragEnd={event => markerDragEnd(event, index)}
                         onClick={()=>{
                           localStorage.setItem("lpgDistributor",JSON.stringify(marker));
 navigate("/paymentPage")
@@ -90,7 +90,7 @@ alert("lkl")
 >
 
                           {  <div  style={{backgroundColor:"red", color: "white", cursor: "pointer" }}>
-                              <InfoWindow position={{ lat: parseFloat(marker.location.split(",")[0]), lng: parseFloat(marker.location.split(",")[1]) }}  zIndex={10} >
+                              <InfoWindow position={{ lat: parseFloat(marker.geolocation.split(",")[0]), lng: parseFloat(marker.geolocation.split(",")[1]) }}  zIndex={10} >
                             <b
                   style={{backgroundColor:"lightblue", color: "black", cursor: "pointer" }}
                   onClick={() => {

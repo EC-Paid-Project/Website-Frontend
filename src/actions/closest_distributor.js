@@ -33,7 +33,7 @@ export function findClosestDistributors(distributors) {
               distance: calculateDistance(
                 userLatitude,
                 userLongitude,
-                ...distributor.location.split(',').map(parseFloat)
+                ...distributor.geolocation.split(',').map(parseFloat)
               ),
             }))
             .sort((a, b) => a.distance - b.distance)

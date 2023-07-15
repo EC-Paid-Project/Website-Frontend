@@ -89,13 +89,7 @@ const HomePage = () => {
        
           {
           
-          (productList.length===0)?
-             (
-              <div className="mx-auto w-max h-[50vh] mt-20">
-              <h1 className="text-2xl font-bold">No Item Found</h1>
-            </div> 
-            ):
-          
+         
           
           isLoading ? (
             <div className="mx-auto w-max h-[50vh] mt-20">
@@ -109,7 +103,14 @@ const HomePage = () => {
                 visible={true}
               />
             </div>
-          ) : (
+          ) :
+          (productList.length===0)?
+          (
+           <div className="mx-auto w-max h-[50vh] mt-20">
+           <h1 className="text-2xl font-bold">No Item Found</h1>
+         </div> 
+         ):
+        (
             (productList).map((product) => (
               <div
                 className="product-1"
