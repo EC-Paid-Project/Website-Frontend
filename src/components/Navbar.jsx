@@ -16,6 +16,17 @@ const Navbar = () => {
   );
 
   const navigate = useNavigate();
+  
+   useEffect(() => {
+    const authToken=JSON.parse(localStorage.getItem("authToken"))
+    if(user && !authToken){
+      localStorage.clear()
+      navigate("/signin");
+    }
+    return () => {
+      return
+    };
+  }, []);
 
   const handleProductsClick = (e) => {
     e.preventDefault();

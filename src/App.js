@@ -6,7 +6,7 @@ import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 // import ProtectedRoute from "./components/ProtectedRoute";
 import CartPage from "./pages/CartPage";
 import { useEffect, useState } from "react";
@@ -34,12 +34,13 @@ function App() {
   const distributor = JSON.parse(localStorage.getItem("lpgDistributor"));
   // const user =  JSON.parse(localStorage.getItem('user'))._id
   const dispatch = useDispatch();
+  const navigate=useNavigate()
 
   const checkUserToken = () => {
     if (typeof window !== "undefined") {
       const user = JSON.parse(localStorage.getItem("authToken"));
       // const username = JSON.parse(localStorage.getItem("user-token")).name;
-      if (user) {
+      if (user!=null) {
         setIsconnected(true);
       } else {
         setIsconnected(false);
@@ -69,16 +70,18 @@ function App() {
           <Route exact path="/cart" element={<CartPage />} />
           <Route exact path="/profile" element={<UserProfile />} />
           <Route exact path="/about" element={<AboutPage />} />
-          <Route exact path="/signin" element={<Signin />} />
-          <Route exact path="/signup" element={<Signup />} />
+          {!isConnected && <Route exact path="/signin" element={<Signin />} />}
+          {!isConnected &&<Route exact path="/signup" element={<Signup />} />}
           <Route exact path="/forgetPassword" element={<ForgetPassword />} />
   {addressAndPhone && cart[0] && distributor && isConnected && <Route exact path="/paymentPage" element={<PaymentPage />} />}
   {cart[0] &&  isConnected && <Route exact path="/addressForm" element={<MyAddressForm />} />}
   {isConnected && <Route exact path="/orderhistory" element={<OrderHistory />} />}
   {isConnected && <Route exact path="/confirm" element={<ConfirmationPage />} />}
-  { isConnected && <Route exact path="/map" element={<MapComponent />} />}
+  {  <Route exact path="/map" element={<MapComponent />} />}
   {isConnected && <Route exact path="/orderDetail/:id" element={<OrderDetailPage />} />}
           <Route path="/" element={<HomePage />} />
+          {isConnected && <Route path="/signin" element={() => navigate("/")} />}
+          {isConnected && <Route path="/signup" element={() => navigate("/")} />}
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </div>
