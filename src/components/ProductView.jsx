@@ -41,8 +41,8 @@ const ProductView = (props) => {
             <h4 className="product-view-price mb-2">PKR {props.price}</h4>
           )}
           <p className="product-view-desc text-gray-700">
-            {props.desc.length > 50
-              ? props.desc.slice(0, 180) + "..."
+            {props.desc.length > 10
+              ? props.desc.slice(0, 110) + "..."
               : props.desc}
           </p>
           {/* <h4 className="product-view-details">{!props.availability? "Available":"Not available"}  </h4> */}
