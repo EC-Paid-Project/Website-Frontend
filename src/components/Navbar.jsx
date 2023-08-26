@@ -34,7 +34,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="w-full">
+    <nav className="nav">
       <ul >
         <li >
           <Link to="/">
@@ -70,7 +70,7 @@ const Navbar = () => {
             </li>
           </ul>
         </li>
-        <li>
+        <li className="navList" >
           <div className="navRight">
             <Link to={"/cart"}>
               <button className="cart-button">
@@ -83,7 +83,7 @@ const Navbar = () => {
               </button>
             </Link>
             <Link to={"/profile"}>
-              <div className="user-profile  mr-14">
+              <div className="user-profile  mr-2">
                 {user ? (
                   <img src={img} alt="Profile" className="profile-image" />
                 ) : (
@@ -117,6 +117,9 @@ const Navbar = () => {
                        navigate("/signin");
                      }
                   }catch(err){
+                    localStorage.removeItem("user");
+                    localStorage.removeItem("authToken");
+                    navigate("/signin");
                     console.log(err);
                   }
                 }}>

@@ -18,6 +18,11 @@ function Signup() {
   const [errors, setErrors] = useState({});
   const [myError, setMyError] = useState("");
 
+  const [passwordVisible, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
   //add a User
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
@@ -105,24 +110,37 @@ else if (a.status===400){
                 onChange={onChangeHandler}
                 errors={errors.email}
               />
-              <CustomInput
-                label="Password1"
-                placeholder="password"
-                type="password"
-                name="password1"
-                icon={<FaLock />}
-                onChange={onChangeHandler}
-                errors={errors.password}
-              />
-              <CustomInput
-                label="Confirm Password"
-                placeholder="confirm password"
-                type="password"
-                name="password2"
-                icon={<FaLock />}
-                onChange={onChangeHandler}
-                errors={errors.password}
-              />
+               <CustomInput
+      label="Password1"
+      placeholder="password"
+      type={passwordVisible ? "text" : "password"}
+      name="password1"
+      icon={<FaLock />}
+      onChange={onChangeHandler}
+      errors={errors.password}
+    />
+    <button
+      className="password-toggle-button text-center w-80 m-auto"
+      type="button"
+      onClick={togglePasswordVisibility}
+    >
+      {passwordVisible ? "Hide" : "Show"} Password
+    </button>
+
+    <CustomInput
+      label="Confirm Password"
+      placeholder="confirm password"
+      type={passwordVisible ? "text" : "password"}
+      name="password2"
+      icon={<FaLock />}
+      onChange={onChangeHandler}
+      errors={errors.password}
+    />
+    <button
+      className="password-toggle-button"
+      type="button"
+      onClick={togglePasswordVisibility}
+    ></button>
               <p className="text-red-700 text-center font-semibold">
                 {myError}
               </p>

@@ -37,7 +37,7 @@ function App() {
   const navigate=useNavigate()
 
   const checkUserToken = () => {
-    if (typeof window !== "undefined") {
+
       const user = JSON.parse(localStorage.getItem("authToken"));
       // const username = JSON.parse(localStorage.getItem("user-token")).name;
       if (user!=null) {
@@ -45,7 +45,6 @@ function App() {
       } else {
         setIsconnected(false);
       }
-    }
   };
   useEffect(() => {
     checkUserToken();

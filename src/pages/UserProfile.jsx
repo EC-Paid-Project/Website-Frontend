@@ -2,31 +2,29 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import "./UserProfile.css";
-// import { useParams } from "react-router-dom";
-// import { IoMdLogOut } from "react-icons/io";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
-  // const { userId } = useParams();
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")))
-const navigate = useNavigate();
-  
+  const [localuser, setLocalUser] = useState(JSON.parse(localStorage.getItem("user-profile")) || {});
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")) || {});
+  const navigate = useNavigate();
+
   useEffect(() => {
     AOS.init();
     window.scrollTo(0, 0);
-  }, [user]);
+  }, []);
 
-  const [fullName, setFullName] = useState(user?.name || "John Doe");
-  const [username, setUsername] = useState(user?.username || "johndoe");
-  const [email, setEmail] = useState(user?.email || "johndow@example.com");
-  const [phone, setPhone] = useState(user?.phone || "1234567890");
+  const [fullName, setFullName] = useState(user.first_name ||user.name  || "");
+  const [username, setUsername] = useState(user.username || "");
+  const [email, setEmail] = useState(user.email || localuser.email || "");
+  const [phone, setPhone] = useState(localuser.phone || "");
   const [img, setImg] = useState(
-    user?.img ||
+    user.img ||
       "https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg"
   );
-  const [address, setAddress] = useState(user?.address || "123 ABC Street");
+  const [address, setAddress] = useState(localuser.address || "");
   const [isEditing, setIsEditing] = useState(false);
 
   const handleLogout = () => {
@@ -48,29 +46,14 @@ const navigate = useNavigate();
       phone: phone,
       address: address,
     };
-    localStorage.setItem("user", JSON.stringify(updatedUser));
+    localStorage.setItem("user-profile", JSON.stringify(updatedUser));
     setIsEditing(false);
-    // window.location.reload();
   };
 
   return (
     <div>
       <Navbar />
       <div className="user-page-main min-h-screen relative">
-        <div className="cover-image">
-          <img src="https://picsum.photos/1920/320" alt="" />
-          <div className="user-page-overlay"></div>
-        </div>
-        {/* {user && <button className="logout-btn" onClick={() => handleLogout()}>
-          <IoMdLogOut className="mr-2 text-lg" /> Logout
-        </button>} */}
-        <div
-          className="user-image z-10"
-          data-aos="zoom-out"
-          data-aos-duration="1500"
-        >
-          <img src={img} alt="" />
-        </div>
         <form className="user-form" data-aos="fade-up" data-aos-duration="1500">
           <div className="form-row">
             <div className="form-field">
@@ -149,7 +132,6 @@ const navigate = useNavigate();
           </div>
         </form>
       </div>
-      {/* </div> */}
       <Footer />
     </div>
   );

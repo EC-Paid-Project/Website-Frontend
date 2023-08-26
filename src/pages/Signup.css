@@ -1,5 +1,4 @@
 .container {
-  /* min-height: 90%; */
   min-height: 90vh;
   display: flex;
   align-items: center;
@@ -47,20 +46,33 @@
 .SignupForm {
   background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(4px);
-  width: 50vw;
-  min-width: 470px;
+  width: 80vw;
   max-width: 800px;
   margin-top: 2rem;
+
+  /* Responsive adjustments for small screens */
+  @media (max-width: 768px) {
+    width: 90vw;
+  }
+
+  @media (max-width: 480px) {
+    width: 95vw;
+    min-width: unset;
+  }
 }
 
 .form-field {
-  width: 45%;
-  /* padding: 12px 20px; */
-  margin: 0px 8px;
+  width: 100%;
+  margin: 0px 0;
 }
 .form-row {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+
+  /* Responsive adjustments for small screens */
+  @media (max-width: 480px) {
+    flex-direction: column;
+  }
 }

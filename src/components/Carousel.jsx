@@ -2,8 +2,6 @@ import React, { useEffect,useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./Carousel.css";
-import banner1 from "../assets/banner.png";
-import banner2 from "../assets/banner2.png";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { getoffer } from "../actions/action";
@@ -12,12 +10,6 @@ const CustomCarousel = () => {
   const [offer,setOffer]=useState([])
   const dispatch=useDispatch()
   const {isLoading}=useSelector(state=>state.centralStore)
-  const content = [
-    { image: banner1 },
-    { image: banner2 },
-    { image: banner1 },
-    { image: banner2 },
-  ];
 useEffect(()=>async()=>{
   const offer=await dispatch(getoffer())
   setOffer(offer)

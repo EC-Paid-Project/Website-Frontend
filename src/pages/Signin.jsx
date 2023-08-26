@@ -1,12 +1,9 @@
-// import axios from "axios";
 import React, { useState } from "react";
 import { FaLock, FaEnvelope } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import CustomInput from "../components/CustomInput";
-// import GoogleAuth from "./GoogleAuth/GoogleOAuth.jsx";
 import "./Signin.css";
 import logo from "../assets/logo.png";
-// import bg from "../assets/bg.jpg";
 import { googlelogin, login } from "../actions/action";
 import { useDispatch } from "react-redux";
 import { auth, provider } from "./Firebase/config";
@@ -16,11 +13,10 @@ function Signin() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [form, setForm] = useState({ email: "", password: "" });
-  // eslint-disable-next-line no-unused-vars
   const [errors, setErrors] = useState();
-  // eslint-disable-next-line no-unused-vars
   const [isLoading, setIsLoading] = useState(false);
-  //User signin
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
   const onChangeHandler = (event) => {
     setForm({
       ...form,
@@ -28,33 +24,31 @@ function Signin() {
     });
   };
 
-  const onSubmitHandler = async(event) => {
+  const onSubmitHandler = async (event) => {
     event.preventDefault();
     setIsLoading(true);
 
+    try {
+      const response = await dispatch(login(form));
 
-    try{
-  const response =await  dispatch(login(form));
-
-
-    if (response.status===200) {
-      setTimeout(() => {
-        navigate("/",{replace:true});
-        setIsLoading(false);
-        setErrors(  "" );
-      }, 100);
-    } else {
-      setErrors(  "Invalid Credentials" );
-      return;
-    }}catch(error){
-      setErrors(  "Invalid Credentials" );
-      return;
+      if (response.status === 200) {
+        setTimeout(() => {
+          navigate("/", { replace: true });
+          setIsLoading(false);
+          setErrors("");
+        }, 100);
+      } else {
+        setErrors("Invalid Credentials");
+      }
+    } catch (error) {
+      setErrors("Invalid Credentials");
     }
   };
 
   const handleFirebaseLogin = (event) => {
     event.preventDefault();
     setIsLoading(true);
+
     signInWithPopup(auth, provider)
       .then((result) => {
         const a = dispatch(googlelogin(result._tokenResponse.idToken));
@@ -69,7 +63,7 @@ function Signin() {
           };
           localStorage.setItem("user", JSON.stringify(userDetails));
           setTimeout(() => {
-            navigate("/",{replace:true});
+            navigate("/", { replace: true });
             setIsLoading(false);
           }, 1000);
         } else {
@@ -79,6 +73,10 @@ function Signin() {
       .catch((error) => {
         window.alert("Signin Unsuccessful, Please try again!");
       });
+  };
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible((prevState) => !prevState);
   };
 
   return (
@@ -100,50 +98,47 @@ function Signin() {
               name="email"
               icon={<FaEnvelope />}
               onChange={onChangeHandler}
-              // errors={errors.email}
             />
             <CustomInput
               label="Password"
               placeholder="password"
-              type="password"
+              type={passwordVisible ? "text" : "password"}
               name="password"
               icon={<FaLock />}
               onChange={onChangeHandler}
-              // errors={errors.password}
               password
             />
+            <button
+              className="password-toggle-button w-80 " 
+              type="button"
+              onClick={togglePasswordVisibility}
+            >
+              {passwordVisible ? "Hide" : "Show"} Password
+            </button>
+
             {errors && (
-  <p className="text-red-500 text-sm text-center align-middle">{errors}</p>
-)}
+              <p className="text-red-500 text-sm text-center align-middle">
+                {errors}
+              </p>
+            )}
             <button
               type="button"
               onClick={onSubmitHandler}
               className=" bg-[#F90105] hover:bg-gray-600 w-full relative inline-flex items-center justify-center px-2 md:px-4 py-2 overflow-hidden font-medium transition duration-300 ease-out rounded-full shadow-xl group hover:ring-4 hover:ring-purple-500"
             >
-              <span className="relative text-white font-bold px-4">
-                Sign in
-              </span>
+              <span className="relative text-white font-bold px-4">Sign in</span>
             </button>
             <div className="flex flex-col items-center px-3 mb-2">
               <div className="line"></div>
               <div className="text-sm text-center">
-              <Link to="/forgetPassword">
-                <span className="font-bold underline">Forget Password</span>
-              </Link>{" "}
-            </div>
+                <Link to="/forgetPassword">
+                  <span className="font-bold underline">Forget Password</span>
+                </Link>{" "}
+              </div>
               <p>
                 <span className="or text-center text-lg">OR</span>
               </p>
             </div>
-            {/* <button
-              onClick={handleFirebaseLogin}
-              className=" bg-[#F90105] hover:bg-gray-600 w-full relative inline-flex items-center justify-center px-2 md:px-4 py-2 overflow-hidden font-medium transition duration-300 ease-out rounded-full shadow-xl group hover:ring-4 hover:ring-purple-500"
-            >
-              <span className="relative text-white font-bold px-4">
-                Sign in with Google
-              </span>
-            </button> */}
-           
             <div className="text-sm text-center">
               If you don't have an account yet,{" "}
               <Link to="/signup">

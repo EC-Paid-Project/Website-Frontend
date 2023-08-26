@@ -1,5 +1,4 @@
 .container {
-  /* min-height: 90%; */
   min-height: 90vh;
   display: flex;
   align-items: center;
@@ -65,4 +64,10 @@
   background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(4px);
   min-width: 320px;
+
+  /* Responsive adjustments for small screens */
+  @media (max-width: 480px) {
+    min-width: 280px;
+    padding: 20px;
+  }
 }

@@ -16,8 +16,9 @@ const CartPage = () => {
   const calculateTotalPrice = (cart) => {
     let totalPrice = 0;
     for (const item of cart) {
-      totalPrice += item.quantity * item.price;
+      totalPrice += item.quantity *item.price-(item.discount*item.price/1000)
     }
+
     return totalPrice;
   };
 
@@ -25,6 +26,8 @@ const CartPage = () => {
     let totalItems = 0;
     for (const item of cart) {
       totalItems += item.quantity;
+
+      
     }
     return totalItems;
   };
